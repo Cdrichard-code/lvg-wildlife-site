@@ -1,0 +1,55 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import InquiryForm from '../components/InquiryForm.astro';
+import { SITE, breadcrumbs } from '../data/site.js';
+const ld = { '@context': 'https://schema.org', '@graph': [
+  { '@type': 'WebPage', name: 'For realtors and land brokers', url: SITE + '/partners', about: { '@id': SITE + '/#business' } },
+  breadcrumbs([['For realtors and land brokers', '/partners']]),
+] };
+---
+<Base
+  title="For Realtors & Land Brokers | LVG Wildlife Solutions"
+  description="Refer rural land buyers and sellers to LVG Wildlife Solutions for property assessments and wildlife management plans, including Texas wildlife tax exemption filings."
+  path="/partners"
+  ogTitle="For realtors and land brokers | LVG Wildlife Solutions"
+  ogDescription="Help your buyers keep their land's special valuation and get more out of the property."
+  ld={ld}
+  mcta={{ title: 'Refer a client', line: 'We reply within a couple of days', href: '#refer', label: 'Send a referral' }}
+>
+<PageHead crumbs={[['For realtors and land brokers', '/partners']]} eyebrow="REALTORS AND LAND BROKERS" title="A good next step to hand your rural buyers" lead="Rural buyers often inherit an agricultural valuation they don't know how to keep, or buy land for hunting with no idea where to start. We walk the property, write the plan, and help them file it." primary={['#refer', 'Send a referral']} />
+
+<section class="topo-ink shift-1 seam">
+  <div class="wrap">
+    <div class="shead">
+      <div class="idx"><i></i><s></s><b>WHERE WE HELP YOUR CLIENTS</b></div>
+      <h2>Before the sale and after closing</h2>
+    </div>
+    <div class="who">
+      <div><h3>New owners with an ag valuation</h3><p>After a sale, the valuation doesn't carry over by itself. The new owner files a new application with the county appraisal district before May 1. If they don't plan to run cattle or cut hay, a wildlife management plan is often the path that fits.</p></div>
+      <div><h3>Buyers sizing up a property</h3><p>A property assessment before or right after purchase shows what the land has, what it's short of, and what it would take to make it hunt or hold wildlife better.</p></div>
+      <div><h3>Sellers marketing land</h3><p>A property with a current plan, maps, and clean records is easier to explain to buyers who care about wildlife and taxes.</p></div>
+    </div>
+    <div class="prose" style="margin-top:2rem">
+      <p>We prepare plans and help owners file them; the owner files, and the county's chief appraiser decides. We don't give tax or legal advice, and we'll say so to your client too. <a href="/wildlife-tax-valuation">How the Texas wildlife tax exemption works</a>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact dark topo-gold shift-3" id="refer">
+  <div class="wrap">
+    <div class="shead">
+      <div class="idx"><i></i><s></s><b>SEND A REFERRAL</b></div>
+      <h2>Introduce us to a client</h2>
+      <p class="sd">Fill in what you know about the property and your client, and put your own name and brokerage in the notes. We'll reach out and keep you in the loop.</p>
+    </div>
+    <div class="cgrid">
+      <div class="cinfo">
+        <p>Most useful to us: the county, rough acreage, how the land is taxed now, and when the sale closes or closed.</p>
+        <p>If your client would rather reach out on their own, send them to our <a href="/contact">contact page</a>.</p>
+      </div>
+      <InquiryForm source="realtor referral" idPrefix="r-" />
+    </div>
+  </div>
+</section>
+</Base>

@@ -1,0 +1,74 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Figure from '../components/Figure.astro';
+import { breadcrumbs, service } from '../data/site.js';
+const crumbs = [['Services', '/services'], ['Property assessment', '/property-assessment']];
+const ld = { '@context': 'https://schema.org', '@graph': [
+  service({ name: 'Wildlife property assessment', serviceType: 'Wildlife property assessment', path: '/property-assessment',
+    description: 'An in-person, on-foot assessment of your property: habitat mapped, wildlife sign recorded and located, water and terrain noted, management authority mapped, and ranked priorities with honest timelines.' }),
+  breadcrumbs(crumbs),
+] };
+---
+<Base
+  title="Wildlife Property Assessments | LVG Wildlife Solutions"
+  description="An on-foot wildlife and habitat assessment of your property: habitat mapped, deer sign recorded, priorities ranked, and an honest read on what your land can become."
+  path="/property-assessment"
+  ogTitle="Property assessment | LVG Wildlife Solutions"
+  ogDescription="We walk your land on foot and tell you what is working, what is holding it back, and where the opportunity sits."
+  current="services"
+  ld={ld}
+  mcta={{ title: 'Property assessment', line: 'Texas and Oklahoma', href: '/contact', label: 'Get in touch' }}
+>
+<PageHead crumbs={crumbs} eyebrow="PROPERTY ASSESSMENT" title="We walk your land, then tell you what we found" lead="No desk assessments and no conclusions drawn off an aerial photo. We come out, walk your property boundary to boundary, and give you an honest read on what is working, what is holding it back, and where the real opportunity sits." />
+
+<section class="topo-ink shift-1 seam">
+  <div class="wrap twocol">
+    <div>
+      <div class="idx"><i></i><s></s><b>WHAT YOU GET</b></div>
+      <h2 class="h2s" style="font-size:clamp(1.6rem,3vw,2.3rem)">A report you can actually use</h2>
+      <div class="prose">
+        <p>You receive an interactive report you can explore section by section, a PDF you can print or hand to a partner, and a call where we walk through the findings together.</p>
+        <p>Every finding keeps three things apart: what we saw on the ground, what we think it means, and what to do about it. Each one carries a confidence level, so you can tell which conclusions rest on evidence and which need a season of cameras before anyone acts on them.</p>
+      </div>
+      <ul class="checks">
+        <li>Walked in person, on foot, boundary to boundary</li>
+        <li>Habitat mapped, measured, and described</li>
+        <li>Wildlife sign recorded and located with GPS</li>
+        <li>Water, terrain, and travel features mapped</li>
+        <li>Management authority mapped across deeded and leased ground</li>
+        <li>Strengths, limiting factors, and open questions</li>
+        <li>Ranked priorities with honest timelines</li>
+      </ul>
+    </div>
+    <Figure src="/img/examples/example-findings.webp" alt="Example report findings: what we observed, our read with a confidence level, and what to do" caption="How findings read in your report. Example property, for illustration." w={1800} h={771} />
+  </div>
+</section>
+
+<section class="topo-ink shift-2 seam deepstone">
+  <div class="wrap">
+    <div class="shead">
+      <div class="idx"><i></i><s></s><b>WHO IT'S FOR</b></div>
+      <h2>Start here, whatever comes next</h2>
+      <p class="sd">Most owners start with an assessment whether or not they go further. Several of the recommendations cost nothing to act on.</p>
+    </div>
+    <div class="who">
+      <div><h3>You want better habitat or hunting</h3><p>No tax goal, just a clear picture of what the property is short of and what to fix first.</p></div>
+      <div><h3>You're buying, or just bought</h3><p>Know what you have, or what you're about to have, before you spend money on it. Realtors and land brokers send buyers to us for this.</p></div>
+      <div><h3>You have a plan already</h3><p>A second opinion on a plan someone else wrote, and whether it still matches what is happening on the ground.</p></div>
+    </div>
+    <div class="twocol" style="margin-top:3rem">
+      <Figure src="/img/examples/example-map-habitat.webp" alt="Example habitat map showing upland oak woods, bottomland, old field, native prairie and water" caption="Habitat mapped in the same terms we use in the field. Example property, for illustration." w={1800} h={1478} />
+      <div>
+        <h3 style="font-size:1.35rem;margin-bottom:.7rem">Ready for a plan later?</h3>
+        <div class="prose">
+          <p>Everything we gather on the walk is what a <a href="/wildlife-management-plans">wildlife management plan</a> is built from. If you decide to go further, the assessment carries straight into it, and in Texas the plan can be prepared to file for wildlife tax exemption.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<CtaBand title="Get your property walked" text="Tell us the county, the acreage, and what you want from the land. We will set up a call and a visit." />
+</Base>

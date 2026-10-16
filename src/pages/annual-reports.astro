@@ -1,0 +1,83 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Figure from '../components/Figure.astro';
+import { breadcrumbs, service } from '../data/site.js';
+import { faqGroups } from '../data/faqs.js';
+const crumbs = [['Services', '/services'], ['Annual reports', '/annual-reports']];
+const qs = faqGroups.find((g) => g.group === 'Annual reports').items;
+const ld = { '@context': 'https://schema.org', '@graph': [
+  service({ name: 'Wildlife management annual report and yearly follow-up', serviceType: 'Wildlife management annual report', path: '/annual-reports', areaServed: ['Texas'],
+    description: 'Preparation of the Texas wildlife management annual report and help filing it, alone or with a yearly site visit, a year-in-review report, and a client dashboard for records.' }),
+  breadcrumbs(crumbs),
+] };
+---
+<Base
+  title="Wildlife Exemption Annual Reports | LVG Wildlife Solutions"
+  description="Help with the Texas wildlife management annual report: filing only, or a yearly visit, year-in-review report, and one place for your photos, receipts and records."
+  path="/annual-reports"
+  ogTitle="Annual reports and yearly help | LVG Wildlife Solutions"
+  ogDescription="Keep your wildlife tax exemption records ready, year after year."
+  current="services"
+  ld={ld}
+  mcta={{ title: 'Annual reports', line: 'Filing or yearly help', href: '/contact', label: 'Get in touch' }}
+>
+<PageHead crumbs={crumbs} eyebrow="ANNUAL REPORTS" title="Keep the plan working, and the records ready" lead="A wildlife management plan is something you repeat every year. The annual report is how you show it happened. We help with both, whether or not we wrote your plan." />
+
+<section class="topo-ink shift-1 seam">
+  <div class="wrap twocol">
+    <div>
+      <div class="idx"><i></i><s></s><b>WHAT IT IS</b></div>
+      <h2 class="h2s" style="font-size:clamp(1.6rem,3vw,2.3rem)">Your plan says what you'll do. The report shows you did it.</h2>
+      <div class="prose">
+        <p>The annual report is the Texas Parks and Wildlife report form plus your records for the year: activity logs, dated photos, receipts, and census sheets. Some county appraisal districts ask for it every year; others list it in their own guidelines. Filing every year is the safe habit either way.</p>
+        <p>Deadlines and expectations vary by county. Tell us yours and we will keep track of it.</p>
+      </div>
+      <h3 style="font-size:1.15rem;margin:1.8rem 0 .3rem">What to keep through the year</h3>
+      <ul class="checks">
+        <li><span><b>Activity log:</b> what was done, where, and when</span></li>
+        <li><span><b>Dated photos</b> before and after each practice</span></li>
+        <li><span><b>Receipts</b> for seed, boxes, materials, or contract work</span></li>
+        <li><span><b>Census records:</b> stand counts, camera surveys, harvest</span></li>
+      </ul>
+    </div>
+    <Figure src="/img/examples/example-yearly-record.webp" alt="Example yearly record showing each practice, its documentation status, photos, receipts and the annual report draft" caption="Your records in one place through the year. Example, for illustration." w={1800} h={990} />
+  </div>
+</section>
+
+<section class="topo-ink shift-2 seam deepstone">
+  <div class="wrap">
+    <div class="shead">
+      <div class="idx"><i></i><s></s><b>TWO WAYS TO WORK WITH US</b></div>
+      <h2>Filing help, or a yearly partnership</h2>
+    </div>
+    <div class="svc" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
+      <article class="card">
+        <div class="tag">FILING</div>
+        <h3>Annual report preparation</h3>
+        <p>Send us your records for the year. We prepare the report and help you file it. A good fit if you keep your own records and just want it done right.</p>
+        <ul><li>Report prepared from your records</li><li>Gaps flagged before it's filed</li><li>Help filing with your county</li><li>Works with any plan, ours or not</li></ul>
+      </article>
+      <article class="card feat">
+        <div class="tag">YEARLY PARTNERSHIP</div>
+        <h3>Visit, review, and filing</h3>
+        <p>We come back out once a year, look at what changed, and write it up the way we wrote your first report. Then we prepare the annual report and help you file it.</p>
+        <ul><li>A yearly site visit</li><li>A year-in-review report on your property</li><li>Annual report prepared and filed with your help</li><li>One place for your photos, receipts and records</li></ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="topo-ink shift-3 seam">
+  <div class="wrap">
+    <div class="shead"><div class="idx"><i></i><s></s><b>QUESTIONS</b></div><h2>Annual report questions</h2></div>
+    <div class="faq"><div class="faqgroup"><div class="acc">
+      {qs.map((x, i) => <details open={i === 0}><summary>{x.q}</summary><div class="a"><p set:html={x.a} /></div></details>)}
+    </div></div></div>
+    <p style="margin-top:1rem"><a href="/faq">More questions and answers</a></p>
+  </div>
+</section>
+
+<CtaBand title="Get your annual report handled" text="Tell us your county, whether we wrote your plan, and what records you have. We will tell you what is missing, if anything." />
+</Base>

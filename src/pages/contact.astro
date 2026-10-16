@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import InquiryForm from '../components/InquiryForm.astro';
 const ld = {
  "@context": "https://schema.org",
  "@type": "ContactPage",
@@ -62,35 +63,7 @@ const ld = {
         </dl>
       </div>
 
-      <form name="property-inquiry" method="POST" data-netlify="true"
-            data-netlify-honeypot="bot-field" action="/thanks">
-        <input type="hidden" name="form-name" value="property-inquiry">
-        <input type="hidden" name="source" value="contact page">
-        <p class="hp"><label>Do not fill this in<input name="bot-field"></label></p>
-        <div class="row2">
-          <div class="fld"><label for="name">Your name</label><input id="name" name="name" type="text" autocomplete="name" required></div>
-          <div class="fld"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel"></div>
-        </div>
-        <div class="fld"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
-        <div class="row2">
-          <div class="fld"><label for="location">County and state</label><input id="location" name="location" type="text" placeholder="Hunt County, TX"></div>
-          <div class="fld"><label for="acres">Approximate acres <span class="opt">if known</span></label><input id="acres" name="acres" type="text"></div>
-        </div>
-        <div class="fld"><label for="interest">What do you need help with?</label>
-          <select id="interest" name="interest">
-            <option>A property assessment</option>
-            <option>A wildlife management plan</option>
-            <option>Wildlife tax exemption for my Texas property</option>
-            <option>Whitetail and habitat work</option>
-            <option>Not sure yet</option>
-          </select></div>
-        <div class="fld"><label for="tenure">Is any of it leased rather than owned? <span class="opt">optional</span></label>
-          <input id="tenure" name="tenure" type="text" placeholder="All deeded, or 100 acres on a state lease"></div>
-        <div class="fld"><label for="goal">What are you hoping to accomplish?</label>
-          <textarea id="goal" name="goal" placeholder="What is frustrating you, or what you would like the property to be doing"></textarea></div>
-        <button class="btn p" type="submit">Send inquiry</button>
-        <p class="fine">We will only use this to reply to you. No lists, no newsletters.</p>
-      </form>
+      <InquiryForm source="contact page" tenure />
     </div>
   </div>
 </section>

@@ -1,0 +1,58 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Figure from '../components/Figure.astro';
+import { breadcrumbs, service } from '../data/site.js';
+const crumbs = [['Services', '/services'], ['Habitat work', '/habitat-work']];
+const ld = { '@context': 'https://schema.org', '@graph': [
+  service({ name: 'Wildlife habitat work', serviceType: 'Wildlife habitat management', path: '/habitat-work',
+    description: 'Food plots, brush and old-field work, nest boxes, census and camera surveys, and first-year practice setup for whitetail and other wildlife.' }),
+  breadcrumbs(crumbs),
+] };
+const work = [
+  ['Food plots and forage', 'Soil test first, then a planting matched to your soil and to whether you need attraction during season or nutrition through the year. Small hunting plots and larger forage plots.'],
+  ['Brush and old-field work', 'Thinning cedar and brush, opening up closed timber, and keeping old pastures from growing up, so there is browse and cover where deer need it.'],
+  ['Nest boxes and shelter', 'Wood duck boxes, songbird boxes, brush piles, and deferred mowing, placed where they will be used and recorded for your annual report.'],
+  ['Census and cameras', 'Stand counts and camera surveys set up to answer real questions about your deer, and the records your plan calls for.'],
+  ['Access and stand placement', 'Where to put stands and blinds, how to get in and out without pushing deer, and where to leave the property alone.'],
+  ['Hogs and other problems', 'A practical approach to feral hogs and other pressures, as part of the overall plan.'],
+];
+---
+<Base
+  title="Food Plots & Habitat Work | LVG Wildlife Solutions"
+  description="Food plots, brush and old-field work, nest boxes, census and camera surveys, and first-year practice setup for landowners in Texas and Oklahoma."
+  path="/habitat-work"
+  ogTitle="Habitat work | LVG Wildlife Solutions"
+  ogDescription="The work on the ground, done with you or for you."
+  current="services"
+  ld={ld}
+  mcta={{ title: 'Habitat work', line: 'Quoted per job', href: '/contact', label: 'Get in touch' }}
+>
+<PageHead crumbs={crumbs} eyebrow="HABITAT WORK" title="The work on the ground, done with you or for you" lead="Some owners take the plan and do the work themselves. Others want help getting the first year's practices in the ground. Either way, the work follows the plan, and it gets recorded for your annual report." />
+
+<section class="topo-ink shift-1 seam">
+  <div class="wrap">
+    <div class="who" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))">
+      {work.map(([t, p]) => <div><h3>{t}</h3><p>{p}</p></div>)}
+    </div>
+  </div>
+</section>
+
+<section class="topo-ink shift-2 seam deepstone">
+  <div class="wrap twocol">
+    <div>
+      <div class="idx"><i></i><s></s><b>WHITETAIL FIRST</b></div>
+      <h2 class="h2s" style="font-size:clamp(1.6rem,3vw,2.3rem)">Built around how deer actually use your property</h2>
+      <div class="prose">
+        <p>Whitetail are where we are strongest. A food plot in the wrong place relative to bedding and access can make a property harder to hunt, not easier. So the work starts from where the sign points: where deer bed, how they move, and where you can get in without being noticed.</p>
+        <p>Most of this work also counts toward the practices the Texas wildlife tax exemption asks for, so the property that hunts better is also the one that keeps its valuation.</p>
+        <p>We quote habitat work job by job, after we have seen the ground.</p>
+      </div>
+    </div>
+    <Figure src="/img/examples/example-map-deer-sign.webp" alt="Example deer sign map showing likely bedding, an activity area, likely deer trails, rubs, scrapes and suggested cameras" caption="Where the sign points, as a working theory to test with cameras. Example property, for illustration." w={1800} h={1550} />
+  </div>
+</section>
+
+<CtaBand title="Get the first year in the ground" text="Tell us about your property and what you want done. We will look at it with you and quote the work." />
+</Base>

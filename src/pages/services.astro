@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { SITE, breadcrumbs } from '../data/site.js';
+const items = [
+  ['/property-assessment', '01  START HERE', 'Property assessment', 'We walk your property on foot, map what is there, and give you an honest read on what is working, what is holding it back, and where the opportunity sits.'],
+  ['/wildlife-management-plans', '02  THE PLAN', 'Wildlife management plans', 'A complete plan for your land: what to do for the wildlife on it, where, and in what order. For Texas properties, prepared to file for wildlife tax exemption.'],
+  ['/annual-reports', '03  EVERY YEAR', 'Annual reports and yearly help', 'A yearly visit, a look back at what changed, and help with the annual report, so the plan keeps working and your records are ready.'],
+  ['/habitat-work', 'ON THE GROUND', 'Habitat work', 'Food plots, brush and old-field work, nest boxes, and the first year of practices, done with you or for you.'],
+];
+const ld = { '@context': 'https://schema.org', '@graph': [
+  { '@type': 'CollectionPage', name: 'Services', url: SITE + '/services' },
+  breadcrumbs([['Services', '/services']]),
+] };
+---
+<Base
+  title="Wildlife Management Services | LVG Wildlife Solutions"
+  description="Property assessments, wildlife management plans, annual reports, and habitat work for landowners in Texas and Oklahoma, built on an on-foot walk of your land."
+  path="/services"
+  ogTitle="Services | LVG Wildlife Solutions"
+  ogDescription="Property assessments, wildlife management plans, annual reports, and habitat work in Texas and Oklahoma."
+  current="services"
+  ld={ld}
+  mcta={{ title: 'Property assessment', line: 'Texas and Oklahoma', href: '/contact', label: 'Get in touch' }}
+>
+<PageHead crumbs={[['Services', '/services']]} eyebrow="SERVICES" title="Everything your land needs, in the order it needs it" lead="Every engagement starts with walking your property. From there, the plan, the yearly follow-up, and the work on the ground all build on what we found." />
+
+<section class="topo-ink shift-1 seam">
+  <div class="wrap">
+    <div class="svcgrid">
+      {items.map(([href, tag, title, text]) => (
+        <a class="svclink" href={href}><span class="tag">{tag}</span><h3>{title}</h3><p>{text}</p><span class="more">Learn more</span></a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="topo-ink shift-2 seam deepstone">
+  <div class="wrap twocol">
+    <div>
+      <div class="idx"><i></i><s></s><b>ONE TEAM, ONE PLAN</b></div>
+      <h2 class="h2s" style="font-size:clamp(1.6rem,3vw,2.3rem)">The walk, the report, the plan and the filing, together</h2>
+      <div class="prose">
+        <p>Some firms sell the site visit, the habitat assessment, the maps and the plan as separate line items. We don't. When you choose a management plan, the walk, the report, the maps, the written plan and the help with filing are all part of it.</p>
+        <p>It also means the person who walked your ground is the one writing your plan, and the one who comes back next year to see whether it worked.</p>
+      </div>
+    </div>
+    <ul class="checks">
+      <li><span><b>On-foot property walk,</b> boundary to boundary</span></li>
+      <li><span><b>Habitat report</b> with findings kept separate from our interpretation</span></li>
+      <li><span><b>Mapped plan</b> showing where every practice goes</span></li>
+      <li><span><b>Practice calendar</b> so you know what to do and when</span></li>
+      <li><span><b>Filing help</b> for the Texas wildlife tax exemption</span></li>
+      <li><span><b>Yearly follow-up</b> if you want it</span></li>
+    </ul>
+  </div>
+</section>
+
+<CtaBand />
+</Base>

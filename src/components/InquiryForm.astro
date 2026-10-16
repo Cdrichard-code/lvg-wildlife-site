@@ -1,0 +1,61 @@
+---
+// The inquiry form. Every field except name and email is optional; the hints
+// say why each one helps. Keep the form name: Netlify collects all
+// submissions under "property-inquiry".
+const { source = 'website', tenure = false, idPrefix = '' } = Astro.props;
+const id = (s) => idPrefix + s;
+---
+<form name="property-inquiry" method="POST" data-netlify="true"
+      data-netlify-honeypot="bot-field" action="/thanks">
+  <input type="hidden" name="form-name" value="property-inquiry">
+  <input type="hidden" name="source" value={source}>
+  <p class="hp"><label>Do not fill this in<input name="bot-field"></label></p>
+  <div class="row2">
+    <div class="fld"><label for={id('name')}>Your name</label><input id={id('name')} name="name" type="text" autocomplete="name" required></div>
+    <div class="fld"><label for={id('phone')}>Phone</label><input id={id('phone')} name="phone" type="tel" autocomplete="tel"></div>
+  </div>
+  <div class="fld"><label for={id('email')}>Email</label><input id={id('email')} name="email" type="email" autocomplete="email" required></div>
+  <div class="row2">
+    <div class="fld"><label for={id('location')}>County and state</label><input id={id('location')} name="location" type="text" placeholder="Hunt County, TX"><span class="hint">Tells us the soils, habitat and county rules we're working with.</span></div>
+    <div class="fld"><label for={id('acres')}>Approximate acres</label><input id={id('acres')} name="acres" type="text"><span class="hint">A rough number is fine.</span></div>
+  </div>
+  <div class="row2">
+    <div class="fld"><label for={id('taxed')}>How is the land taxed now?</label>
+      <select id={id('taxed')} name="tax_status">
+        <option value="">Choose one</option>
+        <option>Agricultural (ag) valuation</option>
+        <option>Wildlife valuation</option>
+        <option>Timber valuation</option>
+        <option>Market value, no special valuation</option>
+        <option>Not sure</option>
+      </select><span class="hint">This sets what's possible for the Texas wildlife tax exemption.</span></div>
+    <div class="fld"><label for={id('bought')}>When did you buy it?</label><input id={id('bought')} name="purchased" type="text" placeholder="Spring 2026, or owned for years"><span class="hint">A recent purchase can change the filing timeline.</span></div>
+  </div>
+  <div class="row2">
+    <div class="fld"><label for={id('interest')}>What do you need help with?</label>
+      <select id={id('interest')} name="interest">
+        <option>A property assessment</option>
+        <option>A wildlife management plan</option>
+        <option>Wildlife tax exemption for my Texas property</option>
+        <option>Annual report or yearly help</option>
+        <option>Whitetail and habitat work</option>
+        <option>Not sure yet</option>
+      </select></div>
+    <div class="fld"><label for={id('plan')}>Do you already have a wildlife plan?</label>
+      <select id={id('plan')} name="existing_plan">
+        <option value="">Choose one</option>
+        <option>No</option>
+        <option>Yes, someone else wrote it</option>
+        <option>Yes, I wrote it</option>
+        <option>Not sure</option>
+      </select></div>
+  </div>
+  {tenure && (
+    <div class="fld"><label for={id('tenure')}>Is any of it leased rather than owned? <span class="opt">optional</span></label>
+      <input id={id('tenure')} name="tenure" type="text" placeholder="All deeded, or 100 acres on a state lease"></div>
+  )}
+  <div class="fld"><label for={id('goal')}>What are you hoping to accomplish?</label>
+    <textarea id={id('goal')} name="goal" placeholder="What is frustrating you, or what you would like the property to be doing"></textarea></div>
+  <button class="btn p" type="submit">Send inquiry</button>
+  <p class="fine">Only your name and email are required; the rest helps us come prepared. We will only use this to reply to you.</p>
+</form>

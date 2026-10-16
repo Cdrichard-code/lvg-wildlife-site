@@ -1,0 +1,76 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { SITE, breadcrumbs } from '../data/site.js';
+import { faqGroups, stripTags } from '../data/faqs.js';
+const order = ['Getting started', 'Texas wildlife tax exemption', 'Tax exemption: qualifying', 'Tax exemption: money and deadlines', 'Annual reports', 'Tax exemption: working with us', 'Habitat and deer management', 'Working with us'];
+const groups = order.map((n) => faqGroups.find((g) => g.group === n)).filter(Boolean);
+const ld = { '@context': 'https://schema.org', '@graph': [
+  { '@type': 'FAQPage', '@id': SITE + '/faq#faq', mainEntity: groups.flatMap((g) => g.items.map((x) => ({
+    '@type': 'Question', name: x.q, acceptedAnswer: { '@type': 'Answer', text: stripTags(x.a) } }))) },
+  breadcrumbs([['Questions', '/faq']]),
+] };
+const total = groups.reduce((n, g) => n + g.items.length, 0);
+---
+<Base
+  title="Wildlife Management Questions | LVG Wildlife Solutions"
+  description="Straight answers on the Texas wildlife tax exemption, management plans, annual reports, food plots, deer, and working with us. Search as you type."
+  path="/faq"
+  ogTitle="Common questions | LVG Wildlife Solutions"
+  ogDescription="Straight answers on wildlife management, the Texas wildlife tax exemption, and annual reports."
+  current="faq"
+  ld={ld}
+  mcta={{ title: 'Still have a question?', line: 'Ask us directly', href: '/contact', label: 'Get in touch' }}
+>
+<PageHead crumbs={[['Questions', '/faq']]} eyebrow="COMMON QUESTIONS" title="Straight answers, including the ones that aren't in our interest" lead="Type a word or two to find what you're looking for: food plots, deadline, acreage, annual report." primary={null} />
+
+<section class="topo-ink shift-1 seam">
+  <div class="wrap">
+    <div class="fsearch">
+      <label class="sr" for="q">Search questions</label>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="Search questions" autocomplete="off">
+      <span class="count" id="qcount">{total} questions</span>
+    </div>
+    <div class="fempty" id="qempty"><p style="margin:0">No question matches that yet. <a href="/contact">Ask us directly</a> and we'll answer it.</p></div>
+    <div class="faq" id="faqlist">
+      {groups.map((g) => (
+        <div class="faqgroup">
+          <h3>{g.group}</h3>
+          <div class="acc">
+            {g.items.map((x) => <details><summary>{x.q}</summary><div class="a"><p set:html={x.a} /></div></details>)}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<CtaBand title="Didn't see your question?" text="Send it with a few details about your land and we'll answer it directly." secondary={['/services', 'See our services']} />
+
+<script is:inline>
+(function(){
+  var input=document.getElementById('q'),count=document.getElementById('qcount'),empty=document.getElementById('qempty');
+  var groups=[].slice.call(document.querySelectorAll('#faqlist .faqgroup'));
+  var items=[].slice.call(document.querySelectorAll('#faqlist details'));
+  items.forEach(function(d){d.dataset.text=d.textContent.toLowerCase();});
+  var total=items.length;
+  function run(){
+    var words=input.value.toLowerCase().trim().split(/\s+/).filter(Boolean),hits=[];
+    items.forEach(function(d){
+      var hit=words.every(function(w){return d.dataset.text.indexOf(w)>-1;});
+      d.hidden=!hit; if(hit) hits.push(d);
+    });
+    // open the answers when the search narrows things down to a few
+    items.forEach(function(d){d.open=false;});
+    if(words.length && hits.length<=3) hits.forEach(function(d){d.open=true;});
+    groups.forEach(function(g){g.hidden=!g.querySelector('details:not([hidden])');});
+    count.textContent = words.length ? hits.length+' of '+total+' questions' : total+' questions';
+    empty.style.display = hits.length ? 'none' : 'block';
+  }
+  input.addEventListener('input',run);
+  var p=new URLSearchParams(location.search).get('q'); if(p){input.value=p;run();}
+})();
+</script>
+</Base>

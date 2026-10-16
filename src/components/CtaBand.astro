@@ -1,0 +1,16 @@
+---
+const { eyebrow = 'NEXT STEP', title = 'Find out what your land can become', text = 'Tell us the county, the acreage, and what you want from the land. We will tell you plainly what would help most and what it would take.', primary = ['/contact', 'Request a property assessment'], secondary = ['/faq', 'Read common questions'] } = Astro.props;
+---
+<section class="contact dark topo-gold shift-3">
+  <div class="wrap cta">
+    <div>
+      <div class="idx"><i></i><s></s><b>{eyebrow}</b></div>
+      <h2>{title}</h2>
+      <p>{text}</p>
+    </div>
+    <div class="acts">
+      <a class="btn p" href={primary[0]}>{primary[1]}</a>
+      {secondary && <a class="btn s" href={secondary[0]}>{secondary[1]}</a>}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { SITE, breadcrumbs } from '../data/site.js';
+const ld = { '@context': 'https://schema.org', '@graph': [
+  { '@type': 'WebPage', name: 'Land clearing and forestry mulching from Land Value Group', url: SITE + '/land-clearing',
+    about: { '@type': 'Organization', name: 'Land Value Group', url: 'https://landvaluegroup.com/' } },
+  breadcrumbs([['Land clearing', '/land-clearing']]),
+] };
+const levels = [
+  ['LEVEL 1', 'Maintenance', 'Keeps land usable and under control.', ['Tractor mowing', 'Pasture management']],
+  ['LEVEL 2', 'Reclamation', 'Takes land from overgrown to usable.', ['Brush hogging', 'Fence line clearing', 'Invasive growth removal']],
+  ['LEVEL 3', 'Transformation', 'Opens up new ways to use a property.', ['Forestry mulching', 'Trail cutting', 'Right-of-way work']],
+  ['LEVEL 4', 'Full development', 'Turns raw land into a productive asset.', ['Land clearing', 'Demolition', 'Gravel driveways', 'Culverts', 'Grading and reseeding']],
+];
+---
+<Base
+  title="Land Clearing & Forestry Mulching in Texas | Land Value Group"
+  description="Land clearing, forestry mulching, brush work, trail cutting and site work across Texas from Land Value Group, the parent company of LVG Wildlife Solutions."
+  path="/land-clearing"
+  ogTitle="Land clearing and mulching | Land Value Group"
+  ogDescription="When your wildlife plan calls for brush cleared or ground opened up, Land Value Group does the work."
+  ld={ld}
+  mcta={{ title: 'Land clearing', line: 'From Land Value Group', href: 'https://landvaluegroup.com/contact/', label: 'Contact LVG' }}
+>
+<PageHead crumbs={[['Land clearing', '/land-clearing']]} eyebrow="LAND VALUE GROUP" title="Land clearing, mulching, and site work" lead="When your wildlife plan calls for brush cleared, trails cut, or ground opened up, Land Value Group does the work. Same family, same approach: walk the land first, then a phased plan." primary={['https://landvaluegroup.com/services/', 'See Land Value Group services']} secondary={['https://landvaluegroup.com/contact/', 'Contact Land Value Group']} />
+
+<section class="dark well topo-gold shift-1">
+  <div class="wrap">
+    <div class="shead">
+      <div class="idx"><i></i><s></s><b>FOUR LEVELS OF WORK</b></div>
+      <h2>From mowing to full development</h2>
+    </div>
+    <div class="levels">
+      {levels.map(([tag, t, p, list]) => <div><span class="tag">{tag}</span><h3>{t}</h3><p>{p}</p><ul>{list.map((x) => <li>{x}</li>)}</ul></div>)}
+    </div>
+  </div>
+</section>
+
+<section class="topo-ink shift-2 seam">
+  <div class="wrap twocol">
+    <div>
+      <div class="idx"><i></i><s></s><b>HOW IT WORKS</b></div>
+      <h2 class="h2s" style="font-size:clamp(1.6rem,3vw,2.3rem)">Walkthrough, plan, then the work</h2>
+      <ol class="checks" style="list-style:none">
+        <li><span><b>Property walkthrough:</b> they walk the land and learn your goals.</span></li>
+        <li><span><b>Opportunity mapping:</b> what's holding the land back and where the biggest gains are.</span></li>
+        <li><span><b>Phased plan:</b> what to do first, what comes next, and what can wait.</span></li>
+        <li><span><b>Execution:</b> the work itself, as one phase or a long-term partnership.</span></li>
+      </ol>
+    </div>
+    <div class="prose" style="align-self:center">
+      <p><b>With a wildlife plan:</b> brush management, trail cutting, and opening up closed timber are often part of the habitat work in a wildlife management plan. We write the prescription; Land Value Group can carry it out.</p>
+      <p>Details, projects, and quotes for clearing work are on <a href="https://landvaluegroup.com/">landvaluegroup.com</a>.</p>
+    </div>
+  </div>
+</section>
+
+<CtaBand eyebrow="WILDLIFE FIRST?" title="Start with what the wildlife needs" text="If the clearing is for hunting or wildlife, a property assessment first makes sure the right ground gets opened up and the right cover stays." />
+</Base>

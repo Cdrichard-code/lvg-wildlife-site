@@ -1,0 +1,89 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { SITE, breadcrumbs } from '../data/site.js';
+const ld = { '@context': 'https://schema.org', '@graph': [
+  { '@type': 'AboutPage', name: 'About LVG Wildlife Solutions', url: SITE + '/about', about: { '@id': SITE + '/#business' } },
+  breadcrumbs([['About', '/about']]),
+] };
+---
+<Base
+  title="About LVG Wildlife Solutions | Land Value Group Wildlife"
+  description="LVG Wildlife Solutions is the wildlife side of Land Value Group: on-foot property assessments, wildlife management plans, and habitat work in Texas and Oklahoma."
+  path="/about"
+  ogTitle="About | LVG Wildlife Solutions"
+  ogDescription="The wildlife side of Land Value Group, and how we work."
+  current="about"
+  ld={ld}
+  mcta={{ title: 'Property assessment', line: 'Texas and Oklahoma', href: '/contact', label: 'Get in touch' }}
+>
+<PageHead crumbs={[['About', '/about']]} eyebrow="ABOUT" title="The wildlife side of Land Value Group" lead="Land Value Group helps landowners get more out of their ground. LVG Wildlife Solutions is the part of that focused on wildlife: walking your property, writing the plan, and helping you keep it going year after year." primary={['/services', 'See our services']} />
+
+<section class="topo-ink shift-1 seam">
+  <div class="wrap">
+    <div class="shead">
+      <div class="idx"><i></i><s></s><b>HOW WE WORK</b></div>
+      <h2>Four commitments behind every report and plan</h2>
+    </div>
+    <div class="prin light">
+      <div><h3>We separate what we saw from what we think it means</h3><p>A track is an observation. A bedding area is an interpretation. We keep them apart so you can tell which conclusions rest on evidence and which rest on professional judgment.</p></div>
+      <div><h3>Every conclusion carries a confidence level</h3><p>Some things we confirm on site. Some are strongly indicated. Some need a season of data before anyone should act on them. You will see which is which, and what we do not know yet.</p></div>
+      <div><h3>We will not recommend work on ground you do not control</h3><p>Leased acreage, easements, and restricted tracts change what is possible. We map management authority before we recommend anything.</p></div>
+      <div><h3>We do not prescribe before we have data</h3><p>Seed rates without a soil test and harvest targets without camera data are guesses. When a recommendation depends on information you don't have yet, we say so and tell you how to get it.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="topo-ink shift-2 seam deepstone">
+  <div class="wrap">
+    <div class="shead">
+      <div class="idx"><i></i><s></s><b>WHO YOU'LL WORK WITH</b></div>
+      <h2>Small team, on every property</h2>
+      <p class="sd">The people who walk your land are the ones who write your plan.</p>
+    </div>
+    <div class="team2">
+      <div class="person"><img src="/img/team/caleb.webp" alt="Caleb" width="480" height="480" loading="lazy"><div><h3>Caleb</h3><p>Degreed in wildlife management, with years of work alongside outfitters, guides, and landowners.</p></div></div>
+      <div class="person"><img src="/img/team/cole.webp" alt="Cole" width="480" height="480" loading="lazy"><div><h3>Cole</h3><p>Hands-on land and habitat management, from timber and brush work to getting forage to actually grow.</p></div></div>
+    </div>
+    <ul class="checks" style="max-width:860px;margin-top:2rem">
+      <li>Wildlife management education and field training</li>
+      <li>Whitetail behavior, bedding, and travel interpretation</li>
+      <li>Forage, food plot, and native habitat establishment</li>
+      <li>Wildlife management plans, including Texas tax exemption filings</li>
+      <li>Blackland, Cross Timbers, Pineywoods, and Oklahoma soils and species</li>
+      <li>Mapping, census design, and written reporting</li>
+    </ul>
+  </div>
+</section>
+
+<section class="dark well topo-gold shift-1" id="service-area">
+  <div class="wrap">
+    <div class="shead">
+      <div class="idx"><i></i><s></s><b>SERVICE AREA</b></div>
+      <h2>Where we work: Texas and Oklahoma</h2>
+      <p class="sd">Four ecoregions. Knowing local soils and woody species is what separates a recommendation that works from one that only sounds right.</p>
+    </div>
+    <ul class="regions">
+      <li style="--rc:var(--oak)"><b>Blackland Prairie and Post Oak Savannah</b><span>Heavy clay soils, post oak woodland, eastern red cedar encroachment</span><em>Hunt, Rains, Van Zandt, Kaufman, Collin, Fannin, Hopkins counties</em></li>
+      <li style="--rc:var(--bluestem)"><b>Cross Timbers</b><span>Post oak and blackjack mixed with improved pasture and native grass</span><em>Parker, Wise, Jack, Palo Pinto, Erath counties</em></li>
+      <li style="--rc:var(--prairie)"><b>Pineywoods and East Texas</b><span>Pine and hardwood, bottomland drainages, managed timber</span><em>Wood, Henderson, Smith, Cherokee, Anderson counties</em></li>
+      <li style="--rc:var(--stone)"><b>Southern Oklahoma</b><span>Mixed hardwood, native grass, and agricultural edge</span><em>Bryan, Love, Marshall, Johnston, Atoka counties</em></li>
+    </ul>
+    <p class="note">The wildlife tax exemption applies to Texas properties. Travel beyond our normal range is billed separately.</p>
+  </div>
+</section>
+
+<section class="topo-ink shift-3 seam">
+  <div class="wrap twocol">
+    <div>
+      <div class="idx"><i></i><s></s><b>LAND VALUE GROUP</b></div>
+      <h2 class="h2s" style="font-size:clamp(1.6rem,3vw,2.3rem)">Part of something bigger</h2>
+      <div class="prose"><p>Land Value Group also does land clearing, forestry mulching, and site work across Texas. When your plan calls for brush cleared, trails cut, or ground opened up, the same family of companies can do it.</p></div>
+    </div>
+    <div class="prose" style="align-self:center"><p><a href="/land-clearing">Land clearing and mulching</a></p><p><a href="https://landvaluegroup.com/">landvaluegroup.com</a></p></div>
+  </div>
+</section>
+
+<CtaBand />
+</Base>

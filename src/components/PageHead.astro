@@ -1,0 +1,20 @@
+---
+// Dark page header used on inner pages: breadcrumb, eyebrow, h1, lead, actions.
+const { crumbs = [], eyebrow, title, lead, primary = ['/contact', 'Request a property assessment'], secondary = null } = Astro.props;
+---
+<section class="dark topo-gold deep pagehead">
+  <div class="wrap">
+    <nav class="crumb" aria-label="Breadcrumb"><a href='/'>Home</a>{crumbs.map(([label, href], i) => (
+      i < crumbs.length - 1 ? <Fragment><span>/</span><a href={href}>{label}</a></Fragment> : <Fragment><span>/</span>{label}</Fragment>
+    ))}</nav>
+    <div class="idx"><i></i><s></s><b>{eyebrow}</b></div>
+    <h1>{title}</h1>
+    {lead && <p class="lead">{lead}</p>}
+    {(primary || secondary) && (
+      <div class="acts">
+        {primary && <a class="btn p" href={primary[0]}>{primary[1]}</a>}
+        {secondary && <a class="btn s" href={secondary[0]}>{secondary[1]}</a>}
+      </div>
+    )}
+  </div>
+</section>

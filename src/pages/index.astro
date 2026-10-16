@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import InquiryForm from '../components/InquiryForm.astro';
 const ld = {
  "@context": "https://schema.org",
  "@graph": [
@@ -322,6 +323,7 @@ const ld = {
           <li>Ranked priorities with honest timelines</li>
         </ul>
         <p class="aside">Most owners start here whether or not they go any further. Several of the recommendations cost nothing to act on.</p>
+        <p class="more"><a href='/property-assessment'>More on the property assessment</a></p>
       </article>
 
       <article class="card feat">
@@ -337,7 +339,7 @@ const ld = {
           <li>Prepared to file for Texas wildlife tax exemption</li>
           <li>Record keeping and annual report support</li>
         </ul>
-        <p class="aside"><a href='/wildlife-tax-valuation'>How the Texas wildlife tax exemption works</a></p>
+        <p class="more"><a href='/wildlife-management-plans'>More on management plans</a></p>
       </article>
 
       <article class="card" style="--accent:var(--prairie)">
@@ -353,6 +355,7 @@ const ld = {
           <li>Access, stand placement, and harvest strategy</li>
           <li>Monitoring that tells you whether it worked</li>
         </ul>
+        <p class="more"><a href='/habitat-work'>More on habitat work</a></p>
       </article>
     </div>
   </div>
@@ -405,33 +408,16 @@ const ld = {
 <section id="about" class="topo-ink shift-1 seam">
   <div class="wrap">
     <div class="shead">
-      <div class="idx"><i></i><s></s><b>WHO WE ARE</b></div>
-      <h2>Your wildlife and habitat consultants</h2>
-      <p class="sd">The two of us, what we have done, and what we bring to your property.</p>
+      <div class="idx"><i></i><s></s><b>WHAT YOU GET</b></div>
+      <h2>See what a report and plan look like</h2>
+      <p class="sd">Maps, findings and a calendar built for your property. These are from an example property, for illustration.</p>
     </div>
-    <div class="team">
-      <p class="lede">LVG Wildlife Solutions is the two of us, and we are both on every property we take on.</p>
-      <div class="bios">
-        <div>
-          <h3>Caleb</h3>
-          <p>Degreed in wildlife management, with a working background in the outdoor industry alongside outfitters, guides, and landowners across the country.</p>
-        </div>
-        <div>
-          <h3>Cole</h3>
-          <p>Years of hands-on land and habitat management, from timber and brush work to forage establishment and getting things to actually grow.</p>
-        </div>
-      </div>
-      <ul class="caps">
-        <li>Wildlife management education and field training</li>
-        <li>Hands-on habitat and land management work</li>
-        <li>Wildlife management plans, including Texas tax exemption filings</li>
-        <li>Whitetail behavior, bedding, and travel interpretation</li>
-        <li>Forage, food plot, and native habitat establishment</li>
-        <li>Timber, brush, invasive, and prescribed fire work</li>
-        <li>Census, trail camera survey design, and harvest strategy</li>
-        <li>Mapping, spatial analysis, and written reporting</li>
-      </ul>
+    <div class="gallery">
+      <a href="/wildlife-management-plans"><figure class="exfig"><img src="/img/examples/example-map-plan.webp" alt="Example plan map with food plots, stands, cameras, nest boxes and trails" width="1800" height="1511" loading="lazy"><figcaption>The plan, mapped</figcaption></figure></a>
+      <a href="/property-assessment"><figure class="exfig"><img src="/img/examples/example-findings.webp" alt="Example findings: observed, our read with a confidence level, and what to do" width="1800" height="771" loading="lazy"><figcaption>Findings you can act on</figcaption></figure></a>
+      <a href="/annual-reports"><figure class="exfig"><img src="/img/examples/example-calendar.webp" alt="Example management calendar by month" width="1800" height="1044" loading="lazy"><figcaption>Your year, month by month</figcaption></figure></a>
     </div>
+    <p style="margin-top:1.8rem"><a href="/about">About us and how we work</a></p>
   </div>
 </section>
 
@@ -588,33 +574,7 @@ const ld = {
         </dl>
       </div>
 
-      <form name="property-inquiry" method="POST" data-netlify="true"
-            data-netlify-honeypot="bot-field" action="/thanks">
-        <input type="hidden" name="form-name" value="property-inquiry">
-        <input type="hidden" name="source" value="home page">
-        <p class="hp"><label>Do not fill this in<input name="bot-field"></label></p>
-        <div class="row2">
-          <div class="fld"><label for="name">Your name</label><input id="name" name="name" type="text" autocomplete="name" required></div>
-          <div class="fld"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel"></div>
-        </div>
-        <div class="fld"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
-        <div class="row2">
-          <div class="fld"><label for="location">County and state</label><input id="location" name="location" type="text" placeholder="Hunt County, TX"></div>
-          <div class="fld"><label for="acres">Approximate acres <span class="opt">if known</span></label><input id="acres" name="acres" type="text"></div>
-        </div>
-        <div class="fld"><label for="interest">What do you need help with?</label>
-          <select id="interest" name="interest">
-            <option>A property assessment</option>
-            <option>A wildlife management plan</option>
-            <option>Wildlife tax exemption for my Texas property</option>
-            <option>Whitetail and habitat work</option>
-            <option>Not sure yet</option>
-          </select></div>
-        <div class="fld"><label for="goal">What are you hoping to accomplish?</label>
-          <textarea id="goal" name="goal" placeholder="What is frustrating you, or what you would like the property to be doing"></textarea></div>
-        <button class="btn p" type="submit">Send inquiry</button>
-        <p class="fine">We will only use this to reply to you. No lists, no newsletters.</p>
-      </form>
+      <InquiryForm source="home page" />
     </div>
   </div>
 </section>
