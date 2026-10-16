@@ -38,6 +38,22 @@ const services = [
   ['/annual-reports', '03', 'Annual reports and yearly help', 'A yearly visit, a look at what changed, and your annual report handled, so the plan keeps working.'],
   ['/habitat-work', '04', 'Habitat work', 'Food plots, brush work, nest boxes, and the first year of practices, done with you or for you.'],
 ];
+
+const situations = [
+  ['You just bought land with an ag exemption', 'A new owner has to re-file before May 1. If you are not running cattle or cutting hay, a wildlife plan is often the way to keep that valuation.', '/wildlife-tax-valuation', 'Texas wildlife exemption'],
+  ['You see deer on camera, just not in daylight', 'Usually a bedding, food, or access problem, not a deer problem. We walk it and tell you which one.', '/property-assessment', 'Property assessment'],
+  ['You keep cows or hay just for the tax break', 'Land with an ag valuation can switch to wildlife management instead. Same tax, no grazing lease or hay contract required.', '/wildlife-tax-valuation', 'How switching works'],
+  ['You already have a plan, and the paperwork', 'Annual reports, plan check-ups, and records that hold up, even if someone else wrote your plan.', '/annual-reports', 'Annual reports'],
+  ['You want food plots that actually get used', 'Planted where deer feel safe using them, matched to your soil, with access you can hunt without blowing them out.', '/habitat-work', 'Habitat work'],
+  ['You need brush cleared or ground opened up', 'Land Value Group, our parent company, handles clearing, mulching, and site work. We tell them what the wildlife needs.', '/land-clearing', 'Land clearing'],
+];
+const species = [
+  ['Whitetail deer', 'Bedding cover, food through the year, quiet access, and harvest records. Where we spend most of our time.'],
+  ['Ducks and wood ducks', 'Ponds, flats, and wood duck boxes placed where birds will use them.'],
+  ['Turkey', 'Roost trees, nesting cover, and open ground for bugging poults.'],
+  ['Quail, songbirds and pollinators', 'Native grass, forbs, nest boxes, and mowing timed around nesting.'],
+  ['Feral hogs', 'Trapping and control as part of the plan, so they stop eating what you plant.'],
+];
 ---
 <Base
   title="LVG Wildlife Solutions | Wildlife Management in Texas & Oklahoma"
@@ -80,18 +96,73 @@ const services = [
   </div>
 </div>
 
+<!-- ===================== WHO WE HELP ===================== -->
+<section id="who-we-help" class="topo-ink shift-1 seam">
+  <div class="wrap">
+    <div class="shead">
+      <div class="idx"><i></i><s></s><b>SOUND FAMILIAR?</b></div>
+      <h2>Where most landowners start with us</h2>
+      <p class="sd">Pick the one that sounds like you.</p>
+    </div>
+    <div class="sitcards">
+      {situations.map(([h, p, href, label]) => (
+        <a class="sitcard" href={href}><h3>{h}</h3><p>{p}</p><span class="more">{label}</span></a>
+      ))}
+    </div>
+  </div>
+</section>
+
 <!-- ===================== SERVICES ===================== -->
-<section id="services" class="topo-ink shift-1 seam">
+<section id="services" class="topo-ink shift-2 seam deepstone">
   <div class="wrap">
     <div class="shead">
       <div class="idx"><i></i><s></s><b>SERVICES</b></div>
       <h2>Wildlife management services, start to finish</h2>
       <p class="sd">One team from the first walk to the fifth year. Pick what you need; skip what you don't.</p>
     </div>
-    <div class="svcgrid four">
-      {services.map(([href, n, title, text]) => (
-        <a class="svclink" href={href}><span class="tag">{n}</span><h3>{title}</h3><p>{text}</p><span class="more">Learn more</span></a>
-      ))}
+
+    <div class="frow">
+      <a class="frow-img" href="/property-assessment"><img src="/img/examples/example-findings.webp" alt="Example property assessment findings with a confidence level" width="1800" height="771" loading="lazy"></a>
+      <div class="frow-txt">
+        <span class="tag">01 &middot; START HERE</span>
+        <h3>Property assessment</h3>
+        <p>We walk your property boundary to boundary and tell you straight what is working, what is holding it back, and what to fix first. You get an online report with maps and photos, a PDF, and a call to go through it.</p>
+        <ul class="checks"><li>Habitat, deer sign, water and terrain mapped</li><li>Every finding with how sure we are</li><li>Ranked priorities, including the free ones</li></ul>
+        <a class="btn s2" href="/property-assessment">About the assessment</a>
+      </div>
+    </div>
+
+    <div class="frow flip">
+      <a class="frow-img" href="/wildlife-management-plans"><img src="/img/examples/example-map-plan.webp" alt="Example wildlife management plan map with food plots, stands, cameras and nest boxes" width="1800" height="1511" loading="lazy"></a>
+      <div class="frow-txt">
+        <span class="tag">02 &middot; THE PLAN</span>
+        <h3>Wildlife management plans</h3>
+        <p>The full game plan for your land: what to do, where, when, and who does it. Every practice mapped, a calendar from the next 90 days to year five, and costs for doing it yourself or having us do it. In Texas, ready to file for the wildlife exemption.</p>
+        <ul class="checks"><li>Food, cover and water work, mapped and sequenced</li><li>A record kit for your annual report</li><li>Filing help with your county appraisal district</li></ul>
+        <a class="btn s2" href="/wildlife-management-plans">About management plans</a>
+      </div>
+    </div>
+
+    <div class="frow">
+      <a class="frow-img" href="/annual-reports"><img src="/img/examples/example-yearly-record.webp" alt="Example yearly record of practices, photos and receipts for the annual report" width="1800" height="990" loading="lazy"></a>
+      <div class="frow-txt">
+        <span class="tag">03 &middot; EVERY YEAR</span>
+        <h3>Annual reports and yearly help</h3>
+        <p>A plan is something you repeat every year, and the annual report is how you show it. We handle the report, or come back once a year, look at what changed, and write it up.</p>
+        <ul class="checks"><li>Annual report prepared and filed with you</li><li>A yearly visit and year-in-review report</li><li>Works with any plan, ours or someone else's</li></ul>
+        <a class="btn s2" href="/annual-reports">About annual reports</a>
+      </div>
+    </div>
+
+    <div class="frow flip">
+      <a class="frow-img" href="/habitat-work"><img src="/img/examples/example-map-deer-sign.webp" alt="Example deer sign map with likely bedding, trails, rubs and scrapes" width="1800" height="1550" loading="lazy"></a>
+      <div class="frow-txt">
+        <span class="tag">04 &middot; ON THE GROUND</span>
+        <h3>Habitat work</h3>
+        <p>Food plots, brush and old-field work, nest boxes, camera surveys and stand placement. Done with you or for you, and recorded for your annual report.</p>
+        <ul class="checks"><li>Plots planted where deer will use them</li><li>Cover and browse where it's missing</li><li>Quoted job by job, after we've seen the ground</li></ul>
+        <a class="btn s2" href="/habitat-work">About habitat work</a>
+      </div>
     </div>
   </div>
 </section>
@@ -115,38 +186,52 @@ const services = [
   </div>
 </section>
 
-<!-- ===================== EXAMPLES ===================== -->
-<section id="examples" class="topo-ink shift-1 seam">
-  <div class="wrap">
-    <div class="shead">
-      <div class="idx"><i></i><s></s><b>WHAT YOU GET</b></div>
-      <h2>Maps, findings and a calendar you can run with</h2>
-      <p class="sd">Not a binder that sits on a shelf. These come from an example property, for illustration.</p>
+<!-- ===================== TEXAS TAX ===================== -->
+<section id="wildlife-tax-exemption" class="dark topo-gold shift-2">
+  <div class="wrap twocol">
+    <div>
+      <div class="idx"><i></i><s></s><b>FOR TEXAS LANDOWNERS</b></div>
+      <h2 class="h2s" style="font-size:clamp(1.7rem,3.2vw,2.6rem)">Better habitat and the wildlife exemption come from the same work</h2>
+      <div class="prose">
+        <p>Texas lets land that already has an ag exemption keep that valuation by being managed for wildlife instead of cattle or hay. We write the plan around the wildlife on your land, prepare it to file, and help you keep the records that back it up.</p>
+      </div>
+      <dl class="facts">
+        <div><dt>3 of 7</dt><dd>Wildlife practices carried out every year</dd></div>
+        <div><dt>Ag first</dt><dd>The land must already have an ag or timber valuation</dd></div>
+        <div><dt>May 1</dt><dd>File the plan and application with your county before this date</dd></div>
+      </dl>
+      <div class="acts" style="display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.8rem">
+        <a class="btn p" href="/wildlife-tax-valuation">How the wildlife exemption works</a>
+        <a class="btn s" href="/wildlife-tax-valuation#estimate">Estimate your savings</a>
+      </div>
     </div>
-    <div class="gallery">
-      <a href="/wildlife-management-plans"><figure class="exfig"><img src="/img/examples/example-map-plan.webp" alt="Example wildlife management plan map with food plots, stands, trail cameras, nest boxes and trails" width="1800" height="1511" loading="lazy"><figcaption>Every practice, mapped</figcaption></figure></a>
-      <a href="/property-assessment"><figure class="exfig"><img src="/img/examples/example-findings.webp" alt="Example property assessment findings: what we observed, our read with a confidence level, and what to do" width="1800" height="771" loading="lazy"><figcaption>Findings you can act on</figcaption></figure></a>
-      <a href="/annual-reports"><figure class="exfig"><img src="/img/examples/example-calendar.webp" alt="Example wildlife management calendar by month" width="1800" height="1044" loading="lazy"><figcaption>Your year, month by month</figcaption></figure></a>
+    <div class="seven" style="margin:0;max-width:none">
+      <p class="k">THE SEVEN QUALIFYING PRACTICES</p>
+      <ol>
+        <li><b>1</b>Habitat control</li><li><b>2</b>Erosion control</li><li><b>3</b>Predator control</li><li><b>4</b>Supplemental water</li><li><b>5</b>Supplemental food</li><li><b>6</b>Shelter</li><li><b>7</b>Census counts</li>
+      </ol>
+      <p class="n">Most good habitat work already fits in here. We'll help you pick the three or more that fit your land. <a href="/faq?q=exemption">Questions about the exemption</a></p>
     </div>
   </div>
 </section>
 
-<!-- ===================== TEXAS TAX ===================== -->
-<section id="wildlife-tax-exemption" class="dark topo-gold shift-2 band">
-  <div class="wrap cta">
-    <div>
-      <div class="idx"><i></i><s></s><b>FOR TEXAS LANDOWNERS</b></div>
-      <h2>Better habitat and the wildlife exemption come from the same work</h2>
-      <p>Texas lets land that already has an ag exemption keep that valuation by being managed for wildlife instead of cattle or hay. It takes a written plan and three of seven practices a year. We write the plan around the wildlife on your land, prepare it to file, and help you keep the records that back it up.</p>
+<!-- ===================== SPECIES ===================== -->
+<section id="species" class="topo-ink shift-1 seam">
+  <div class="wrap">
+    <div class="shead">
+      <div class="idx"><i></i><s></s><b>WHAT WE MANAGE FOR</b></div>
+      <h2>Whitetail first, but not whitetail only</h2>
+      <p class="sd">A good plan names more than one species, and it should. Here's what we plan around.</p>
     </div>
-    <div class="acts">
-      <a class='btn p' href='/wildlife-tax-valuation'>How the wildlife exemption works</a>
+    <div class="spec">
+      {species.map(([h, p]) => <div><h3>{h}</h3><p>{p}</p></div>)}
     </div>
+    <p style="margin-top:1.6rem"><a href="/habitat-work">See the habitat work behind it</a></p>
   </div>
 </section>
 
 <!-- ===================== WHY US ===================== -->
-<section id="approach" class="topo-ink shift-3 seam deepstone">
+<section id="approach" class="topo-ink shift-3 seam">
   <div class="wrap">
     <div class="shead">
       <div class="idx"><i></i><s></s><b>HOW WE WORK</b></div>
@@ -178,6 +263,26 @@ const services = [
       <li style="--rc:var(--stone)"><b>Southern Oklahoma</b><span>Mixed hardwood, native grass, and agricultural edge</span><em>Bryan, Love, Marshall, Johnston, Atoka counties</em></li>
     </ul>
     <p class="note">Outside these counties? Ask. We'll tell you honestly whether we're the right fit. The wildlife tax exemption applies to Texas properties.</p>
+  </div>
+</section>
+
+<!-- ===================== FAMILY ===================== -->
+<section id="family" class="topo-ink shift-3 seam deepstone">
+  <div class="wrap">
+    <div class="duo">
+      <a class="duocard" href="/land-clearing">
+        <span class="tag">LAND VALUE GROUP</span>
+        <h3>Need ground cleared or opened up?</h3>
+        <p>Our parent company, Land Value Group, does land clearing, forestry mulching, trail cutting and site work across Texas. When your plan calls for it, they can do it.</p>
+        <span class="more">Land clearing and mulching</span>
+      </a>
+      <a class="duocard" href="/partners">
+        <span class="tag">REALTORS AND LAND BROKERS</span>
+        <h3>Selling rural land?</h3>
+        <p>New owners often inherit an ag valuation they don't know how to keep. Send them our way for an assessment and a plan they can file.</p>
+        <span class="more">Refer a buyer or seller</span>
+      </a>
+    </div>
   </div>
 </section>
 
