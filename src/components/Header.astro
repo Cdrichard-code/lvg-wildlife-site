@@ -1,28 +1,36 @@
 ---
+import { nav } from '../data/nav.js';
 const { current = '' } = Astro.props;
-const links = [
-  ['/services', 'Services', 'services'],
-  ['/wildlife-tax-valuation', 'Wildlife tax exemption', 'tax'],
-  ['/about', 'About', 'about'],
-  ['/faq', 'Questions', 'faq'],
-];
 ---
 <header id="top">
   <div class="wrap bar">
     <a class='mark' href='/' aria-label="Land Value Group Wildlife Solutions home"><img class="lg-stack" src="/logo-stacked.webp" alt="Land Value Group Wildlife Solutions" width="534" height="520"><img class="lg-horiz" src="/logo-horizontal.webp" alt="" width="731" height="240"><img class="lg-badge" src="/logo-badge.webp" alt="" width="347" height="360"></a>
     <nav aria-label="Main">
-      <span class="navfull">
-        {links.map(([href, label, key]) => <a href={href} aria-current={current === key ? 'page' : undefined}>{label}</a>)}
-      </span>
+      <ul class="navfull">
+        {nav.map((item) => item.children ? (
+          <li class="dd">
+            <a href={item.href} class="ddtop" aria-current={current === item.key ? 'page' : undefined} aria-haspopup="true">{item.label}<svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M2 3.5l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+            <div class="ddmenu"><ul>
+              {item.children.map(([href, label, sub]) => <li><a href={href}><b>{label}</b>{sub && <span>{sub}</span>}</a></li>)}
+            </ul></div>
+          </li>
+        ) : (
+          <li><a href={item.href} aria-current={current === item.key ? 'page' : undefined}>{item.label}</a></li>
+        ))}
+      </ul>
       {current !== 'contact' && <a class='hcta' href='/contact'>Request an assessment</a>}
       <button class="menubtn" type="button" aria-expanded="false" aria-controls="mmenu"><span></span><span></span><span></span><b class="sr">Menu</b></button>
     </nav>
   </div>
   <div class="mmenu" id="mmenu" hidden>
     <div class="wrap">
-      <a href="/">Home</a>
-      {links.map(([href, label, key]) => <a href={href} aria-current={current === key ? 'page' : undefined}>{label}</a>)}
-      <a href="/land-clearing">Land clearing</a>
+      <a class="mm-top" href="/">Home</a>
+      {nav.map((item) => item.children ? (
+        <div class="mm-group">
+          <p class="mm-h">{item.label}</p>
+          {item.children.map(([href, label]) => <a href={href}>{label}</a>)}
+        </div>
+      ) : <a class="mm-top" href={item.href}>{item.label}</a>)}
       <a class="btn p" href="/contact">Request an assessment</a>
     </div>
   </div>
@@ -35,5 +43,6 @@ const links = [
   u();
   var b=h.querySelector('.menubtn'),m=document.getElementById('mmenu');
   b.addEventListener('click',function(){var o=b.getAttribute('aria-expanded')==='true';b.setAttribute('aria-expanded',String(!o));m.hidden=o;h.classList.toggle('menu-open',!o);});
+  m.addEventListener('click',function(e){if(e.target.tagName==='A'){b.setAttribute('aria-expanded','false');m.hidden=true;h.classList.remove('menu-open');}});
 })();
 </script>

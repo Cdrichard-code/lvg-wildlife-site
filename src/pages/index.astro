@@ -1,423 +1,165 @@
 ---
 import Base from '../layouts/Base.astro';
 import InquiryForm from '../components/InquiryForm.astro';
-const ld = {
- "@context": "https://schema.org",
- "@graph": [
+import { faqGroups, stripTags } from '../data/faqs.js';
+import { SITE } from '../data/site.js';
+
+const pick = [
+  "What's included in your wildlife management plan?",
+  'Who does the work in the plan, me or you?',
+  'How do I switch from an ag exemption to a wildlife exemption in Texas?',
+  'How small a property is worth managing?',
+  'Why am I seeing deer at dark but not during daylight?',
+  'How much does a wildlife management plan cost?',
+];
+const all = faqGroups.flatMap((g) => g.items);
+const homeFaq = pick.map((q) => all.find((x) => x.q === q)).filter(Boolean);
+
+const ld = { '@context': 'https://schema.org', '@graph': [
   {
-   "@type": "ProfessionalService",
-   "@id": "https://lvgwildlife.com/#business",
-   "name": "LVG Wildlife Solutions",
-   "alternateName": "Land Value Group Wildlife Solutions",
-   "description": "Wildlife and habitat management for landowners in Texas and Oklahoma: on-foot property assessments, comprehensive wildlife management plans, whitetail deer habitat work, and plans prepared to file for Texas wildlife tax exemption.",
-   "url": "https://lvgwildlife.com/",
-   "logo": "https://lvgwildlife.com/favicon-192.png",
-   "image": "https://lvgwildlife.com/og.png",
-   "priceRange": "$$",
-   "parentOrganization": {
-    "@type": "Organization",
-    "name": "Land Value Group",
-    "url": "https://landvaluegroup.com/"
-   },
-   "areaServed": [
-    {
-     "@type": "State",
-     "name": "Texas"
-    },
-    {
-     "@type": "State",
-     "name": "Oklahoma"
-    }
-   ],
-   "knowsAbout": [
-    "Texas wildlife management use appraisal",
-    "Wildlife exemption Texas",
-    "1-d-1 open-space agricultural valuation",
-    "Wildlife management plans",
-    "Whitetail deer habitat management",
-    "Wildlife property assessment",
-    "Wildlife census and survey design",
-    "Food plot planning",
-    "Brush management",
-    "Timber stand improvement",
-    "Prescribed fire planning",
-    "Trail camera survey design",
-    "Bedding and security cover",
-    "Native forage and early successional habitat"
-   ],
-   "employee": [
-    {
-     "@type": "Person",
-     "name": "Caleb",
-     "jobTitle": "Wildlife and Habitat Consultant"
-    },
-    {
-     "@type": "Person",
-     "name": "Cole",
-     "jobTitle": "Wildlife and Habitat Consultant"
-    }
-   ],
-   "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Services",
-    "itemListElement": [
-     {
-      "@type": "Offer",
-      "itemOffered": {
-       "@type": "Service",
-       "name": "Property assessment",
-       "serviceType": "Wildlife property assessment",
-       "description": "In-person, on-foot assessment of the property: habitat mapped and described, wildlife sign recorded and located, management authority mapped, and ranked management priorities with honest timelines."
-      }
-     },
-     {
-      "@type": "Offer",
-      "itemOffered": {
-       "@type": "Service",
-       "name": "Wildlife management plan",
-       "serviceType": "Wildlife management plan",
-       "url": "https://lvgwildlife.com/wildlife-tax-valuation",
-       "description": "A comprehensive written plan for managing the property for wildlife: habitat, forage, cover, water, census and monitoring. For Texas properties it is prepared so it can be filed for wildlife tax exemption."
-      }
-     },
-     {
-      "@type": "Offer",
-      "itemOffered": {
-       "@type": "Service",
-       "name": "Whitetail and habitat management",
-       "serviceType": "Wildlife habitat management",
-       "description": "Forage, cover, access and harvest planning for whitetail deer and other wildlife, built on trail camera data and soil test results."
-      }
-     }
-    ]
-   }
+    '@type': 'ProfessionalService', '@id': SITE + '/#business',
+    name: 'LVG Wildlife Solutions', alternateName: 'Land Value Group Wildlife Solutions',
+    description: 'Wildlife management plans, on-foot property assessments, annual reports, and whitetail habitat work for landowners in Texas and Oklahoma. Texas plans are prepared to file for the wildlife tax exemption.',
+    url: SITE + '/', logo: SITE + '/favicon-192.png', image: SITE + '/og.png', priceRange: '$$',
+    parentOrganization: { '@type': 'Organization', name: 'Land Value Group', url: 'https://landvaluegroup.com/' },
+    areaServed: [{ '@type': 'State', name: 'Texas' }, { '@type': 'State', name: 'Oklahoma' }],
+    knowsAbout: ['Wildlife management plans', 'Texas wildlife tax exemption', '1-d-1 open-space wildlife management valuation', 'Whitetail deer habitat management', 'Food plots', 'Wildlife property assessment', 'Trail camera surveys and census counts', 'Brush management', 'Nest boxes and wood duck boxes', 'Feral hog control'],
+    hasOfferCatalog: { '@type': 'OfferCatalog', name: 'Services', itemListElement: [
+      ['Property assessment', '/property-assessment'], ['Wildlife management plans', '/wildlife-management-plans'],
+      ['Annual reports and yearly help', '/annual-reports'], ['Habitat work', '/habitat-work'],
+    ].map(([n, p]) => ({ '@type': 'Offer', itemOffered: { '@type': 'Service', name: n, url: SITE + p } })) },
   },
-  {
-   "@type": "WebSite",
-   "@id": "https://lvgwildlife.com/#website",
-   "url": "https://lvgwildlife.com/",
-   "name": "LVG Wildlife Solutions",
-   "publisher": {
-    "@id": "https://lvgwildlife.com/#business"
-   }
-  },
-  {
-   "@type": "FAQPage",
-   "@id": "https://lvgwildlife.com/#faq",
-   "mainEntity": [
-    {
-     "@type": "Question",
-     "name": "What happens during a property assessment?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "We come out and walk it with you, on foot, for as long as the property takes. There is no substitute for being on the ground: aerial imagery will not show you browse pressure, bedding sign, or how a drainage actually crosses. We map habitat, record and locate wildlife sign, note water and terrain, and map which ground you can manage versus leased or restricted acreage. You receive an interactive report, a PDF, and a call to walk through it together."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "How small a property is worth managing?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Forty acres is plenty to work with, and small properties often respond faster than large ones because a single change affects a larger share of the ground. What matters more than total acreage is how much of it you are allowed to manage and what surrounds it. We have no minimum."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "Do I have to buy a management plan afterward?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "No. The assessment stands on its own and several of its recommendations cost nothing to act on. When you are ready for more, the assessment is what the management plan is built from. Start with the property assessment."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "What does it cost?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "The property assessment is a fixed fee based on property size, with travel beyond our normal range billed separately. Plans and habitat work vary with what the property needs, so we do not quote them before we have seen the ground. What we will do is tell you which recommendations cost nothing, which are a weekend of your own labor, and which need equipment or a contractor."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "Why am I seeing deer at dark but not during daylight?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Almost always because the property offers bedding but no reason to move during legal light, or because your access route pushes animals out before you ever sit down. Both are fixable, and neither requires more deer. It is the most common problem we are called about and usually the most solvable."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "What is the best food plot for deer in Texas?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "There is no single answer, and anyone who gives you one without a soil test is guessing. Blackland clay, sandy loam, and Cross Timbers soils hold moisture and release nutrients very differently, which changes what will establish and what will survive a dry September. We recommend a soil test first, then a blend matched to the site and to whether you need attraction during season or tonnage through the year."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "How many trail cameras do I need, and where?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Placement matters far more than count. Six to eight cameras positioned to answer specific questions will teach you more in ninety days than twenty cameras on feeders. For a population survey the spacing and timing follow a defined protocol; for pattern work you want boundaries, crossings, and staging areas rather than the spots that produce the most photos."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "How long before habitat work makes a difference?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Behavior responds faster than vegetation. Access discipline and camera-informed positioning can change what you see within a single season. Forage establishment is one growing season. Structural cover improvement is a two to three year horizon, and canopy work longer than that. We will tell you which category a recommendation falls into rather than implying everything happens at once."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "Can you improve a property that has too much mature timber?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Yes, and closed-canopy timber with a bare understory is one of the most common limiting factors we find. Deer will travel through it but have little reason to stay. Selective canopy work, edge feathering, and native regeneration can convert low-function timber into cover, but on leased or restricted ground those options may be off the table, which is why we map management authority first."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "Can my management plan be used for the Texas wildlife tax exemption?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Yes. For Texas properties we write the plan so it does both jobs: it tells you how to manage the land for the wildlife on it, and it is prepared on the Texas Parks and Wildlife form so it can be filed with your county appraisal district for wildlife tax exemption. How the Texas wildlife tax exemption works."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "What does the wildlife tax exemption require?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "In short: land that already has an agricultural or timber valuation, a written wildlife management plan, and at least three of seven wildlife management practices carried out and documented each year. Most good habitat work already falls inside those seven. The details are on our wildlife tax exemption page, and your county appraisal district has the final say."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "Is it worth it?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "For many Texas landowners it is one of the most valuable things a management plan does, and on larger properties the difference can be thousands of dollars a year. The figure depends on your acreage and your county, so the honest answer for your land comes from your county appraisal district's numbers. We will help you ask the right questions."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "Will you file it for me?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "We prepare everything the filing needs: the plan, the maps, the practices and how they will be documented. You sign and file as the owner, and your chief appraiser makes the decision. We do not promise an approval, because nobody honestly can, and this is not tax or legal advice."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "Do you work on leased land?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Yes, and mapping what you are permitted to do on leased or restricted ground is part of every assessment. State lease tracts, easements, and restricted acreage change what is actually possible. We will not recommend clearing, planting, or earthwork on ground where those activities are prohibited, and we flag anything that needs written confirmation from the administering agency."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "How is this different from hiring someone to put in food plots?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "A contractor installs what you ask for. We tell you whether that is the right thing to install, where, and what has to happen alongside it for it to matter. A food plot in the wrong place relative to bedding and access can make a property harder to hunt, not easier. If food plots turn out to be the right answer for your property, we will say so and tell you why."
-     }
-    },
-    {
-     "@type": "Question",
-     "name": "Do you work in Oklahoma?",
-     "acceptedAnswer": {
-      "@type": "Answer",
-      "text": "Yes. Assessments, management plans, and habitat work are the same on both sides of the river. The wildlife tax exemption is the one piece that is specific to Texas."
-     }
-    }
-   ]
-  }
- ]
-};
+  { '@type': 'WebSite', '@id': SITE + '/#website', url: SITE + '/', name: 'LVG Wildlife Solutions', publisher: { '@id': SITE + '/#business' } },
+] };
+
+const services = [
+  ['/property-assessment', '01', 'Property assessment', 'We walk every acre and tell you straight what is working, what is holding the place back, and what to fix first.'],
+  ['/wildlife-management-plans', '02', 'Wildlife management plans', 'The full game plan for your land, mapped and on a calendar. In Texas, ready to file for the wildlife tax exemption.'],
+  ['/annual-reports', '03', 'Annual reports and yearly help', 'A yearly visit, a look at what changed, and your annual report handled, so the plan keeps working.'],
+  ['/habitat-work', '04', 'Habitat work', 'Food plots, brush work, nest boxes, and the first year of practices, done with you or for you.'],
+];
 ---
 <Base
-  title={"Wildlife Management Plans & Deer Habitat | LVG Wildlife Solutions"}
-  description={"On-foot property assessments, wildlife management plans, and whitetail habitat work in Texas and Oklahoma. Texas plans are built to file for wildlife tax exemption."}
+  title="LVG Wildlife Solutions | Wildlife Management in Texas & Oklahoma"
+  description="Wildlife management plans and on-foot property assessments for Texas and Oklahoma landowners. Better habitat, better hunting, and Texas plans ready to file for the wildlife exemption."
   path="/"
-  ogTitle={"LVG Wildlife Solutions | Wildlife and Habitat Management in Texas and Oklahoma"}
-  ogDescription={"Property assessments, wildlife management plans, and whitetail habitat work. Good for your land, your wildlife, and in Texas, your property taxes."}
-  robots="index,follow,max-image-preview:large"
+  ogTitle="LVG Wildlife Solutions | Wildlife Management Plans in Texas and Oklahoma"
+  ogDescription="We walk your land and build the plan to make it better. Better habitat, better hunting, and in Texas, ready to file for the wildlife exemption."
   current="home"
   ld={ld}
-  mcta={{"title": "Property assessment", "line": "Texas and Oklahoma", "href": "/contact", "label": "Get in touch"}}
+  mcta={{ title: 'Property assessment', line: 'Texas and Oklahoma', href: '/contact', label: 'Get in touch' }}
 >
 <!-- ===================== HERO ===================== -->
 <div class="hero topo-gold deep">
   <div class="wrap">
-    <div class="idx reveal"><i></i><s></s><b>WILDLIFE AND HABITAT MANAGEMENT &middot; TEXAS AND OKLAHOMA</b></div>
-    <h1 class="reveal">Wildlife management that starts with walking your ground.</h1>
-    <p class="sub reveal d1">Land Value Group Wildlife Solutions assesses your property on foot, then lays out a comprehensive management plan for the wildlife on it: what to do, where, and in what order. Whitetail are our specialty. In Texas, that same plan is built to file for wildlife tax exemption, so the work pays off for your land, your wildlife, and your tax bill.</p>
+    <div class="idx reveal"><i></i><s></s><b>WILDLIFE MANAGEMENT &middot; TEXAS AND OKLAHOMA</b></div>
+    <h1 class="reveal">Wildlife management plans, built by walking your land.</h1>
+    <p class="sub reveal d1">We put boots on every acre, figure out what your property is short of, and hand you a plan to fix it: what to do, where, when, and who does it. Whitetail are our specialty. In Texas, the same plan is ready to file for the wildlife tax exemption, so the work that improves your land can also qualify it.</p>
     <div class="acts reveal d2">
       <a class='btn p' href='/contact'>Request a property assessment</a>
-      <a class="btn s" href="#services">See what is involved</a>
+      <a class="btn s" href="#how-it-works">How it works</a>
     </div>
-    <aside class="seven reveal d2" aria-label="What a management plan covers">
-      <p class="k">WHAT YOUR MANAGEMENT PLAN COVERS</p>
+    <aside class="seven reveal d2" aria-label="What's in your plan">
+      <p class="k">WHAT'S IN YOUR PLAN</p>
       <ol>
-        <li><b>1</b>Habitat and cover</li>
-        <li><b>2</b>Food and forage</li>
-        <li><b>3</b>Water</li>
-        <li><b>4</b>Whitetail and other target species</li>
-        <li><b>5</b>Census and monitoring</li>
-        <li><b>6</b>Access and hunting pressure</li>
-        <li><b>7</b>Texas wildlife tax exemption filing</li>
+        <li><b>1</b>On-foot walk of your property</li>
+        <li><b>2</b>Habitat report and maps</li>
+        <li><b>3</b>What to do, and where</li>
+        <li><b>4</b>Who does each job: you or us</li>
+        <li><b>5</b>Calendar from 90 days to year five</li>
+        <li><b>6</b>Record kit for your annual report</li>
+        <li><b>7</b>Texas wildlife exemption filing help</li>
       </ol>
-      <p class="n">Written for your property after we have walked it, never from a template.</p>
+      <p class="n">Written for your property after we've walked it. No templates.</p>
     </aside>
     <div class="meta reveal d3">
-      <div><b>ON FOOT</b><span>We walk your ground in person, not a satellite image</span></div>
-      <div><b>MAPPED</b><span>Habitat, wildlife sign, water, and terrain</span></div>
-      <div><b>TAX READY</b><span>Texas plans are built to file for wildlife tax exemption</span></div>
+      <div><b>ON FOOT</b><span>Every plan starts with us on your ground, not a satellite photo</span></div>
+      <div><b>STRAIGHT TALK</b><span>What we saw, what we think it means, and how sure we are</span></div>
+      <div><b>TAX READY</b><span>Texas plans prepared to file for the wildlife exemption</span></div>
     </div>
   </div>
 </div>
-
-<!-- ===================== HOW IT WORKS ===================== -->
-<section id="how-it-works" class="topo-ink shift-2 seam deepstone">
-  <div class="wrap">
-    <div class="shead">
-      <div class="idx"><i></i><s></s><b>HOW IT WORKS</b></div>
-      <h2>From first call to a plan you can keep up</h2>
-      <p class="sd">Six steps, start to finish. You can stop after any one of them.</p>
-    </div>
-    <ol class="steps">
-      <li><b>Tell us about your land</b><p>Fill out the short form: county, rough acreage, how the land is taxed now, and what you want from it. We read every one ourselves.</p></li>
-      <li><b>Intro call and intake</b><p>A phone call to learn your property and your goals, then a short intake form so our time on the ground counts.</p></li>
-      <li><b>Pick what fits</b><p>A property assessment on its own, a full wildlife management plan, or a plan with yearly help after it. We recommend; you decide.</p></li>
-      <li><b>We walk your property</b><p>An on-foot visit, boundary to boundary. We map habitat, wildlife sign, water, and terrain, and note which ground you can manage.</p></li>
-      <li><b>Your plan, ready to file</b><p>A report, maps, and a written plan for your property. In Texas, we prepare the plan to file for wildlife tax exemption and help you file it with your county appraisal district.</p></li>
-      <li><b>Year after year</b><p>A yearly visit, a look back at what changed, and help with the annual report, so the plan keeps working and the records are ready.</p></li>
-    </ol>
-  </div>
-</section>
 
 <!-- ===================== SERVICES ===================== -->
 <section id="services" class="topo-ink shift-1 seam">
   <div class="wrap">
     <div class="shead">
       <div class="idx"><i></i><s></s><b>SERVICES</b></div>
-      <h2>Wildlife habitat assessment and management planning</h2>
-      <p class="sd">Three services, in order. The first one is small on purpose, and each one is built on the one before it.</p>
+      <h2>Wildlife management services, start to finish</h2>
+      <p class="sd">One team from the first walk to the fifth year. Pick what you need; skip what you don't.</p>
     </div>
-
-    <div class="svc">
-      <article class="card">
-        <div class="tag">01 &nbsp;START HERE</div>
-        <h3>Property assessment</h3>
-        <p>We come out and walk your property in person, boundary to boundary, and then write up what we found. No desk assessments and no conclusions drawn off an aerial photo. You get an honest read on what is working, what is holding the property back, and where the real opportunity sits.</p>
-        <p>You receive an interactive report, a PDF you can print or hand to a partner, and a call where we walk through the findings together.</p>
-        <ul>
-          <li>Walked in person, on foot, boundary to boundary</li>
-          <li>Habitat mapped, measured, and described</li>
-          <li>Wildlife sign recorded and located</li>
-          <li>Water, terrain, and travel features mapped</li>
-          <li>Management authority mapped across deeded and leased ground</li>
-          <li>Ranked priorities with honest timelines</li>
-        </ul>
-        <p class="aside">Most owners start here whether or not they go any further. Several of the recommendations cost nothing to act on.</p>
-        <p class="more"><a href='/property-assessment'>More on the property assessment</a></p>
-      </article>
-
-      <article class="card feat">
-        <div class="tag">02 &nbsp;THE PLAN</div>
-        <h3>Wildlife management plan</h3>
-        <p>A comprehensive plan for your property, built from the assessment. It spells out how to manage for the species you care about: which habitat work matters first, what to plant and where, how to handle water and cover, and how to measure whether it is working.</p>
-        <p>For Texas properties, the plan is also prepared to file for wildlife tax exemption, so one document serves the land and the tax bill. Carry it out yourself, or have us get the first year on the ground with you.</p>
-        <ul>
-          <li>Species goals and habitat prescriptions for your ground</li>
-          <li>Forage, cover, and water work, mapped and sequenced</li>
-          <li>Census and monitoring you can keep up</li>
-          <li>Year-by-year priorities with realistic timelines</li>
-          <li>Prepared to file for Texas wildlife tax exemption</li>
-          <li>Record keeping and annual report support</li>
-        </ul>
-        <p class="more"><a href='/wildlife-management-plans'>More on management plans</a></p>
-      </article>
-
-      <article class="card" style="--accent:var(--prairie)">
-        <div class="tag">03 &nbsp;ONCE THERE IS DATA</div>
-        <h3>Whitetail and habitat management</h3>
-        <p>Once real information exists, trail camera history and soil test results, the work gets specific: what to plant and where, how to handle access and entry, which cover work matters first, and a harvest approach built on what the cameras actually show rather than on what the property looks like.</p>
-        <ul>
-          <li>Forage and food plot prescriptions</li>
-          <li>Bedding and security cover development</li>
-          <li>Timber stand improvement and canopy work</li>
-          <li>Native and early successional habitat</li>
-          <li>Invasive control and prescribed fire planning</li>
-          <li>Access, stand placement, and harvest strategy</li>
-          <li>Monitoring that tells you whether it worked</li>
-        </ul>
-        <p class="more"><a href='/habitat-work'>More on habitat work</a></p>
-      </article>
+    <div class="svcgrid four">
+      {services.map(([href, n, title, text]) => (
+        <a class="svclink" href={href}><span class="tag">{n}</span><h3>{title}</h3><p>{text}</p><span class="more">Learn more</span></a>
+      ))}
     </div>
   </div>
 </section>
 
-<!-- ===================== TAX BENEFIT ===================== -->
+<!-- ===================== HOW IT WORKS ===================== -->
+<section id="how-it-works" class="topo-ink shift-2 seam deepstone">
+  <div class="wrap">
+    <div class="shead">
+      <div class="idx"><i></i><s></s><b>HOW IT WORKS</b></div>
+      <h2>From first call to a plan you'll actually use</h2>
+      <p class="sd">Six steps. You can stop after any one of them, no hard feelings.</p>
+    </div>
+    <ol class="steps">
+      <li><b>Tell us about your land</b><p>The short form: county, rough acreage, how it's taxed now, and what you want out of it. A real person reads every one.</p></li>
+      <li><b>Intro call and intake</b><p>We talk through your property and your goals, then send a short intake form so our time on the ground counts.</p></li>
+      <li><b>Pick what fits</b><p>An assessment on its own, a full management plan, or a plan with yearly help after it. We'll tell you what we'd do; you decide.</p></li>
+      <li><b>We walk your property</b><p>Boundary to boundary, on foot. Habitat, deer sign, water, terrain, and which ground you can actually manage.</p></li>
+      <li><b>Your plan, ready to file</b><p>Report, maps, and the written plan, then a call to walk through it. In Texas, we prepare it for the wildlife exemption and help you file with your county.</p></li>
+      <li><b>Year after year</b><p>A yearly visit, a look at what changed, and the annual report handled, so the plan keeps working and your records stay ready.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===================== EXAMPLES ===================== -->
+<section id="examples" class="topo-ink shift-1 seam">
+  <div class="wrap">
+    <div class="shead">
+      <div class="idx"><i></i><s></s><b>WHAT YOU GET</b></div>
+      <h2>Maps, findings and a calendar you can run with</h2>
+      <p class="sd">Not a binder that sits on a shelf. These come from an example property, for illustration.</p>
+    </div>
+    <div class="gallery">
+      <a href="/wildlife-management-plans"><figure class="exfig"><img src="/img/examples/example-map-plan.webp" alt="Example wildlife management plan map with food plots, stands, trail cameras, nest boxes and trails" width="1800" height="1511" loading="lazy"><figcaption>Every practice, mapped</figcaption></figure></a>
+      <a href="/property-assessment"><figure class="exfig"><img src="/img/examples/example-findings.webp" alt="Example property assessment findings: what we observed, our read with a confidence level, and what to do" width="1800" height="771" loading="lazy"><figcaption>Findings you can act on</figcaption></figure></a>
+      <a href="/annual-reports"><figure class="exfig"><img src="/img/examples/example-calendar.webp" alt="Example wildlife management calendar by month" width="1800" height="1044" loading="lazy"><figcaption>Your year, month by month</figcaption></figure></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TEXAS TAX ===================== -->
 <section id="wildlife-tax-exemption" class="dark topo-gold shift-2 band">
   <div class="wrap cta">
     <div>
       <div class="idx"><i></i><s></s><b>FOR TEXAS LANDOWNERS</b></div>
-      <h2>A plan that works for your land and your taxes</h2>
-      <p>Texas offers a wildlife tax exemption for land that is actively managed for wildlife under a written plan. The management plan we write for your property is prepared to be filed for it, and most of the habitat work in the plan counts toward what the state asks for. Good management and the tax benefit come from the same work.</p>
+      <h2>Better habitat and the wildlife exemption come from the same work</h2>
+      <p>Texas lets land that already has an ag exemption keep that valuation by being managed for wildlife instead of cattle or hay. It takes a written plan and three of seven practices a year. We write the plan around the wildlife on your land, prepare it to file, and help you keep the records that back it up.</p>
     </div>
     <div class="acts">
-      <a class='btn p' href='/wildlife-tax-valuation'>How the tax exemption works</a>
+      <a class='btn p' href='/wildlife-tax-valuation'>How the wildlife exemption works</a>
     </div>
   </div>
 </section>
 
-<!-- ===================== APPROACH ===================== -->
+<!-- ===================== WHY US ===================== -->
 <section id="approach" class="topo-ink shift-3 seam deepstone">
   <div class="wrap">
     <div class="shead">
-      <div class="idx"><i></i><s></s><b>APPROACH</b></div>
-      <h2>How we approach wildlife and habitat management</h2>
-      <p class="sd">Four commitments that shape every assessment and plan we write, and why each one matters to a landowner.</p>
+      <div class="idx"><i></i><s></s><b>HOW WE WORK</b></div>
+      <h2>No guessing, no templates, no fluff</h2>
+      <p class="sd">What you can expect from us on every property.</p>
     </div>
     <div class="prin light">
-      <div>
-        <h3>We separate what we saw from what we think it means</h3>
-        <p>A track is an observation. A bedding area is an interpretation. Most reports blur the two, which makes everything in them sound equally certain. We keep them apart so you can tell which of our conclusions rest on evidence and which rest on professional judgment.</p>
-      </div>
-      <div>
-        <h3>Every conclusion carries a confidence level</h3>
-        <p>Some things we confirm on site. Some are strongly indicated. Some are preliminary and need a season of data before anyone should act on them. You will see which is which on every claim we make, and you will see plainly what we do not know yet.</p>
-      </div>
-      <div>
-        <h3>We will not recommend work on ground you do not control</h3>
-        <p>Leased acreage, conservation easements, and restricted tracts all change what is actually possible on a property. We map management authority before we recommend anything, so every suggestion you receive is one you can legally act on.</p>
-      </div>
-      <div>
-        <h3>We do not prescribe before we have data</h3>
-        <p>Seed rates without a soil test and harvest targets without camera data are guesses. When a recommendation depends on information your property does not have yet, we say so and tell you how to get it rather than filling the gap with confidence.</p>
-      </div>
+      <div><h3>We tell you what we saw, and what we think it means</h3><p>A rub line is a fact. A bedding area is our read. We keep them apart, and every conclusion comes with how sure we are, so you know what to act on now and what to check with cameras first.</p></div>
+      <div><h3>We only recommend work you can actually do</h3><p>Leased ground, easements, and restricted acres change the rules. We map what you control before we recommend anything, and we won't put a practice in your plan that you're not allowed to carry out.</p></div>
+      <div><h3>We don't prescribe before we have data</h3><p>Seed rates without a soil test and harvest numbers without camera data are guesses. If your plan needs information you don't have yet, we'll say so and tell you how to get it.</p></div>
+      <div><h3>We write plans you'll keep up with</h3><p>Three practices you'll actually do beat seven that look good on paper and fall apart by spring. Every job is sized to your time, your equipment, and your budget.</p></div>
     </div>
-  </div>
-</section>
-
-<!-- ===================== PEOPLE ===================== -->
-<section id="about" class="topo-ink shift-1 seam">
-  <div class="wrap">
-    <div class="shead">
-      <div class="idx"><i></i><s></s><b>WHAT YOU GET</b></div>
-      <h2>See what a report and plan look like</h2>
-      <p class="sd">Maps, findings and a calendar built for your property. These are from an example property, for illustration.</p>
-    </div>
-    <div class="gallery">
-      <a href="/wildlife-management-plans"><figure class="exfig"><img src="/img/examples/example-map-plan.webp" alt="Example plan map with food plots, stands, cameras, nest boxes and trails" width="1800" height="1511" loading="lazy"><figcaption>The plan, mapped</figcaption></figure></a>
-      <a href="/property-assessment"><figure class="exfig"><img src="/img/examples/example-findings.webp" alt="Example findings: observed, our read with a confidence level, and what to do" width="1800" height="771" loading="lazy"><figcaption>Findings you can act on</figcaption></figure></a>
-      <a href="/annual-reports"><figure class="exfig"><img src="/img/examples/example-calendar.webp" alt="Example management calendar by month" width="1800" height="1044" loading="lazy"><figcaption>Your year, month by month</figcaption></figure></a>
-    </div>
-    <p style="margin-top:1.8rem"><a href="/about">About us and how we work</a></p>
+    <p style="margin-top:1.6rem"><a href="/about">More about us</a></p>
   </div>
 </section>
 
@@ -426,36 +168,16 @@ const ld = {
   <div class="wrap">
     <div class="shead">
       <div class="idx"><i></i><s></s><b>SERVICE AREA</b></div>
-      <h2>Where we work: Texas and Oklahoma</h2>
-      <p class="sd">Four distinct ecoregions, and we work in all of them. Knowing local soils and woody species is what separates a recommendation that works from one that only sounds right.</p>
-    </div>
-    <div class="prose" style="margin-bottom:.5rem">
-      <p>Blackland clay, sandy loam, post oak, pine, native grass, mesquite. These behave differently, respond to treatment on different timelines, and support wildlife in different ways. We have worked across all four of the ecoregions below and we will tell you plainly which conditions your property actually sits in rather than applying a template built for somewhere else.</p>
-      <p>If your property is in one of these regions, we can handle every part of it: assessment, the management plan, habitat and forage work, cover, access strategy, and monitoring. You should not need three separate contractors to manage one piece of ground.</p>
+      <h2>Where we work: North and East Texas, Cross Timbers, and southern Oklahoma</h2>
+      <p class="sd">Blackland clay, sandy loam, post oak, pine. We know how each one grows, holds deer, and responds to work, so your plan fits your dirt.</p>
     </div>
     <ul class="regions">
-      <li style="--rc:var(--oak)">
-        <b>Blackland Prairie and Post Oak Savannah</b>
-        <span>Heavy clay soils, post oak woodland, eastern red cedar encroachment</span>
-        <em>Hunt, Rains, Van Zandt, Kaufman, Collin, Fannin, Hopkins counties</em>
-      </li>
-      <li style="--rc:var(--bluestem)">
-        <b>Cross Timbers</b>
-        <span>Post oak and blackjack mixed with improved pasture and native grass</span>
-        <em>Parker, Wise, Jack, Palo Pinto, Erath counties</em>
-      </li>
-      <li style="--rc:var(--prairie)">
-        <b>Pineywoods and East Texas</b>
-        <span>Pine and hardwood, bottomland drainages, managed timber</span>
-        <em>Wood, Henderson, Smith, Cherokee, Anderson counties</em>
-      </li>
-      <li style="--rc:var(--stone)">
-        <b>Southern Oklahoma</b>
-        <span>Mixed hardwood, native grass, and agricultural edge</span>
-        <em>Bryan, Love, Marshall, Johnston, Atoka counties</em>
-      </li>
+      <li style="--rc:var(--oak)"><b>Blackland Prairie and Post Oak Savannah</b><span>Heavy clay soils, post oak woodland, eastern red cedar encroachment</span><em>Hunt, Rains, Van Zandt, Kaufman, Collin, Fannin, Hopkins counties</em></li>
+      <li style="--rc:var(--bluestem)"><b>Cross Timbers</b><span>Post oak and blackjack mixed with improved pasture and native grass</span><em>Parker, Wise, Jack, Palo Pinto, Erath counties</em></li>
+      <li style="--rc:var(--prairie)"><b>Pineywoods and East Texas</b><span>Pine and hardwood, bottomland drainages, managed timber</span><em>Wood, Henderson, Smith, Cherokee, Anderson counties</em></li>
+      <li style="--rc:var(--stone)"><b>Southern Oklahoma</b><span>Mixed hardwood, native grass, and agricultural edge</span><em>Bryan, Love, Marshall, Johnston, Atoka counties</em></li>
     </ul>
-    <p class="note">The wildlife tax exemption applies to Texas properties. Travel beyond our normal range is billed separately. Ask, and we will tell you honestly whether we are the right fit for your property.</p>
+    <p class="note">Outside these counties? Ask. We'll tell you honestly whether we're the right fit. The wildlife tax exemption applies to Texas properties.</p>
   </div>
 </section>
 
@@ -464,95 +186,12 @@ const ld = {
   <div class="wrap">
     <div class="shead">
       <div class="idx"><i></i><s></s><b>QUESTIONS</b></div>
-      <h2>Wildlife and habitat management questions, answered</h2>
-      <p class="sd">Straight answers on habitat, deer, food plots, leases, and the Texas wildlife tax exemption, including the ones that are not in our commercial interest.</p>
+      <h2>Questions landowners ask us most</h2>
+      <p class="sd">Straight answers. <a href="/faq">See all of them</a>, or search for yours.</p>
     </div>
-    <div class="faq">
-      <div class="faqgroup">
-        <h3>Getting started</h3>
-        <div class="acc">
-          <details open>
-            <summary>What happens during a property assessment?</summary>
-            <div class="a"><p>We come out and walk it with you, on foot, for as long as the property takes. There is no substitute for being on the ground: aerial imagery will not show you browse pressure, bedding sign, or how a drainage actually crosses. We map habitat, record and locate wildlife sign, note water and terrain, and map which ground you can manage versus leased or restricted acreage. You receive an interactive report, a PDF, and a call to walk through it together.</p></div>
-          </details>
-          <details>
-            <summary>How small a property is worth managing?</summary>
-            <div class="a"><p>Forty acres is plenty to work with, and small properties often respond faster than large ones because a single change affects a larger share of the ground. What matters more than total acreage is how much of it you are allowed to manage and what surrounds it. We have no minimum.</p></div>
-          </details>
-          <details>
-            <summary>Do I have to buy a management plan afterward?</summary>
-            <div class="a"><p>No. The assessment stands on its own and several of its recommendations cost nothing to act on. When you are ready for more, the assessment is what the management plan is built from. Start with the <a href="#services">property assessment</a>.</p></div>
-          </details>
-          <details>
-            <summary>What does it cost?</summary>
-            <div class="a"><p>The property assessment is a fixed fee based on property size, with travel beyond our normal range billed separately. Plans and habitat work vary with what the property needs, so we do not quote them before we have seen the ground. What we will do is tell you which recommendations cost nothing, which are a weekend of your own labor, and which need equipment or a contractor.</p></div>
-          </details>
-        </div>
-      </div>
-      <div class="faqgroup">
-        <h3>Habitat and deer management</h3>
-        <div class="acc">
-          <details>
-            <summary>Why am I seeing deer at dark but not during daylight?</summary>
-            <div class="a"><p>Almost always because the property offers bedding but no reason to move during legal light, or because your access route pushes animals out before you ever sit down. Both are fixable, and neither requires more deer. It is the most common problem we are called about and usually the most solvable.</p></div>
-          </details>
-          <details>
-            <summary>What is the best food plot for deer in Texas?</summary>
-            <div class="a"><p>There is no single answer, and anyone who gives you one without a soil test is guessing. Blackland clay, sandy loam, and Cross Timbers soils hold moisture and release nutrients very differently, which changes what will establish and what will survive a dry September. We recommend a soil test first, then a blend matched to the site and to whether you need attraction during season or tonnage through the year.</p></div>
-          </details>
-          <details>
-            <summary>How many trail cameras do I need, and where?</summary>
-            <div class="a"><p>Placement matters far more than count. Six to eight cameras positioned to answer specific questions will teach you more in ninety days than twenty cameras on feeders. For a population survey the spacing and timing follow a defined protocol; for pattern work you want boundaries, crossings, and staging areas rather than the spots that produce the most photos.</p></div>
-          </details>
-          <details>
-            <summary>How long before habitat work makes a difference?</summary>
-            <div class="a"><p>Behavior responds faster than vegetation. Access discipline and camera-informed positioning can change what you see within a single season. Forage establishment is one growing season. Structural cover improvement is a two to three year horizon, and canopy work longer than that. We will tell you which category a recommendation falls into rather than implying everything happens at once.</p></div>
-          </details>
-          <details>
-            <summary>Can you improve a property that has too much mature timber?</summary>
-            <div class="a"><p>Yes, and closed-canopy timber with a bare understory is one of the most common limiting factors we find. Deer will travel through it but have little reason to stay. Selective canopy work, edge feathering, and native regeneration can convert low-function timber into cover, but on leased or restricted ground those options may be off the table, which is why we <a href="#approach">map management authority</a> first.</p></div>
-          </details>
-        </div>
-      </div>
-      <div class="faqgroup">
-        <h3>Texas wildlife tax exemption</h3>
-        <div class="acc">
-          <details>
-            <summary>Can my management plan be used for the Texas wildlife tax exemption?</summary>
-            <div class="a"><p>Yes. For Texas properties we write the plan so it does both jobs: it tells you how to manage the land for the wildlife on it, and it is prepared on the Texas Parks and Wildlife form so it can be filed with your county appraisal district for wildlife tax exemption. <a href='/wildlife-tax-valuation'>How the Texas wildlife tax exemption works</a>.</p></div>
-          </details>
-          <details>
-            <summary>What does the wildlife tax exemption require?</summary>
-            <div class="a"><p>In short: land that already has an agricultural or timber valuation, a written wildlife management plan, and at least three of seven wildlife management practices carried out and documented each year. Most good habitat work already falls inside those seven. The details are on our <a href='/wildlife-tax-valuation'>wildlife tax exemption</a> page, and your county appraisal district has the final say.</p></div>
-          </details>
-          <details>
-            <summary>Is it worth it?</summary>
-            <div class="a"><p>For many Texas landowners it is one of the most valuable things a management plan does, and on larger properties the difference can be thousands of dollars a year. The figure depends on your acreage and your county, so the honest answer for your land comes from your county appraisal district's numbers. We will help you ask the right questions.</p></div>
-          </details>
-          <details>
-            <summary>Will you file it for me?</summary>
-            <div class="a"><p>We prepare everything the filing needs: the plan, the maps, the practices and how they will be documented. You sign and file as the owner, and your chief appraiser makes the decision. We do not promise an approval, because nobody honestly can, and this is not tax or legal advice.</p></div>
-          </details>
-        </div>
-      </div>
-      <div class="faqgroup">
-        <h3>Working with us</h3>
-        <div class="acc">
-          <details>
-            <summary>Do you work on leased land?</summary>
-            <div class="a"><p>Yes, and mapping what you are permitted to do on leased or restricted ground is part of every assessment. State lease tracts, easements, and restricted acreage change what is actually possible. We will not recommend clearing, planting, or earthwork on ground where those activities are prohibited, and we flag anything that needs written confirmation from the administering agency.</p></div>
-          </details>
-          <details>
-            <summary>How is this different from hiring someone to put in food plots?</summary>
-            <div class="a"><p>A contractor installs what you ask for. We tell you whether that is the right thing to install, where, and what has to happen alongside it for it to matter. A food plot in the wrong place relative to bedding and access can make a property harder to hunt, not easier. If food plots turn out to be the right answer for your property, we will say so and tell you why.</p></div>
-          </details>
-          <details>
-            <summary>Do you work in Oklahoma?</summary>
-            <div class="a"><p>Yes. Assessments, management plans, and habitat work are the same on both sides of the river. The wildlife tax exemption is the one piece that is specific to Texas.</p></div>
-          </details>
-        </div>
-      </div>
-    </div>
+    <div class="faq"><div class="faqgroup"><div class="acc">
+      {homeFaq.map((x, i) => <details open={i === 0}><summary>{x.q}</summary><div class="a"><p set:html={x.a} /></div></details>)}
+    </div></div></div>
   </div>
 </section>
 
@@ -561,19 +200,18 @@ const ld = {
   <div class="wrap">
     <div class="shead">
       <div class="idx"><i></i><s></s><b>GET IN TOUCH</b></div>
-      <h2>Request a property assessment</h2>
-      <p class="sd">Tell us about your land and what you want from it. We will get back to you within a couple of days.</p>
+      <h2>Let's take a look at your land</h2>
+      <p class="sd">Tell us about your property and what you want from it. We'll get back to you within a couple of days.</p>
     </div>
     <div class="cgrid">
       <div class="cinfo">
-        <p>You do not need to have anything figured out before you reach out. Most owners contact us because something is not working and they are not sure why, or because they want a plan they can file for the wildlife tax exemption. Both are the right time to reach out.</p>
-        <p>Every property we take on is a partnership. Your goals set the direction, and our job is finding everything your land is capable of and giving you a clear path to it.</p>
+        <p>You don't need anything figured out before you reach out. Most folks call because something isn't working and they're not sure why, or because they want a plan they can file for the wildlife exemption. Either one is the right time.</p>
+        <p>We treat every property like a partnership. Your goals set the direction. Our job is finding what your land can do and showing you the way there.</p>
         <dl>
           <div><dt>Service area</dt><dd>Texas and Oklahoma</dd></div>
           <div><dt>Response time</dt><dd>Within a couple of days</dd></div>
         </dl>
       </div>
-
       <InquiryForm source="home page" />
     </div>
   </div>

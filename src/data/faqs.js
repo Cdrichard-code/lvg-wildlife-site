@@ -10,6 +10,18 @@ export const faqGroups = [
     "a": "We come out and walk it with you, on foot, for as long as the property takes. There is no substitute for being on the ground: aerial imagery will not show you browse pressure, bedding sign, or how a drainage actually crosses. We map habitat, record and locate wildlife sign, note water and terrain, and map which ground you can manage versus leased or restricted acreage. You receive an interactive report, a PDF, and a call to walk through it together."
    },
    {
+    "q": "What's included in your wildlife management plan?",
+    "a": "An on-foot walk of your property, a habitat report with maps, the written plan, and filing help for the Texas wildlife tax exemption. Inside the plan: what to do and where, who does each job (you, or us if you'd like), a calendar from the next 90 days out to year five, cost estimates for doing it yourself or having us do it, and a record kit for your annual report. <a href='/wildlife-management-plans'>See the plan page</a>."
+   },
+   {
+    "q": "Who does the work in the plan, me or you?",
+    "a": "Your call. Every job in the plan is marked as something you can do yourself or something we can do for you, with costs for both. Plenty of owners do most of it themselves and have us handle a few things, like the first food plots or nest boxes."
+   },
+   {
+    "q": "How long does it take to get a plan?",
+    "a": "Usually a few weeks after we walk the property. You get the report, then the plan, then a call where we go through it together and adjust anything that doesn't fit how you use the land."
+   },
+   {
     "q": "How small a property is worth managing?",
     "a": "Forty acres is plenty to work with, and small properties often respond faster than large ones because a single change affects a larger share of the ground. What matters more than total acreage is how much of it you are allowed to manage and what surrounds it. We have no minimum."
    },
@@ -18,7 +30,7 @@ export const faqGroups = [
     "a": "No. The assessment stands on its own and several of its recommendations cost nothing to act on. When you are ready for more, the assessment is what the management plan is built from. Start with the <a href='/services'>property assessment</a>."
    },
    {
-    "q": "What does it cost?",
+    "q": "How much does a wildlife management plan cost?",
     "a": "The property assessment is a fixed fee based on property size, with travel beyond our normal range billed separately. Plans and habitat work vary with what the property needs, so we do not quote them before we have seen the ground. What we will do is tell you which recommendations cost nothing, which are a weekend of your own labor, and which need equipment or a contractor."
    }
   ]
@@ -52,6 +64,10 @@ export const faqGroups = [
   "group": "Texas wildlife tax exemption",
   "items": [
    {
+    "q": "How do I switch from an ag exemption to a wildlife exemption in Texas?",
+    "a": "Your land has to already carry the ag (or timber) valuation. You then need a written wildlife management plan, usually on the Texas Parks and Wildlife form, and the open-space application filed with your county appraisal district before May 1. From then on, you carry out at least three of the seven wildlife practices each year and keep records. We walk the property, write the plan, and help you file it. <a href='/wildlife-tax-valuation'>The full rundown</a>."
+   },
+   {
     "q": "Can my management plan be used for the Texas wildlife tax exemption?",
     "a": "Yes. For Texas properties we write the plan so it does both jobs: it tells you how to manage the land for the wildlife on it, and it is prepared on the Texas Parks and Wildlife form so it can be filed with your county appraisal district for wildlife tax exemption. <a href='/wildlife-tax-valuation'>How the Texas wildlife tax exemption works</a>."
    },
@@ -60,11 +76,11 @@ export const faqGroups = [
     "a": "In short: land that already has an agricultural or timber valuation, a written wildlife management plan, and at least three of seven wildlife management practices carried out and documented each year. Most good habitat work already falls inside those seven. The details are on our <a href='/wildlife-tax-valuation'>wildlife tax exemption</a> page, and your county appraisal district has the final say."
    },
    {
-    "q": "Is it worth it?",
+    "q": "Is the Texas wildlife tax exemption worth it?",
     "a": "For many Texas landowners it is one of the most valuable things a management plan does, and on larger properties the difference can be thousands of dollars a year. The figure depends on your acreage and your county, so the honest answer for your land comes from your county appraisal district's numbers. We will help you ask the right questions."
    },
    {
-    "q": "Will you file it for me?",
+    "q": "Will you file the wildlife exemption for me?",
     "a": "We prepare everything the filing needs: the plan, the maps, the practices and how they will be documented. You sign and file as the owner, and your chief appraiser makes the decision. We do not promise an approval, because nobody honestly can, and this is not tax or legal advice."
    }
   ]
@@ -90,19 +106,19 @@ export const faqGroups = [
   "group": "Tax exemption: qualifying",
   "items": [
    {
-    "q": "Is the wildlife exemption actually an exemption?",
+    "q": "Is the Texas wildlife exemption a real tax exemption?",
     "a": "No. The legal name is wildlife management use appraisal, and it is a category of open-space agricultural valuation under the Texas Property Tax Code. The land stays on the tax roll and is appraised on its productivity value rather than its market value. People call it an exemption because the effect on the bill is so large."
    },
    {
-    "q": "Can land taxed at market value go straight to wildlife valuation?",
+    "q": "Can land without an ag exemption get a wildlife exemption?",
     "a": "No. The land has to be appraised as open-space agricultural land or timberland already when the wildlife use begins. Land at market value generally has to earn an ag valuation first, and that depends on a history of qualifying agricultural use, which the Tax Code sets at five of the preceding seven years. If that is your situation, tell us and we will be straight with you about the timeline."
    },
    {
-    "q": "Is there a minimum acreage?",
+    "q": "Is there a minimum acreage for a wildlife exemption in Texas?",
     "a": "For most tracts, no. Minimum acreage rules apply when a tract has been reduced in size, for example a piece split off from a larger ranch, and the minimum then depends on the region and on your appraisal district. We check this against your district's rules before any plan is written."
    },
    {
-    "q": "Which animals count?",
+    "q": "Which wildlife species count toward a Texas wildlife exemption?",
     "a": "The law is written around native wildlife: a sustaining breeding, migrating, or wintering population of indigenous wild animals. Whitetail deer are the most common focus in our area, but plans are regularly built around songbirds, waterfowl, turkey, quail, and other native species, and a good plan usually names more than one."
    }
   ]
@@ -111,11 +127,11 @@ export const faqGroups = [
   "group": "Tax exemption: money and deadlines",
   "items": [
    {
-    "q": "Does switching from ag to wildlife lower my taxes?",
+    "q": "Does switching from an ag exemption to a wildlife exemption lower my taxes?",
     "a": "No, and anyone who says it does is selling something. Texas Parks and Wildlife is explicit that converting from farming or ranching to wildlife management makes no change in the property taxes assessed. The value is in keeping the valuation without having to keep livestock or a hay operation."
    },
    {
-    "q": "When is the deadline?",
+    "q": "When is the deadline to apply for the wildlife exemption in Texas?",
     "a": "The application and the wildlife management plan go to your county appraisal district before May 1 of the tax year. Because the practices need to be under way and documented, the practical start date is the fall or winter before."
    },
    {
@@ -132,7 +148,7 @@ export const faqGroups = [
   "group": "Tax exemption: working with us",
   "items": [
    {
-    "q": "Do I need a biologist to write the plan?",
+    "q": "Do I need a biologist to write my wildlife management plan?",
     "a": "The law does not require a particular credential, and landowners are allowed to write their own. What the plan does need is to be biologically sound for your region, to meet the intensity standards Texas Parks and Wildlife publishes for it, and to match what is actually happening on your ground. That is the part most owners want help with."
    },
    {
