@@ -1,0 +1,343 @@
+---
+import Base from '../layouts/Base.astro';
+const ld = {
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Service",
+   "@id": "https://lvgwildlife.com/wildlife-tax-valuation#service",
+   "name": "Wildlife management plans for the Texas wildlife tax exemption",
+   "serviceType": "Wildlife management plan",
+   "description": "Wildlife management plans prepared to file for the Texas wildlife tax exemption (wildlife management use appraisal), with census, record keeping, and filing support.",
+   "provider": {
+    "@id": "https://lvgwildlife.com/#business"
+   },
+   "areaServed": {
+    "@type": "State",
+    "name": "Texas"
+   },
+   "url": "https://lvgwildlife.com/wildlife-tax-valuation"
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://lvgwildlife.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Texas wildlife tax exemption",
+     "item": "https://lvgwildlife.com/wildlife-tax-valuation"
+    }
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "@id": "https://lvgwildlife.com/wildlife-tax-valuation#faq",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Is the wildlife exemption actually an exemption?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. The legal name is wildlife management use appraisal, and it is a category of open-space agricultural valuation under the Texas Property Tax Code. The land stays on the tax roll and is appraised on its productivity value rather than its market value. People call it an exemption because the effect on the bill is so large."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can land taxed at market value go straight to wildlife valuation?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. The land has to be appraised as open-space agricultural land or timberland already when the wildlife use begins. Land at market value generally has to earn an ag valuation first, and that depends on a history of qualifying agricultural use, which the Tax Code sets at five of the preceding seven years. If that is your situation, tell us and we will be straight with you about the timeline."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Is there a minimum acreage?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "For most tracts, no. Minimum acreage rules apply when a tract has been reduced in size, for example a piece split off from a larger ranch, and the minimum then depends on the region and on your appraisal district. We check this against your district's rules before any plan is written."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Which animals count?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The law is written around native wildlife: a sustaining breeding, migrating, or wintering population of indigenous wild animals. Whitetail deer are the most common focus in our area, but plans are regularly built around songbirds, waterfowl, turkey, quail, and other native species, and a good plan usually names more than one."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Does switching from ag to wildlife lower my taxes?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No, and anyone who says it does is selling something. Texas Parks and Wildlife is explicit that converting from farming or ranching to wildlife management makes no change in the property taxes assessed. The value is in keeping the valuation without having to keep livestock or a hay operation."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "When is the deadline?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The application and the wildlife management plan go to your county appraisal district before May 1 of the tax year. Because the practices need to be under way and documented, the practical start date is the fall or winter before."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "What happens if the land loses its valuation?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "If the land changes to a use that does not qualify, the Tax Code imposes an additional tax, usually called the rollback, covering the previous three years. That is the difference between what was paid under the special valuation and what market value would have cost. It is the main reason to treat the plan and the annual records seriously."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Do I have to report every year?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Your appraisal district may require an annual report showing how the plan was carried out, and many do. We set up census, activity logs, and photo records at the start so the report is a matter of filling in what already happened."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Do I need a biologist to write the plan?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "The law does not require a particular credential, and landowners are allowed to write their own. What the plan does need is to be biologically sound for your region, to meet the intensity standards Texas Parks and Wildlife publishes for it, and to match what is actually happening on your ground. That is the part most owners want help with."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can you guarantee my application will be approved?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "No. The chief appraiser of your county appraisal district makes that decision. What we can do is make sure the plan is complete, realistic for your property, built to the published standards, and backed by records. We are not attorneys or tax advisors, and for a dispute with an appraisal district you may want a property tax consultant."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Can you do the work on the ground too?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Yes. Some owners want the written plan and carry it out themselves. Others want us to get the first year's practices on the ground, such as food plots, nest boxes, and the census, and then take it from there."
+     }
+    }
+   ]
+  }
+ ]
+};
+---
+<Base
+  title={"Texas Wildlife Tax Exemption: Plans & Filing | LVG Wildlife Solutions"}
+  description={"How the Texas wildlife tax exemption works: who qualifies, the seven wildlife management practices, the May 1 deadline, and the management plan behind it."}
+  path="/wildlife-tax-valuation"
+  ogTitle={"Texas Wildlife Tax Exemption: Requirements, Deadlines, and Plans"}
+  ogDescription={"Who qualifies for Texas wildlife tax valuation, what it protects, the seven practices, and how a wildlife management plan gets filed."}
+  robots="index,follow,max-image-preview:large"
+  current="tax"
+  ld={ld}
+  mcta={{"title": "Wildlife tax exemption", "line": "Start with an assessment", "href": "/contact", "label": "Get in touch"}}
+>
+<!-- ===================== PAGE HEAD ===================== -->
+<section class="dark topo-gold deep pagehead">
+  <div class="wrap">
+    <nav class="crumb" aria-label="Breadcrumb"><a href='/'>Home</a><span>/</span>Texas wildlife tax exemption</nav>
+    <div class="idx"><i></i><s></s><b>TEXAS WILDLIFE TAX EXEMPTION</b></div>
+    <h1>The Texas wildlife tax exemption, and the plan behind it</h1>
+    <p class="lead">Texas rewards landowners who actively manage their property for native wildlife. A good management plan is what makes that possible. This page covers how the exemption works, what the state asks for, and where we come in.</p>
+    <div class="acts">
+      <a class='btn p' href='/contact'>Request a property assessment</a>
+      <a class='btn s' href='#process'>See the steps</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WHAT IT IS ===================== -->
+<section class="topo-ink shift-1 seam">
+  <div class="wrap">
+    <div class="shead">
+      <div class="idx"><i></i><s></s><b>WHAT IT IS</b></div>
+      <h2>Good wildlife management, recognized on your tax bill</h2>
+    </div>
+    <div class="prose wide">
+      <p>Under the Texas Property Tax Code, land that is actively managed for native wildlife can be appraised the way agricultural land is, on what it produces rather than what it would sell for. Officially this is wildlife management use appraisal. Most people call it the wildlife tax exemption.</p>
+      <p>It is built for owners who hold land for wildlife, hunting, and enjoyment rather than for cattle or crops. The state asks for a written wildlife management plan and for real management work carried out every year. That is the same work a well-run property is already doing.</p>
+      <p>Which is why we treat it as part of the management plan and not a separate product. We assess the property, write a plan around the wildlife on it, and prepare that plan so it can be filed with your county appraisal district.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WHO QUALIFIES ===================== -->
+<section class="topo-ink shift-2 seam deepstone">
+  <div class="wrap">
+    <div class="shead">
+      <div class="idx"><i></i><s></s><b>WHO QUALIFIES</b></div>
+      <h2>What Texas requires</h2>
+      <p class="sd">The short version of the rules. Your county appraisal district applies them, and its own guidelines add detail.</p>
+    </div>
+    <div class="prin light">
+      <div>
+        <h3>The land already has an ag or timber valuation</h3>
+        <p>Wildlife use has to begin on land that is already appraised as open-space agricultural land or timberland. Land at market value cannot go straight to wildlife valuation.</p>
+      </div>
+      <div>
+        <h3>Wildlife management is the primary use</h3>
+        <p>The land is actively managed to sustain a breeding, migrating, or wintering population of native wild animals. Recreation alone does not qualify, and neither does leaving the land alone.</p>
+      </div>
+      <div>
+        <h3>At least three of seven practices, every year</h3>
+        <p>Each practice has to be carried out at a level that means something on your acreage. Texas Parks and Wildlife publishes those standards by ecoregion, and they are what your plan is measured against.</p>
+      </div>
+      <div>
+        <h3>A written wildlife management plan</h3>
+        <p>The plan goes to the appraisal district with your application. It sets out your goals, the species you are managing for, the practices you chose, and where each one happens on the property.</p>
+      </div>
+      <div>
+        <h3>Records that show the work happened</h3>
+        <p>An appraisal district may require an annual report on how the plan was carried out. Dated photos, census sheets, and activity logs are what make that report easy to defend.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SEVEN PRACTICES ===================== -->
+<section class="dark well topo-gold shift-2" id="practices">
+  <div class="wrap">
+    <div class="shead">
+      <div class="idx"><i></i><s></s><b>THE SEVEN PRACTICES</b></div>
+      <h2>Choose three that fit your land</h2>
+      <p class="sd">The right three are the ones your property is suited to and you will keep doing. Most whitetail work already falls inside this list.</p>
+    </div>
+    <ol class="plist">
+      <li><b>Habitat control</b><span>Brush management, prescribed fire, native grass restoration</span></li>
+      <li><b>Erosion control</b><span>Pond repair, gully work, revegetation</span></li>
+      <li><b>Predator control</b><span>Feral hog and fire ant control under a written plan</span></li>
+      <li><b>Supplemental water</b><span>Ponds, troughs, and wetland improvements</span></li>
+      <li><b>Supplemental food</b><span>Food plots and managed native forage</span></li>
+      <li><b>Shelter</b><span>Nest boxes, brush piles, deferred mowing, snags</span></li>
+      <li><b>Census</b><span>Stand counts, camera surveys, harvest records</span></li>
+    </ol>
+    <p class="note">Examples only. What counts, and how much of it, depends on your region's standards and your appraisal district.</p>
+  </div>
+</section>
+
+<!-- ===================== PROCESS ===================== -->
+<section class="topo-ink shift-3 seam" id="process">
+  <div class="wrap">
+    <div class="shead">
+      <div class="idx"><i></i><s></s><b>HOW IT WORKS WITH US</b></div>
+      <h2>From first walk to annual report</h2>
+      <p class="sd">The filing deadline is in spring. The work that supports it starts the fall before.</p>
+    </div>
+    <ol class="steps">
+      <li><b>We walk the property</b><p>An in-person, on-foot assessment. We map the habitat, record wildlife sign, and confirm how the land is taxed now and which ground you control.</p></li>
+      <li><b>You see where you stand</b><p>Your report shows which practices the land already supports, which ones would take real work, and what we would recommend as your three or more.</p></li>
+      <li><b>We write the plan</b><p>Prepared on the Texas Parks and Wildlife plan form, with maps, practice levels for your region, and the census and record keeping laid out.</p></li>
+      <li><b>You file before May 1</b><p>The plan goes to your county appraisal district with the open-space application. We put the package together. You sign and file as the owner.</p></li>
+      <li><b>The practices get done</b><p>Carry out the plan yourself, or have us get the first year on the ground with you: plots, boxes, brush work, and the census.</p></li>
+      <li><b>The records back it up</b><p>Each year's work is logged as it happens, so the annual report and any question from the appraisal district have an answer ready.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section id="questions" class="topo-ink shift-1 seam deepstone">
+  <div class="wrap">
+    <div class="shead">
+      <div class="idx"><i></i><s></s><b>QUESTIONS</b></div>
+      <h2>Texas wildlife tax exemption questions, answered</h2>
+      <p class="sd">Including the answers that make the sale harder.</p>
+    </div>
+    <div class="faq">
+      <div class="faqgroup">
+        <h3>Qualifying</h3>
+        <div class="acc">
+          <details open>
+            <summary>Is the wildlife exemption actually an exemption?</summary>
+            <div class="a"><p>No. The legal name is wildlife management use appraisal, and it is a category of open-space agricultural valuation under the Texas Property Tax Code. The land stays on the tax roll and is appraised on its productivity value rather than its market value. People call it an exemption because the effect on the bill is so large.</p></div>
+          </details>
+          <details>
+            <summary>Can land taxed at market value go straight to wildlife valuation?</summary>
+            <div class="a"><p>No. The land has to be appraised as open-space agricultural land or timberland already when the wildlife use begins. Land at market value generally has to earn an ag valuation first, and that depends on a history of qualifying agricultural use, which the Tax Code sets at five of the preceding seven years. If that is your situation, tell us and we will be straight with you about the timeline.</p></div>
+          </details>
+          <details>
+            <summary>Is there a minimum acreage?</summary>
+            <div class="a"><p>For most tracts, no. Minimum acreage rules apply when a tract has been reduced in size, for example a piece split off from a larger ranch, and the minimum then depends on the region and on your appraisal district. We check this against your district's rules before any plan is written.</p></div>
+          </details>
+          <details>
+            <summary>Which animals count?</summary>
+            <div class="a"><p>The law is written around native wildlife: a sustaining breeding, migrating, or wintering population of indigenous wild animals. Whitetail deer are the most common focus in our area, but plans are regularly built around songbirds, waterfowl, turkey, quail, and other native species, and a good plan usually names more than one.</p></div>
+          </details>
+        </div>
+      </div>
+      <div class="faqgroup">
+        <h3>Money and deadlines</h3>
+        <div class="acc">
+          <details>
+            <summary>Does switching from ag to wildlife lower my taxes?</summary>
+            <div class="a"><p>No, and anyone who says it does is selling something. Texas Parks and Wildlife is explicit that converting from farming or ranching to wildlife management makes no change in the property taxes assessed. The value is in keeping the valuation without having to keep livestock or a hay operation.</p></div>
+          </details>
+          <details>
+            <summary>When is the deadline?</summary>
+            <div class="a"><p>The application and the wildlife management plan go to your county appraisal district before May 1 of the tax year. Because the practices need to be under way and documented, the practical start date is the fall or winter before.</p></div>
+          </details>
+          <details>
+            <summary>What happens if the land loses its valuation?</summary>
+            <div class="a"><p>If the land changes to a use that does not qualify, the Tax Code imposes an additional tax, usually called the rollback, covering the previous three years. That is the difference between what was paid under the special valuation and what market value would have cost. It is the main reason to treat the plan and the annual records seriously.</p></div>
+          </details>
+          <details>
+            <summary>Do I have to report every year?</summary>
+            <div class="a"><p>Your appraisal district may require an annual report showing how the plan was carried out, and many do. We set up census, activity logs, and photo records at the start so the report is a matter of filling in what already happened.</p></div>
+          </details>
+        </div>
+      </div>
+      <div class="faqgroup">
+        <h3>Working with us</h3>
+        <div class="acc">
+          <details>
+            <summary>Do I need a biologist to write the plan?</summary>
+            <div class="a"><p>The law does not require a particular credential, and landowners are allowed to write their own. What the plan does need is to be biologically sound for your region, to meet the intensity standards Texas Parks and Wildlife publishes for it, and to match what is actually happening on your ground. That is the part most owners want help with.</p></div>
+          </details>
+          <details>
+            <summary>Can you guarantee my application will be approved?</summary>
+            <div class="a"><p>No. The chief appraiser of your county appraisal district makes that decision. What we can do is make sure the plan is complete, realistic for your property, built to the published standards, and backed by records. We are not attorneys or tax advisors, and for a dispute with an appraisal district you may want a property tax consultant.</p></div>
+          </details>
+          <details>
+            <summary>Can you do the work on the ground too?</summary>
+            <div class="a"><p>Yes. Some owners want the written plan and carry it out themselves. Others want us to get the first year's practices on the ground, such as food plots, nest boxes, and the census, and then take it from there.</p></div>
+          </details>
+        </div>
+      </div>
+    </div>
+    <div class="srcs">
+      <p class="k">CHECK IT YOURSELF</p>
+      <p>The rules above are summarized from the state's own material. Requirements and forms change, and your county appraisal district has the final say, so confirm the specifics before you rely on them.</p>
+      <ul>
+        <li><a href="https://comptroller.texas.gov/taxes/property-tax/ag-timber/index.php" rel="noopener">Texas Comptroller: agricultural, timberland and wildlife management use special appraisal</a></li>
+        <li><a href="https://tpwd.texas.gov/landwater/land/private/agricultural_land/" rel="noopener">Texas Parks and Wildlife: agricultural tax appraisal based on wildlife management</a></li>
+      </ul>
+      <p class="fine">LVG Wildlife Solutions prepares wildlife management plans and supporting records. We are not attorneys or tax advisors, and nothing on this page is legal or tax advice.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA ===================== -->
+<section class="contact dark topo-gold shift-3">
+  <div class="wrap cta">
+    <div>
+      <div class="idx"><i></i><s></s><b>NEXT STEP</b></div>
+      <h2>Find out where your property stands</h2>
+      <p>Tell us the county, the acreage, and what you want from the land. We will tell you plainly what a management plan would look like and whether the wildlife tax exemption is realistic for it.</p>
+    </div>
+    <div class="acts">
+      <a class='btn p' href='/contact'>Request a property assessment</a>
+      <a class='btn s' href='/#services'>See our services</a>
+    </div>
+  </div>
+</section>
+</Base>

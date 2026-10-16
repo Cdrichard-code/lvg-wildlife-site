@@ -1,0 +1,506 @@
+/* ==========================================================================
+   LVG WILDLIFE SOLUTIONS  (Land Value Group Wildlife Solutions)
+   Mobile-first. Breakpoints scale UP from 390px.
+
+   Colour comes from the report dashboard (app/tokens.css). Rules:
+     - Dark grounds (soil) take light text. Orange, sage, tan and bronze
+       always take dark text.
+     - Burnt orange is the one accent: main buttons, active states, markers.
+       It is never a large background and never small text on a light ground.
+     - Sage and tan are secondary: muted surfaces, dividers, labels on dark.
+     - Bronze is for fine rules only.
+     - The topographic contour texture runs behind every section, never
+       above 12% opacity, and always behind the content layer.
+     - Featured surfaces get surveyor corner brackets, not drop shadows.
+   ========================================================================== */
+:root{
+  /* brand */
+  --soil:#20231D;          /* green-black: dark grounds, header */
+  --soil-lift:#2C2D28;     /* dark cards */
+  --soil-well:#171A15;     /* recessed dark: service area, footer */
+  --ink:#151614;           /* main text, and text on orange / sage / tan */
+  --stone:#F5F1E8;         /* main light ground, and text on dark */
+  --stone-deep:#E3E0D2;    /* muted light ground */
+  --paper:#F8F5EF;         /* card surface */
+  --linen:#EEEAE0;         /* input fields */
+  --prairie:#92947C;       /* field sage */
+  --prairie-lift:#A2A490;
+  --oak:#F47A18;           /* burnt orange, the one accent */
+  --oak-lift:#F68E3B;
+  --bluestem:#C5A47C;      /* warm tan */
+  --bluestem-lift:#D4B896;
+  --bronze:#9A774C;        /* fine rules only */
+
+  /* text shades */
+  --ink-soft:#4A4842; --ink-mute:#726F68;
+  --ink-inv:#F5F1E8; --ink-inv-soft:rgba(245,241,232,.84); --ink-inv-mute:#A6A398;
+
+  /* hairlines: ink at 13% (7% faintest) on light, stone at 14% on dark */
+  --hair:rgba(21,22,20,.13); --hair-faint:rgba(21,22,20,.07); --hair-2:rgba(21,22,20,.26);
+  --hair-inv:rgba(245,241,232,.14); --hair-inv-2:rgba(245,241,232,.3);
+
+  --accent:var(--oak);       /* graphic marks: bars, bullets, brackets */
+  --label:var(--ink);        /* small caps labels; tan on dark grounds */
+
+  --d:'Archivo',system-ui,-apple-system,sans-serif;
+  --b:'Spectral',Georgia,serif;
+
+  /* radius: 8px on controls and forms, 3px on content surfaces */
+  --r:8px; --rc:3px;
+  --sh-1:0 1px 2px rgba(21,22,20,.05), 0 2px 5px -1px rgba(21,22,20,.04);
+  --sh-2:0 1px 2px rgba(21,22,20,.05), 0 5px 14px -3px rgba(21,22,20,.08),
+         0 14px 34px -12px rgba(21,22,20,.10);
+  --sh-in:inset 0 1px 0 rgba(255,255,255,.6);
+
+  --wide:1220px; --read:64ch;
+  --gut:1.25rem;
+  --sy:3.75rem;
+}
+@media(min-width:640px){:root{--gut:2rem;--sy:5rem}}
+@media(min-width:1000px){:root{--gut:3.5rem;--sy:7.5rem}}
+@media(min-width:1360px){:root{--gut:4rem;--sy:8.5rem}}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+
+body{margin:0;background:var(--stone);color:var(--ink);
+  font-family:var(--b);font-size:1rem;line-height:1.7;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  padding-bottom:4.6rem}                 /* room for the mobile CTA bar */
+@media(min-width:900px){body{padding-bottom:0}}
+
+h1,h2,h3,h4{font-family:var(--d);font-weight:700;letter-spacing:-.03em;line-height:1.05;margin:0}
+p{margin:0 0 1.05em}
+p:last-child{margin-bottom:0}
+/* Links on light grounds: ink text, orange rule. Orange text is kept for dark grounds. */
+a{color:var(--ink);text-decoration:none;border-bottom:1.5px solid var(--oak)}
+a:hover{border-bottom-color:var(--ink)}
+.dark a{color:var(--bluestem-lift);border-bottom:1px solid rgba(197,164,124,.4)}
+.dark a:hover{color:var(--stone);border-bottom-color:var(--oak)}
+:focus-visible{outline:2px solid var(--oak);outline-offset:3px}
+::selection{background:var(--oak);color:var(--ink)}
+img{max-width:100%;height:auto}
+
+.wrap{max-width:var(--wide);margin:0 auto;padding-left:var(--gut);padding-right:var(--gut)}
+section{padding:var(--sy) 0;position:relative;overflow:hidden}
+section > .wrap{position:relative;z-index:1;width:100%}
+.deepstone{background:var(--stone-deep)}
+.dark{background:var(--soil);color:var(--ink-inv);--label:var(--bluestem)}
+.dark.well{background-color:var(--soil-well)}
+/* Feathered seams, so a change of ground reads as a change in light. */
+.dark{background-image:linear-gradient(180deg,rgba(245,241,232,.04),rgba(245,241,232,0) 16%)}
+.seam{background-image:linear-gradient(180deg,rgba(21,22,20,.04),rgba(21,22,20,0) 14%)}
+.dark h1,.dark h2,.dark h3,.dark h4{color:var(--ink-inv)}
+.prose{max-width:var(--read)}
+.prose p{color:var(--ink-soft)}
+.dark .prose p{color:var(--ink-inv-soft)}
+.note{font-size:.94rem;color:var(--ink-inv-mute);font-style:italic;margin-top:1.75rem;max-width:62ch}
+
+/* ---- Topographic grounds: contour lines behind every section ------------ */
+.topo-ink,.topo-gold{position:relative}
+.topo-ink::before,.topo-gold::before{content:'';position:absolute;inset:0;z-index:0;
+  pointer-events:none;background-repeat:no-repeat;background-position:center;background-size:cover}
+.topo-ink::before{background-image:url("topo-ink.svg");opacity:.085}
+.topo-gold::before{background-image:url("topo-gold.svg");opacity:.11}
+.topo-gold.deep::before{opacity:.12}
+.shift-1::before{background-position:22% 64%}
+.shift-2::before{background-position:76% 18%}
+.shift-3::before{background-position:48% 88%}
+
+/* ---- Index-contour section marker --------------------------------------
+   Heavy short segment + long hairline: how a topo sheet marks an index
+   contour.                                                                */
+.idx{display:flex;align-items:center;gap:.4rem;margin-bottom:1.1rem}
+.idx i{display:block;height:3px;width:1.75rem;background:var(--oak)}
+.idx s{display:block;height:1px;width:2.25rem;background:var(--bronze);text-decoration:none;opacity:.7}
+.idx b{font-family:var(--d);font-size:.68rem;font-weight:700;letter-spacing:.11em;
+  color:var(--label);margin-left:.15rem}
+
+/* ---- Header -------------------------------------------------------------
+   Fixed. Opens tall with the stacked logo; once the page scrolls it shrinks
+   and swaps to the horizontal logo (badge alone on a phone). The body is
+   padded by the full height so the swap never moves the page.              */
+:root{--hh:5.3rem;--hh-s:3.6rem}
+@media(min-width:700px){:root{--hh:6.4rem;--hh-s:5rem}}
+@media(min-width:1000px){:root{--hh:7.4rem;--hh-s:5.5rem}}
+/* The space under the fixed header is dark, and so is the canvas behind the
+   page, so pulling down past the top never shows a light gap. */
+html{background:var(--soil);overscroll-behavior-y:none}
+body::before{content:'';display:block;height:var(--hh);background:var(--soil)}
+[id]{scroll-margin-top:calc(var(--hh-s) + 1rem)}
+header{position:fixed;top:0;left:0;right:0;z-index:50;background:var(--soil);
+  border-bottom:1px solid var(--hair-inv);box-shadow:inset 0 3px 0 var(--oak);
+  transition:background .25s,box-shadow .25s}
+header .bar{display:flex;align-items:center;gap:1rem;height:var(--hh);padding-top:3px;
+  transition:height .28s cubic-bezier(.3,.7,.3,1)}
+header.scrolled{background:rgba(32,35,29,.97);backdrop-filter:blur(10px);
+  box-shadow:inset 0 3px 0 var(--oak),0 10px 28px -14px rgba(0,0,0,.6)}
+header.scrolled .bar{height:var(--hh-s)}
+.mark{display:flex;align-items:center;border:0;flex:0 0 auto}
+.mark:hover{border:0}
+.mark img{display:block;width:auto;animation:logoin .3s ease both}
+@keyframes logoin{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+.mark .lg-stack{height:calc(var(--hh) - .95rem)}
+.mark .lg-horiz,.mark .lg-badge{display:none;height:calc(var(--hh-s) - .8rem)}
+header.scrolled .lg-stack{display:none}
+header.scrolled .lg-badge{display:block}
+@media(min-width:700px){
+  header.scrolled .lg-badge{display:none}
+  header.scrolled .lg-horiz{display:block}
+}
+
+header nav{margin-left:auto;display:flex;align-items:center;gap:1.15rem}
+header nav a{font-family:var(--d);font-size:.78rem;font-weight:500;color:var(--ink-inv-mute);border:0}
+header nav a:hover,header nav a[aria-current]{color:var(--ink-inv)}
+header nav a[aria-current]{box-shadow:0 2px 0 var(--oak)}
+header nav a.only{color:var(--bluestem)}
+/* Header call to action: the accent, with dark text. */
+header nav a.hcta{font-size:.78rem;font-weight:700;color:var(--ink);background:var(--oak);
+  border-radius:var(--r);padding:.55rem .85rem;white-space:nowrap;transition:background .16s}
+header nav a.hcta:hover{background:var(--oak-lift);color:var(--ink)}
+@media(max-width:519px){header nav a.hcta{display:none}}
+@media(min-width:520px) and (max-width:999px){header nav a.only{display:none}}
+.navfull{display:none}
+@media(min-width:1000px){
+  .navfull{display:flex;gap:1.35rem;align-items:center}
+  header nav a.only{display:none}
+  header nav a{font-size:.82rem}
+}
+
+/* ---- Hero --------------------------------------------------------------- */
+.hero{background:var(--soil);color:var(--ink-inv);padding:3rem 0 3.25rem;--label:var(--bluestem);position:relative;overflow:hidden}
+.hero > .wrap{position:relative;z-index:1}
+.hero .idx{margin-bottom:1.4rem}
+.hero h1{font-size:2.15rem;font-weight:800;letter-spacing:-.034em;max-width:20ch;text-wrap:balance}
+.hero .sub{font-size:1.02rem;color:var(--ink-inv-soft);margin-top:1.25rem;
+  font-weight:300;line-height:1.62;max-width:54ch}
+.hero .acts{display:flex;flex-direction:column;gap:.6rem;margin-top:1.9rem}
+.hero .acts .btn{width:100%;text-align:center}
+.hero .meta{margin-top:2.4rem;border-top:1px solid var(--hair-inv)}
+.hero .meta div{padding:.9rem 0;border-bottom:1px solid var(--hair-inv);
+  display:flex;align-items:baseline;gap:.7rem}
+.hero .meta b{font-family:var(--d);font-size:.74rem;font-weight:700;letter-spacing:.07em;
+  color:var(--bluestem);flex:0 0 4.6rem}
+.hero .meta span{font-size:.92rem;color:var(--ink-inv-soft)}
+
+/* The seven practices: a field card with surveyor brackets. */
+.seven{position:relative;margin-top:2.4rem;padding:1.5rem 1.4rem 1.35rem;background:rgba(44,45,40,.82);
+  border:1px solid var(--hair-inv)}
+.seven::before,.seven::after{content:'';position:absolute;width:18px;height:18px;border:2px solid var(--oak)}
+.seven::before{left:-1px;top:-1px;border-right:0;border-bottom:0}
+.seven::after{right:-1px;bottom:-1px;border-left:0;border-top:0}
+.k{font-family:var(--d);font-size:.68rem;font-weight:700;letter-spacing:.11em;color:var(--label);margin:0 0 .9rem}
+.seven ol{list-style:none;margin:0;padding:0;border-top:1px solid var(--hair-inv)}
+.seven li{display:flex;align-items:baseline;gap:.9rem;padding:.62rem 0;border-bottom:1px solid var(--hair-inv);
+  font-family:var(--d);font-weight:600;font-size:.95rem;letter-spacing:-.012em;color:var(--ink-inv)}
+.seven li b{font-size:.7rem;font-weight:700;color:var(--oak);letter-spacing:.06em;flex:0 0 .8rem}
+.seven .n{font-size:.9rem;font-style:italic;color:var(--ink-inv-mute);margin:1rem 0 0;line-height:1.5}
+
+@media(min-width:640px){
+  .hero{padding:4.5rem 0 4rem}
+  .hero h1{font-size:3rem}
+  .hero .sub{font-size:1.14rem;margin-top:1.5rem}
+  .hero .acts{flex-direction:row;gap:.75rem}
+  .hero .acts .btn{width:auto}
+  .seven{padding:1.8rem 1.8rem 1.6rem;max-width:26rem}
+}
+@media(min-width:1000px){
+  .hero{padding:6.5rem 0 5rem}
+  .hero > .wrap{display:grid;grid-template-columns:minmax(0,1fr) 21.5rem;column-gap:4.5rem;
+    grid-template-areas:"idx seven" "h seven" "sub seven" "acts seven" "meta meta";align-items:start}
+  .hero .idx{grid-area:idx}
+  .hero h1{grid-area:h;font-size:3.7rem;letter-spacing:-.038em;max-width:none}
+  .hero .sub{grid-area:sub;font-size:1.2rem;margin-top:1.75rem}
+  .hero .acts{grid-area:acts}
+  .seven{grid-area:seven;align-self:center;margin:0;max-width:none}
+  .hero .meta{grid-area:meta;display:grid;grid-template-columns:repeat(3,1fr);gap:0 3rem;margin-top:3.75rem}
+  .hero .meta div{border-bottom:0;display:block;padding:1.4rem 0 0}
+  .hero .meta b{display:block;margin-bottom:.3rem;font-size:.8rem}
+}
+@media(min-width:1360px){.hero h1{font-size:4.2rem}}
+
+.reveal{opacity:0;transform:translateY(12px);animation:rise .75s cubic-bezier(.19,.72,.26,1) forwards}
+.reveal.d1{animation-delay:.08s}.reveal.d2{animation-delay:.17s}.reveal.d3{animation-delay:.26s}
+@keyframes rise{to{opacity:1;transform:none}}
+
+/* ---- Buttons ------------------------------------------------------------ */
+.btn{font-family:var(--d);font-size:.88rem;font-weight:700;border:1px solid transparent;
+  border-radius:var(--r);box-shadow:var(--sh-1);padding:.9rem 1.4rem;cursor:pointer;display:inline-block;
+  transition:background .16s,border-color .16s,color .16s}
+.btn.p,.dark .btn.p{background:var(--oak);color:var(--ink);border-color:var(--oak)}
+.btn.p:hover,.dark .btn.p:hover{background:var(--oak-lift);border-color:var(--oak-lift);color:var(--ink)}
+.btn.s,.dark .btn.s{background:transparent;border-color:var(--hair-inv-2);color:var(--ink-inv)}
+.btn.s:hover,.dark .btn.s:hover{border-color:var(--ink-inv);background:rgba(245,241,232,.07);color:var(--ink-inv)}
+@media(min-width:640px){.btn{font-size:.9rem;padding:.92rem 1.55rem}}
+
+/* ---- Sticky mobile CTA -------------------------------------------------- */
+.mcta{position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;gap:.55rem;
+  box-shadow:inset 0 3px 0 var(--oak);
+  align-items:center;background:rgba(23,26,21,.97);backdrop-filter:blur(10px);
+  padding:.75rem var(--gut) calc(.7rem + env(safe-area-inset-bottom))}
+.mcta .lab{font-family:var(--d);font-size:.7rem;font-weight:600;color:var(--ink-inv-mute);
+  line-height:1.25;flex:1}
+.mcta .lab b{display:block;color:var(--ink-inv);font-size:.78rem;font-weight:700}
+.mcta .btn{padding:.72rem 1.05rem;font-size:.82rem;flex:0 0 auto}
+@media(min-width:900px){.mcta{display:none}}
+
+/* ---- Section heads ------------------------------------------------------ */
+.shead{margin-bottom:2rem}
+.shead h2{font-size:1.62rem;font-weight:800}
+.shead .sd{font-family:var(--b);font-size:.98rem;color:var(--ink-mute);
+  margin-top:.7rem;font-style:italic;font-weight:300;max-width:46ch}
+.dark .shead .sd{color:var(--ink-inv-mute)}
+@media(min-width:640px){.shead{margin-bottom:2.5rem}.shead h2{font-size:2.15rem}.shead .sd{font-size:1.08rem}}
+@media(min-width:1000px){.shead{margin-bottom:3rem}.shead h2{font-size:2.85rem}.shead .sd{font-size:1.14rem;margin-top:.9rem}}
+.pagehead{padding:clamp(3.5rem,8vw,6rem) 0 clamp(2.5rem,5vw,3.5rem)}
+.pagehead h1{font-size:clamp(2.1rem,5.2vw,3.5rem);max-width:22ch;font-weight:800;text-wrap:balance}
+.pagehead .lead{font-size:clamp(1.02rem,1.8vw,1.22rem);color:var(--ink-inv-soft);max-width:58ch;margin-top:1.25rem;font-weight:300}
+.pagehead .acts,.cta .acts{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:2rem}
+.crumb{font-family:var(--d);font-size:.74rem;font-weight:500;color:var(--ink-inv-mute);margin-bottom:1.6rem}
+.crumb span{margin:0 .5rem;opacity:.6}
+.h2s{font-size:clamp(1.35rem,2.6vw,1.75rem);margin-bottom:.9rem}
+.direct{margin:0;display:grid;gap:1.1rem}
+.direct dt{font-family:var(--d);font-size:.72rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-mute)}
+.direct dd{margin:.2rem 0 0;font-family:var(--d);font-size:1.05rem;font-weight:600;overflow-wrap:anywhere}
+
+/* ---- Two-column explainer with the illustration card -------------------- */
+.split{display:grid;gap:2rem;grid-template-columns:1fr;align-items:start}
+@media(min-width:960px){.split{grid-template-columns:1.1fr 1fr;gap:4rem}}
+.split .prose p{font-size:1.02rem}
+.calc{position:relative;background:var(--soil);color:var(--ink-inv);padding:1.6rem 1.4rem 1.4rem;--label:var(--bluestem)}
+.calc::before,.calc::after{content:'';position:absolute;width:18px;height:18px;border:2px solid var(--oak)}
+.calc::before{left:-1px;top:-1px;border-right:0;border-bottom:0}
+.calc::after{right:-1px;bottom:-1px;border-left:0;border-top:0}
+@media(min-width:640px){.calc{padding:2rem 1.9rem 1.8rem}}
+.calc dl{margin:0;border-top:1px solid var(--hair-inv)}
+.calc dl > div{display:flex;justify-content:space-between;align-items:baseline;gap:1.25rem;
+  padding:.95rem 0;border-bottom:1px solid var(--hair-inv)}
+.calc dt{font-size:.94rem;color:var(--ink-inv-soft);line-height:1.45}
+.calc dd{margin:0;font-family:var(--d);font-weight:700;font-size:1rem;white-space:nowrap;color:var(--ink-inv)}
+.calc .hl dd{color:var(--oak);font-size:1.15rem}
+.calc .n{font-size:.84rem;font-style:italic;color:var(--ink-inv-mute);margin:1rem 0 0;line-height:1.55}
+
+/* ---- Situations ---------------------------------------------------------- */
+.sit{display:grid;gap:0;grid-template-columns:1fr;margin-top:2.75rem;border-top:1px solid var(--hair)}
+.sit > div{padding:1.5rem 0;border-bottom:1px solid var(--hair)}
+.sit h3{font-size:1.1rem;letter-spacing:-.022em;margin-bottom:.55rem;line-height:1.2}
+.sit h3::before{content:'';display:block;width:1.75rem;height:3px;background:var(--oak);margin-bottom:.85rem}
+.sit p{font-size:.95rem;color:var(--ink-soft);margin:0}
+@media(min-width:900px){
+  .sit{grid-template-columns:repeat(3,1fr);gap:0 3rem;margin-top:3.5rem;border-bottom:1px solid var(--hair)}
+  .sit > div{padding:2rem 0;border-bottom:0}
+}
+
+/* ---- The seven practices, full list -------------------------------------- */
+.plist{list-style:none;margin:0;padding:0;border-top:1px solid var(--hair-inv);counter-reset:p}
+.plist li{counter-increment:p;display:grid;grid-template-columns:2rem 1fr;gap:.2rem 0;padding:1.05rem 0;
+  border-bottom:1px solid var(--hair-inv)}
+.plist li::before{content:counter(p,decimal-leading-zero);font-family:var(--d);font-size:.72rem;font-weight:700;
+  color:var(--oak);letter-spacing:.06em;grid-row:1 / 3;padding-top:.3rem}
+.plist b{font-family:var(--d);font-weight:600;font-size:1.02rem;color:var(--ink-inv);letter-spacing:-.016em}
+.plist span{font-size:.92rem;color:var(--ink-inv-soft)}
+@media(min-width:900px){
+  .plist{display:grid;grid-template-columns:1fr 1fr;gap:0 3.5rem}
+}
+
+/* ---- Process steps -------------------------------------------------------- */
+.steps{list-style:none;margin:0;padding:0;counter-reset:s;display:grid;grid-template-columns:1fr;gap:1.1rem}
+@media(min-width:700px){.steps{grid-template-columns:1fr 1fr;gap:1.4rem}}
+@media(min-width:1080px){.steps{grid-template-columns:repeat(3,1fr)}}
+.steps li{counter-increment:s;position:relative;background:var(--paper);padding:1.5rem 1.4rem 1.4rem;
+  border-top:3px solid var(--oak);border-radius:0 0 var(--rc) var(--rc);box-shadow:var(--sh-1),var(--sh-in)}
+.steps li::before{content:counter(s,decimal-leading-zero);display:block;font-family:var(--d);font-size:.72rem;
+  font-weight:700;letter-spacing:.09em;color:var(--ink-mute);margin-bottom:.6rem}
+.steps b{display:block;font-family:var(--d);font-weight:700;font-size:1.12rem;letter-spacing:-.022em;margin-bottom:.45rem}
+.steps p{font-size:.93rem;color:var(--ink-soft);margin:0}
+
+/* ---- Sources and closing call to action ---------------------------------- */
+.srcs{margin-top:2.5rem;padding-top:1.75rem;border-top:1px solid var(--hair);max-width:var(--read)}
+.srcs p{font-size:.94rem;color:var(--ink-soft)}
+.srcs ul{margin:0 0 1.1rem;padding-left:1.1rem;font-size:.94rem}
+.srcs li{padding:.2rem 0}
+.srcs .fine{font-size:.84rem;font-style:italic;color:var(--ink-mute)}
+.cta{display:grid;gap:1.5rem;align-items:center}
+.cta h2{font-size:clamp(1.6rem,3.4vw,2.5rem);font-weight:800}
+.cta p{color:var(--ink-inv-soft);max-width:54ch;margin-top:.9rem}
+@media(min-width:960px){.cta{grid-template-columns:1fr auto;gap:4rem}.cta .acts{margin-top:0}}
+
+/* ---- Service cards: surveyor brackets, no heavy shadow ------------------ */
+.svc{display:grid;gap:1.1rem;grid-template-columns:1fr}
+@media(min-width:1080px){.svc{grid-template-columns:repeat(3,1fr);gap:1.4rem}}
+.card{position:relative;background:var(--paper);padding:1.6rem 1.4rem;
+  border-top:3px solid var(--accent);border-radius:0 0 var(--rc) var(--rc);
+  box-shadow:var(--sh-2),var(--sh-in)}
+.card::before,.card::after{content:'';position:absolute;border:1.5px solid var(--accent)}
+.card::before{left:-1px;top:-3px;width:18px;height:18px;border-right:0;border-bottom:0}
+.card::after{right:-1px;bottom:-1px;width:18px;height:18px;border-left:0;border-top:0}
+@media(min-width:640px){.card{padding:2.1rem 1.9rem}}
+@media(min-width:1080px){.card{padding:2.2rem 1.8rem}}
+.card.feat{background:var(--soil);color:var(--ink-inv);--accent:var(--oak)}
+.card.feat h3{color:var(--ink-inv)}
+.card.feat p,.card.feat li{color:var(--ink-inv-soft)}
+.card.feat .tag{color:var(--bluestem)}
+.card.feat ul,.card.feat li{border-color:var(--hair-inv)}
+.card.feat .aside a{color:var(--bluestem-lift);font-style:normal;font-family:var(--d);font-weight:600;border-bottom:1.5px solid var(--oak)}
+.card .tag{font-family:var(--d);font-size:.7rem;font-weight:700;letter-spacing:.09em;
+  color:var(--ink-soft);margin-bottom:.65rem;display:flex;align-items:center;gap:.55rem}
+.card .tag::before{content:'';width:.6rem;height:.6rem;background:var(--accent)}
+.card h3{font-size:1.32rem;margin-bottom:.7rem}
+.card p{font-size:.96rem;color:var(--ink-soft)}
+.card ul{list-style:none;margin:1.4rem 0 0;padding:0;border-top:1px solid var(--hair)}
+.card li{font-size:.9rem;color:var(--ink-soft);padding:.6rem 0;border-bottom:1px solid var(--hair);
+  display:flex;gap:.65rem;align-items:flex-start}
+.card li::before{content:'';flex:0 0 auto;width:5px;height:5px;margin-top:.62em;
+  background:var(--accent)}
+.card .aside{font-size:.88rem;color:var(--ink-mute);font-style:italic;margin-top:1.15rem}
+@media(min-width:640px){.card h3{font-size:1.5rem}}
+@media(min-width:1080px){.card h3{font-size:1.55rem}}
+
+/* ---- Principles --------------------------------------------------------- */
+.prin{border-top:1px solid var(--hair-inv)}
+.prin.light{border-top-color:var(--hair)}
+.prin.light > div{border-bottom-color:var(--hair)}
+.prin.light p{color:var(--ink-soft)}
+.prin > div{padding:1.6rem 0;border-bottom:1px solid var(--hair-inv)}
+.prin h3{font-size:1.1rem;letter-spacing:-.024em;margin-bottom:.5rem}
+.prin h3::before{content:'';display:inline-block;width:.6rem;height:3px;
+  background:var(--oak);vertical-align:middle;margin-right:.6rem}
+.prin p{font-size:.95rem;color:var(--ink-inv-soft);margin:0;max-width:58ch}
+@media(min-width:900px){
+  .prin > div{padding:2.15rem 0;display:grid;gap:.5rem 3.5rem;grid-template-columns:23rem 1fr;align-items:start}
+  .prin h3{font-size:1.2rem;margin-bottom:0}
+}
+
+/* ---- Team: shared practice, not split job descriptions ----------------- */
+.team{background:var(--paper);border-top:3px solid var(--prairie);
+  border-radius:0 0 var(--rc) var(--rc);box-shadow:var(--sh-2),var(--sh-in);
+  padding:1.5rem 1.3rem}
+@media(min-width:640px){.team{padding:2.1rem 1.9rem}}
+@media(min-width:1000px){.team{padding:2.6rem 2.4rem}}
+.team .lede{font-size:1.02rem;color:var(--ink-soft);max-width:58ch}
+.bios{display:grid;grid-template-columns:1fr;gap:1.3rem;margin:1.5rem 0 0}
+@media(min-width:700px){.bios{grid-template-columns:1fr 1fr;gap:2.5rem}}
+.bios h3{font-size:1.16rem;margin-bottom:.4rem}
+.bios h3::after{content:'';display:block;width:1.75rem;height:3px;
+  background:var(--oak);margin-top:.5rem}
+.bios p{font-size:.94rem;color:var(--ink-soft);margin:0}
+.caps{list-style:none;margin:1.6rem 0 0;padding:1.4rem 0 0;border-top:1px solid var(--hair);
+  display:grid;grid-template-columns:1fr;gap:0}
+@media(min-width:700px){.caps{grid-template-columns:1fr 1fr;gap:0 2.5rem}}
+.caps li{font-size:.92rem;color:var(--ink-soft);padding:.55rem 0;
+  border-bottom:1px solid var(--hair-faint);display:flex;gap:.65rem;align-items:flex-start}
+.caps li::before{content:'';flex:0 0 auto;width:5px;height:5px;margin-top:.62em;background:var(--prairie)}
+
+/* ---- Regions: marked in the brand colours ------------------------------ */
+.regions{list-style:none;margin:1.5rem 0 0;padding:0;border-top:1px solid var(--hair-inv)}
+.regions li{padding:1.15rem 0 1.15rem 1.05rem;border-bottom:1px solid var(--hair-inv);
+  position:relative}
+.regions li::before{content:'';position:absolute;left:0;top:1.15rem;bottom:1.15rem;
+  width:3px;background:var(--rc,var(--bluestem))}
+.regions b{font-family:var(--d);font-size:.96rem;font-weight:600;color:var(--ink-inv);
+  display:block;margin-bottom:.28rem;letter-spacing:-.016em}
+.regions span{font-size:.9rem;color:var(--ink-inv-soft);display:block}
+.regions em{display:block;font-size:.82rem;color:var(--ink-inv-mute);margin-top:.35rem}
+@media(min-width:900px){
+  .regions{display:grid;grid-template-columns:1fr 1fr;gap:0 3.5rem}
+  .regions li{padding:1.3rem 0 1.3rem 1.2rem}
+  .regions li::before{top:1.3rem;bottom:1.3rem}
+  .regions b{font-size:1.02rem}
+}
+
+/* ---- FAQ: a real accordion component ---------------------------------- */
+.faqgroup{margin-bottom:1.75rem}
+.faqgroup > h3{font-family:var(--d);font-size:.76rem;font-weight:700;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--ink-soft);margin-bottom:.7rem;
+  display:flex;align-items:center;gap:.55rem}
+.faqgroup > h3::before{content:'';width:.9rem;height:3px;background:var(--oak)}
+.acc{background:var(--paper);border:1px solid var(--hair);border-radius:var(--rc);
+  box-shadow:var(--sh-1);overflow:hidden}
+.acc details + details{border-top:1px solid var(--hair)}
+.acc summary{cursor:pointer;list-style:none;position:relative;display:block;
+  padding:1.05rem 3rem 1.05rem 1.1rem;
+  font-family:var(--d);font-size:.95rem;font-weight:600;letter-spacing:-.014em;
+  color:var(--ink);transition:background .16s}
+.acc summary::-webkit-details-marker{display:none}
+.acc summary:hover{background:var(--linen)}
+/* plus / minus, drawn so it reads as a control rather than a chevron */
+.acc summary::before,.acc summary::after{content:'';position:absolute;right:1.15rem;
+  top:50%;background:var(--ink);transition:transform .2s,opacity .2s,background .16s}
+.acc summary::before{width:11px;height:1.5px;transform:translateY(-50%)}
+.acc summary::after{width:1.5px;height:11px;transform:translateY(-50%) translateX(-4.75px)}
+.acc details[open] summary::after{opacity:0;transform:translateY(-50%) translateX(-4.75px) rotate(90deg)}
+.acc details[open] summary::before{background:var(--oak);height:2.5px}
+.acc details[open]{background:var(--linen);box-shadow:inset 3px 0 0 var(--oak)}
+.acc .a{padding:.2rem 1.1rem 1.25rem;max-width:var(--read)}
+.acc .a p{font-size:.94rem;color:var(--ink-soft);margin-bottom:.75em}
+.acc .a p:last-child{margin-bottom:0}
+.acc .a a{font-weight:500}
+@media(min-width:640px){
+  .acc summary{font-size:1.01rem;padding:1.2rem 3.25rem 1.2rem 1.4rem}
+  .acc .a{padding:.25rem 1.4rem 1.45rem}
+  .faqgroup{margin-bottom:2.25rem}
+}
+
+/* ---- Contact ------------------------------------------------------------ */
+.contact h1,.contact h2{color:var(--ink-inv)}
+.cgrid{display:grid;gap:2rem;grid-template-columns:1fr}
+@media(min-width:920px){.cgrid{grid-template-columns:1fr 1.08fr;gap:4.5rem}}
+.cinfo p{color:var(--ink-inv-soft);font-size:.97rem}
+.cinfo dl{margin:1.6rem 0 0;display:grid;gap:0;border-top:1px solid var(--hair-inv)}
+.cinfo dl > div{padding:.95rem 0;border-bottom:1px solid var(--hair-inv)}
+.cinfo dt{font-family:var(--d);font-size:.72rem;font-weight:600;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--ink-inv-mute)}
+.cinfo dd{margin:.28rem 0 0;font-family:var(--d);font-size:1rem;font-weight:600;overflow-wrap:anywhere}
+
+form{position:relative;background:var(--paper);color:var(--ink);
+  padding:1.4rem 1.25rem;border-top:3px solid var(--oak);
+  border-radius:0 0 var(--r) var(--r);box-shadow:var(--sh-2),var(--sh-in)}
+@media(min-width:640px){form{padding:2rem 1.85rem}}
+@media(min-width:1000px){form{padding:2.4rem 2.2rem}}
+form::after{content:'';position:absolute;right:-1px;bottom:-1px;width:18px;height:18px;
+  border:1.5px solid var(--oak);border-left:0;border-top:0;border-radius:0 0 var(--r) 0}
+.fld{margin-bottom:1.1rem}
+.fld:last-of-type{margin-bottom:1.6rem}
+label{display:block;font-family:var(--d);font-size:.78rem;font-weight:600;
+  margin-bottom:.35rem;color:var(--ink)}
+label .opt{font-family:var(--b);font-weight:400;font-style:italic;color:var(--ink-mute);font-size:.82rem}
+input,textarea,select{width:100%;font-family:var(--b);font-size:1rem;color:var(--ink);background:var(--linen);
+  border:1px solid var(--hair-2);border-radius:var(--r);padding:.72rem .78rem;line-height:1.5;
+  transition:border-color .15s,box-shadow .15s,background .15s}
+textarea{min-height:5.6rem;resize:vertical}
+select{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:2.4rem;
+  background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);
+  background-position:calc(100% - 1.15rem) 55%,calc(100% - .8rem) 55%;background-size:.35rem .35rem;background-repeat:no-repeat}
+input:focus,textarea:focus,select:focus{border-color:var(--oak);outline:none;background:#fff;
+  box-shadow:0 0 0 3px rgba(244,122,24,.22)}
+input::placeholder,textarea::placeholder{color:var(--ink-mute);opacity:.75}
+.row2{display:grid;gap:0 1rem;grid-template-columns:1fr}
+@media(min-width:520px){.row2{grid-template-columns:1fr 1fr}}
+form .btn{width:100%}
+form .fine{font-size:.84rem;color:var(--ink-mute);margin-top:.9rem;font-style:italic}
+.hp{position:absolute;left:-9999px}
+
+/* ---- Footer ------------------------------------------------------------- */
+footer{background:var(--soil-well);color:var(--ink-inv-mute);padding:2.75rem 0 2.5rem;font-size:.85rem;
+  border-top:1px solid var(--hair-inv)}
+footer .top{display:grid;gap:1.75rem;grid-template-columns:1fr;
+  padding-bottom:1.75rem;border-bottom:1px solid var(--hair-inv)}
+@media(min-width:780px){footer .top{grid-template-columns:1.5fr 1fr 1fr;gap:2.5rem}}
+.fmark{margin-bottom:1.3rem}
+.fmark img{display:block;height:9.5rem;width:auto;margin-left:-.4rem}
+footer h4{font-family:var(--d);font-size:.72rem;font-weight:600;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--bluestem);margin-bottom:.75rem}
+footer ul{list-style:none;margin:0;padding:0}
+footer li{padding:.25rem 0}
+footer a{color:var(--ink-inv-mute);border-bottom:1px solid rgba(166,163,152,.28)}
+footer a:hover{color:var(--ink-inv);border-bottom-color:var(--oak)}
+footer .blurb{font-size:.9rem;color:var(--ink-inv-mute);max-width:40ch;line-height:1.62}
+footer .base{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;padding-top:1.5rem;font-size:.78rem}
+footer .base .r{margin-left:auto}
+@media(max-width:779px){footer .base .r{margin-left:0}}
+footer .login{display:inline-flex;align-items:center;gap:.4rem;border:0;color:var(--ink-inv-mute);opacity:.8}
+footer .login:hover{opacity:1;color:var(--ink-inv);border:0}
+.prose.wide{max-width:70ch}
+.prose.wide p{font-size:1.04rem}
+.band{padding:calc(var(--sy) * .72) 0}

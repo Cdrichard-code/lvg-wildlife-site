@@ -1,0 +1,29 @@
+---
+const { current = '' } = Astro.props;
+---
+<header id="top">
+  <div class="wrap bar">
+    <a class='mark' href='/' aria-label="Land Value Group Wildlife Solutions home"><img class="lg-stack" src="/logo-stacked.webp" alt="Land Value Group Wildlife Solutions" width="534" height="520"><img class="lg-horiz" src="/logo-horizontal.webp" alt="" width="731" height="240"><img class="lg-badge" src="/logo-badge.webp" alt="" width="347" height="360"></a>
+    <nav aria-label="Main">
+      <span class="navfull">
+        <a href='/#services' aria-current={current === 'services' ? 'page' : undefined}>Services</a>
+        <a href='/wildlife-tax-valuation' aria-current={current === 'tax' ? 'page' : undefined}>Wildlife tax exemption</a>
+        <a href='/#about' aria-current={current === 'about' ? 'page' : undefined}>Who we are</a>
+        <a href='/#service-area' aria-current={current === 'area' ? 'page' : undefined}>Service area</a>
+        <a href='/#questions' aria-current={current === 'q' ? 'page' : undefined}>Questions</a>
+      </span>
+      {current === 'contact'
+        ? <a class='only' href='/'>Home</a>
+        : <Fragment><a class='hcta' href='/contact'>Request an assessment</a>
+      <a class='only' href='/contact'>Contact</a></Fragment>}
+    </nav>
+  </div>
+</header>
+<script is:inline>
+(function(){
+  var h=document.getElementById('top'),on=false,t=false;
+  function u(){t=false;var y=window.scrollY||0,n=on?y>8:y>56;if(n!==on){on=n;h.classList.toggle('scrolled',on);}}
+  window.addEventListener('scroll',function(){if(!t){t=true;requestAnimationFrame(u);}},{passive:true});
+  u();
+})();
+</script>
