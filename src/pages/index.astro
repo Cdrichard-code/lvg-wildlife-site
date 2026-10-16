@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import InquiryForm from '../components/InquiryForm.astro';
+import Estimator from '../components/Estimator.astro';
 import { faqGroups, stripTags } from '../data/faqs.js';
 import { SITE } from '../data/site.js';
 
@@ -54,6 +55,22 @@ const species = [
   ['Quail, songbirds and pollinators', 'Native grass, forbs, nest boxes, and mowing timed around nesting.'],
   ['Feral hogs', 'Trapping and control as part of the plan, so they stop eating what you plant.'],
 ];
+const knows = [
+  ['Selling land doesn\'t pass the ag valuation along.', 'When ownership changes, the new owner files a new application with the county before May 1. Miss it and the land can lose its special valuation.', '/wildlife-tax-valuation', 'What new owners need to do'],
+  ['Switching from cattle to wildlife doesn\'t raise your taxes.', 'Wildlife valuation is taxed the same as ag. What changes is the work: wildlife practices instead of a grazing lease or hay.', '/faq?q=switching', 'How the switch works'],
+  ['Losing the valuation can cost three years of back taxes.', 'If land falls out of qualifying use, Texas charges a rollback tax covering the previous three years. Good records are cheap insurance.', '/faq?q=rollback', 'What the rollback is'],
+  ['Your county can ask for proof, year after year.', 'More appraisal districts are asking for annual reports. Logs, dated photos and receipts kept as you go make it painless.', '/annual-reports', 'Annual reports'],
+  ['Deer at night only? It\'s rarely a deer problem.', 'It\'s usually bedding with no reason to move in daylight, or an access route that pushes deer out before you ever sit down.', '/property-assessment', 'Find out what\'s going on'],
+  ['Where a food plot goes matters more than what\'s in it.', 'A plot in the wrong spot relative to bedding and access can make a property harder to hunt, not easier.', '/habitat-work', 'Food plots done right'],
+];
+const benefits = [
+  ['We walk every acre', 'Every report and plan starts with boots on your ground, not an aerial photo and a template.'],
+  ['You\'ll know exactly what to do', 'Every job has a where, a when, and a who: you, or us if you\'d rather. No guessing what comes next.'],
+  ['Straight talk, every time', 'What we saw, what we think it means, and how sure we are. Including the answers that don\'t make us money.'],
+  ['Sized to your life', 'Plans built around your time, your equipment and your budget, so they actually get done.'],
+  ['Texas filing, handled with you', 'In Texas, your plan is prepared to file for the wildlife exemption, and we help you file it with your county.'],
+  ['We stick around', 'Yearly visits, annual reports and a record of how your land changes over time. Partners, not a one-time sale.'],
+];
 ---
 <Base
   title="LVG Wildlife Solutions | Wildlife Management in Texas & Oklahoma"
@@ -75,6 +92,7 @@ const species = [
       <a class='btn p' href='/contact'>Request a property assessment</a>
       <a class="btn s" href="#how-it-works">How it works</a>
     </div>
+    <p class="trust reveal d2">Intro call, no obligation &middot; Texas and Oklahoma &middot; Whitetail specialists</p>
     <aside class="seven reveal d2" aria-label="What's in your plan">
       <p class="k">WHAT'S IN YOUR PLAN</p>
       <ol>
@@ -167,8 +185,51 @@ const species = [
   </div>
 </section>
 
+<!-- ===================== DID YOU KNOW ===================== -->
+<section id="good-to-know" class="dark well topo-gold shift-3">
+  <div class="wrap">
+    <div class="shead">
+      <div class="idx"><i></i><s></s><b>GOOD TO KNOW</b></div>
+      <h2>Things most landowners find out too late</h2>
+      <p class="sd">The stuff we explain on almost every first call.</p>
+    </div>
+    <div class="knows">
+      {knows.map(([h, p, href, label]) => (
+        <a class="know" href={href}><h3>{h}</h3><p>{p}</p><span class="more">{label}</span></a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TEXAS TAX ===================== -->
+<section id="wildlife-tax-exemption" class="topo-ink shift-1 seam deepstone">
+  <div class="wrap twocol">
+    <div>
+      <div class="idx"><i></i><s></s><b>FOR TEXAS LANDOWNERS</b></div>
+      <h2 class="h2s" style="font-size:clamp(1.7rem,3.2vw,2.6rem)">Better habitat and the wildlife exemption come from the same work</h2>
+      <div class="prose">
+        <p>Texas lets land that already has an ag exemption keep that valuation by being managed for native wildlife instead of cattle or hay. It takes a written plan and at least three of seven practices a year: habitat control, erosion control, predator control, supplemental water, supplemental food, shelter, and census counts.</p>
+        <p>Most good habitat work already fits in there. We write the plan around the wildlife on your land, prepare it to file, and help you keep the records that back it up.</p>
+      </div>
+      <dl class="facts light">
+        <div><dt>3 of 7</dt><dd>Wildlife practices carried out every year</dd></div>
+        <div><dt>Ag first</dt><dd>The land must already have an ag or timber valuation</dd></div>
+        <div><dt>May 1</dt><dd>File the plan and application with your county before this date</dd></div>
+      </dl>
+      <div style="display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.8rem">
+        <a class="btn p" href="/wildlife-tax-valuation">How the wildlife exemption works</a>
+        <a class="btn s2" href="/faq?q=exemption">Exemption questions</a>
+      </div>
+    </div>
+    <div>
+      <p class="estlabel">What's it worth on your land? Try a rough number.</p>
+      <Estimator p="home" />
+    </div>
+  </div>
+</section>
+
 <!-- ===================== HOW IT WORKS ===================== -->
-<section id="how-it-works" class="topo-ink shift-2 seam deepstone">
+<section id="how-it-works" class="topo-ink shift-2 seam">
   <div class="wrap">
     <div class="shead">
       <div class="idx"><i></i><s></s><b>HOW IT WORKS</b></div>
@@ -186,37 +247,26 @@ const species = [
   </div>
 </section>
 
-<!-- ===================== TEXAS TAX ===================== -->
-<section id="wildlife-tax-exemption" class="dark topo-gold shift-2">
-  <div class="wrap twocol">
-    <div>
-      <div class="idx"><i></i><s></s><b>FOR TEXAS LANDOWNERS</b></div>
-      <h2 class="h2s" style="font-size:clamp(1.7rem,3.2vw,2.6rem)">Better habitat and the wildlife exemption come from the same work</h2>
-      <div class="prose">
-        <p>Texas lets land that already has an ag exemption keep that valuation by being managed for wildlife instead of cattle or hay. We write the plan around the wildlife on your land, prepare it to file, and help you keep the records that back it up.</p>
-      </div>
-      <dl class="facts">
-        <div><dt>3 of 7</dt><dd>Wildlife practices carried out every year</dd></div>
-        <div><dt>Ag first</dt><dd>The land must already have an ag or timber valuation</dd></div>
-        <div><dt>May 1</dt><dd>File the plan and application with your county before this date</dd></div>
-      </dl>
-      <div class="acts" style="display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.8rem">
-        <a class="btn p" href="/wildlife-tax-valuation">How the wildlife exemption works</a>
-        <a class="btn s" href="/wildlife-tax-valuation#estimate">Estimate your savings</a>
-      </div>
+<!-- ===================== WHY US ===================== -->
+<section id="why-us" class="dark topo-gold shift-2">
+  <div class="wrap">
+    <div class="shead">
+      <div class="idx"><i></i><s></s><b>WHY WORK WITH US</b></div>
+      <h2>No guessing, no templates, no fluff</h2>
+      <p class="sd">What you get on every property, whether it's 40 acres or 400.</p>
     </div>
-    <div class="seven" style="margin:0;max-width:none">
-      <p class="k">THE SEVEN QUALIFYING PRACTICES</p>
-      <ol>
-        <li><b>1</b>Habitat control</li><li><b>2</b>Erosion control</li><li><b>3</b>Predator control</li><li><b>4</b>Supplemental water</li><li><b>5</b>Supplemental food</li><li><b>6</b>Shelter</li><li><b>7</b>Census counts</li>
-      </ol>
-      <p class="n">Most good habitat work already fits in here. We'll help you pick the three or more that fit your land. <a href="/faq?q=exemption">Questions about the exemption</a></p>
+    <div class="bens">
+      {benefits.map(([h, p], i) => <div><span>{String(i + 1).padStart(2, '0')}</span><h3>{h}</h3><p>{p}</p></div>)}
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:.7rem;margin-top:2.2rem">
+      <a class="btn p" href="/contact">Request a property assessment</a>
+      <a class="btn s" href="/about">More about us</a>
     </div>
   </div>
 </section>
 
 <!-- ===================== SPECIES ===================== -->
-<section id="species" class="topo-ink shift-1 seam">
+<section id="species" class="topo-ink shift-1 seam deepstone">
   <div class="wrap">
     <div class="shead">
       <div class="idx"><i></i><s></s><b>WHAT WE MANAGE FOR</b></div>
@@ -227,24 +277,6 @@ const species = [
       {species.map(([h, p]) => <div><h3>{h}</h3><p>{p}</p></div>)}
     </div>
     <p style="margin-top:1.6rem"><a href="/habitat-work">See the habitat work behind it</a></p>
-  </div>
-</section>
-
-<!-- ===================== WHY US ===================== -->
-<section id="approach" class="topo-ink shift-3 seam">
-  <div class="wrap">
-    <div class="shead">
-      <div class="idx"><i></i><s></s><b>HOW WE WORK</b></div>
-      <h2>No guessing, no templates, no fluff</h2>
-      <p class="sd">What you can expect from us on every property.</p>
-    </div>
-    <div class="prin light">
-      <div><h3>We tell you what we saw, and what we think it means</h3><p>A rub line is a fact. A bedding area is our read. We keep them apart, and every conclusion comes with how sure we are, so you know what to act on now and what to check with cameras first.</p></div>
-      <div><h3>We only recommend work you can actually do</h3><p>Leased ground, easements, and restricted acres change the rules. We map what you control before we recommend anything, and we won't put a practice in your plan that you're not allowed to carry out.</p></div>
-      <div><h3>We don't prescribe before we have data</h3><p>Seed rates without a soil test and harvest numbers without camera data are guesses. If your plan needs information you don't have yet, we'll say so and tell you how to get it.</p></div>
-      <div><h3>We write plans you'll keep up with</h3><p>Three practices you'll actually do beat seven that look good on paper and fall apart by spring. Every job is sized to your time, your equipment, and your budget.</p></div>
-    </div>
-    <p style="margin-top:1.6rem"><a href="/about">More about us</a></p>
   </div>
 </section>
 
@@ -267,7 +299,7 @@ const species = [
 </section>
 
 <!-- ===================== FAMILY ===================== -->
-<section id="family" class="topo-ink shift-3 seam deepstone">
+<section id="family" class="topo-ink shift-3 seam">
   <div class="wrap">
     <div class="duo">
       <a class="duocard" href="/land-clearing">
@@ -287,7 +319,7 @@ const species = [
 </section>
 
 <!-- ===================== FAQ ===================== -->
-<section id="questions" class="topo-ink shift-2 seam">
+<section id="questions" class="topo-ink shift-2 seam deepstone">
   <div class="wrap">
     <div class="shead">
       <div class="idx"><i></i><s></s><b>QUESTIONS</b></div>

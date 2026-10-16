@@ -219,7 +219,7 @@ header nav a.hcta:hover{background:var(--oak-lift);color:var(--ink)}
 @media(min-width:1000px){
   .hero{padding:6.5rem 0 5rem}
   .hero > .wrap{display:grid;grid-template-columns:minmax(0,1fr) 21.5rem;column-gap:4.5rem;
-    grid-template-areas:"idx seven" "h seven" "sub seven" "acts seven" "meta meta";align-items:start}
+    grid-template-areas:"idx seven" "h seven" "sub seven" "acts seven" "trust seven" "meta meta";align-items:start}
   .hero .idx{grid-area:idx}
   .hero h1{grid-area:h;font-size:3.7rem;letter-spacing:-.038em;max-width:none}
   .hero .sub{grid-area:sub;font-size:1.2rem;margin-top:1.75rem}
@@ -654,3 +654,27 @@ mark{background:rgba(244,122,24,.28);color:inherit;padding:0 .1em}
 .duocard .more{color:var(--stone)}
 .twocol > .seven{grid-area:auto;align-self:center}
 @media(max-width:560px){.facts{grid-template-columns:1fr}}
+
+/* ---- Home: trust line, good-to-know, benefits, estimator label -------- */
+.hero .trust{grid-area:trust;font-family:var(--d);font-size:.76rem;font-weight:600;letter-spacing:.04em;color:var(--ink-inv-mute);margin:1rem 0 0}
+.knows{display:grid;gap:1px;grid-template-columns:1fr;background:var(--hair-inv);border:1px solid var(--hair-inv)}
+@media(min-width:760px){.knows{grid-template-columns:1fr 1fr}}
+@media(min-width:1080px){.knows{grid-template-columns:repeat(3,1fr)}}
+.know{display:flex;flex-direction:column;background:var(--soil-well);color:var(--stone);border:0;padding:1.6rem 1.5rem 1.4rem;transition:background .15s}
+.know:hover{background:var(--soil-lift);border:0}
+.know h3{font-size:1.12rem;line-height:1.28;margin-bottom:.6rem;color:var(--stone)}
+.know h3::before{content:'';display:block;width:1.4rem;height:3px;background:var(--oak);margin-bottom:.9rem}
+.know p{font-size:.93rem;color:var(--ink-inv-soft);margin:0 0 1rem;flex:1}
+.know .more{font-family:var(--d);font-weight:700;font-size:.82rem;color:var(--bluestem-lift);border-bottom:1.5px solid var(--oak);align-self:flex-start}
+.facts.light{border-top-color:var(--hair)}
+.facts.light dd{color:var(--ink-soft)}
+.facts.light dt{color:var(--ink)}
+.facts.light dt::after{content:'';display:block;width:1.2rem;height:3px;background:var(--oak);margin-top:.35rem}
+.estlabel{font-family:var(--d);font-weight:700;font-size:1rem;margin:0 0 .8rem;color:var(--ink)}
+.bens{display:grid;gap:1px;grid-template-columns:1fr;background:var(--hair-inv);border:1px solid var(--hair-inv)}
+@media(min-width:760px){.bens{grid-template-columns:1fr 1fr}}
+@media(min-width:1080px){.bens{grid-template-columns:repeat(3,1fr)}}
+.bens > div{background:var(--soil-lift);padding:1.6rem 1.5rem}
+.bens span{font-family:var(--d);font-size:.72rem;font-weight:700;letter-spacing:.1em;color:var(--oak)}
+.bens h3{font-size:1.2rem;margin:.4rem 0 .5rem;color:var(--stone)}
+.bens p{font-size:.94rem;color:var(--ink-inv-soft);margin:0}

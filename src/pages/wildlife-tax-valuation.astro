@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Estimator from '../components/Estimator.astro';
 import { faqGroups, stripTags } from '../data/faqs.js';
 import { SITE, breadcrumbs, service } from '../data/site.js';
 const taxGroups = ['Texas wildlife tax exemption', 'Tax exemption: qualifying', 'Tax exemption: money and deadlines', 'Tax exemption: working with us']
@@ -63,36 +64,10 @@ const ld = { '@context': 'https://schema.org', '@graph': [
         <p>Two things to know first. Only land that already carries an agricultural or timber valuation can move to wildlife. And wildlife valuation is taxed the same as ag, so if you already have an ag valuation, switching keeps this saving rather than adding to it.</p>
       </div>
     </div>
-    <form class="est" id="est" onsubmit="return false">
-      <div class="row3">
-        <div class="fld"><label for="e-acres">Acres</label><input id="e-acres" type="number" min="1" step="1" inputmode="numeric" placeholder="100"></div>
-        <div class="fld"><label for="e-value">Market value per acre ($)</label><input id="e-value" type="number" min="0" step="100" inputmode="numeric" placeholder="8000"><span class="hint">Your appraisal notice shows this.</span></div>
-        <div class="fld"><label for="e-rate">Total tax rate (%)</label><input id="e-rate" type="number" min="0" step="0.01" inputmode="decimal" value="1.6"><span class="hint">All taxing units combined.</span></div>
-      </div>
-      <div class="out" aria-live="polite">
-        <p class="k">ROUGH YEARLY DIFFERENCE</p>
-        <div class="big" id="e-out">Enter acres and value</div>
-        <p id="e-note">Compared with being taxed at full market value.</p>
-      </div>
-      <p class="fine">*A broad estimate only, with no guarantee. It assumes a productivity value of roughly $50 to $250 an acre; actual values, rates, and qualification are set by your county appraisal district, and their numbers decide. This is not tax advice.</p>
-    </form>
+    <Estimator p="tx" />
   </div>
 </section>
-<script is:inline>
-(function(){
-  var f=document.getElementById('est'); if(!f) return;
-  var a=document.getElementById('e-acres'),v=document.getElementById('e-value'),r=document.getElementById('e-rate'),o=document.getElementById('e-out'),n=document.getElementById('e-note');
-  function money(x){x=Math.max(0,x);var s=x>=10000?Math.round(x/100)*100:x>=1000?Math.round(x/50)*50:Math.round(x/10)*10;return '$'+s.toLocaleString('en-US');}
-  function run(){
-    var ac=parseFloat(a.value),mv=parseFloat(v.value),rt=parseFloat(r.value)/100;
-    if(!(ac>0)||!(mv>0)||!(rt>0)){o.textContent='Enter acres and value';n.textContent='Compared with being taxed at full market value.';return;}
-    var hi=ac*Math.max(0,mv-50)*rt, lo=ac*Math.max(0,mv-250)*rt;
-    o.textContent=money(lo)+' to '+money(hi)+' a year';
-    n.textContent='Market-value taxes on the land would be about '+money(ac*mv*rt)+' a year.';
-  }
-  [a,v,r].forEach(function(x){x.addEventListener('input',run);});
-})();
-</script>
+
 
 <!-- ===================== WHO QUALIFIES ===================== -->
 <section class="topo-ink shift-3 seam">
