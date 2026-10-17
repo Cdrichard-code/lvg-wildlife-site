@@ -497,7 +497,8 @@ footer{background:var(--soil-well);color:var(--ink-inv-mute);padding:2.75rem 0 2
   border-top:1px solid var(--hair-inv)}
 footer .top{display:grid;gap:1.75rem;grid-template-columns:1fr;
   padding-bottom:1.75rem;border-bottom:1px solid var(--hair-inv)}
-@media(min-width:780px){footer .top{grid-template-columns:1.5fr 1fr 1fr;gap:2.5rem}}
+@media(min-width:780px){footer .top{grid-template-columns:1.4fr 1fr 1fr;gap:2.5rem}}
+@media(min-width:1000px){footer .top{grid-template-columns:1.3fr 1fr 1fr 1.2fr}}
 .fmark{margin-bottom:1.3rem}
 .fmark img{display:block;height:9.5rem;width:auto;margin-left:-.4rem}
 footer h4{font-family:var(--d);font-size:.72rem;font-weight:600;letter-spacing:.09em;
@@ -678,3 +679,18 @@ mark{background:rgba(244,122,24,.28);color:inherit;padding:0 .1em}
 .bens span{font-family:var(--d);font-size:.72rem;font-weight:700;letter-spacing:.1em;color:var(--oak)}
 .bens h3{font-size:1.2rem;margin:.4rem 0 .5rem;color:var(--stone)}
 .bens p{font-size:.94rem;color:var(--ink-inv-soft);margin:0}
+
+/* County pages and service area */
+.countygroups{display:grid;gap:1.25rem;grid-template-columns:1fr}
+@media(min-width:900px){.countygroups{grid-template-columns:repeat(3,1fr)}}
+.cg{background:var(--paper);border-top:3px solid var(--oak);padding:1.5rem 1.4rem 1.2rem;box-shadow:var(--sh-1),var(--sh-in)}
+.cg h2{font-size:1.3rem;margin:0 0 .5rem}
+.cg > p{font-size:.94rem;color:var(--ink-soft);margin:0 0 1rem}
+.countylinks{list-style:none;margin:1rem 0 0;padding:0;display:grid;gap:0 1.5rem;grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}
+.countylinks li{display:flex;justify-content:space-between;align-items:baseline;gap:.75rem;padding:.6rem 0;border-bottom:1px solid var(--hair-faint)}
+.countylinks a{font-family:var(--d);font-weight:600;font-size:.98rem;color:var(--ink);border-bottom:1.5px solid var(--oak)}
+.countylinks span{font-size:.85rem;color:var(--ink-mute)}
+.cg .countylinks{grid-template-columns:1fr;margin-top:.25rem}
+footer .cols2{display:grid;grid-template-columns:1fr 1fr;gap:0 1rem}
+.regions em a{color:inherit;border-bottom:1px solid rgba(166,163,152,.35)}
+.regions em a:hover{color:var(--ink-inv);border-bottom-color:var(--oak)}

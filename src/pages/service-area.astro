@@ -1,0 +1,66 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHead from '../components/PageHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { SITE, BUSINESS, breadcrumbs } from '../data/site.js';
+import { counties, regions, countyPath } from '../data/counties.js';
+const crumbs = [['Service area', '/service-area']];
+const ld = { '@context': 'https://schema.org', '@graph': [
+  { '@type': 'Service', '@id': SITE + '/service-area#service', name: 'Wildlife management in North and East Texas',
+    serviceType: 'Wildlife management plan', provider: BUSINESS, url: SITE + '/service-area',
+    description: 'Property assessments, wildlife management plans, annual reports and habitat work for landowners in North and East Texas and southern Oklahoma.',
+    areaServed: [...counties.map((c) => ({ '@type': 'AdministrativeArea', name: `${c.name} County, Texas` })), { '@type': 'State', name: 'Oklahoma' }] },
+  breadcrumbs(crumbs),
+] };
+---
+<Base
+  title="Counties We Serve: North & East Texas | LVG Wildlife Solutions"
+  description="Wildlife management plans, property assessments and ag-to-wildlife exemption help in Collin, Hunt, Fannin, Grayson, Kaufman, Ellis, Navarro, Freestone, Van Zandt, Wood, Smith and Hopkins counties."
+  path="/service-area"
+  ogTitle="Counties we serve | LVG Wildlife Solutions"
+  ogDescription="North and East Texas counties within driving distance of Dallas, plus southern Oklahoma."
+  current="resources"
+  ld={ld}
+  mcta={{ title: 'Service area', line: 'North and East Texas', href: '/contact', label: 'Get in touch' }}
+>
+<PageHead crumbs={crumbs} eyebrow="SERVICE AREA" title="Counties we serve in North and East Texas" lead="We work rural land within a reasonable drive of Dallas: the Blackland Prairie east and south of the city, the post oak country beyond it, and the edge of the Pineywoods. Pick your county for how the ag-to-wildlife switch works there and what the land tends to need." />
+
+<section class="topo-ink shift-1 seam">
+  <div class="wrap">
+    <div class="countygroups">
+      {regions.map((r) => (
+        <div class="cg">
+          <h2>{r.name}</h2>
+          <p>{r.line}</p>
+          <ul class="countylinks">
+            {counties.filter((c) => c.region === r.key).map((c) => <li><a href={countyPath(c)}>{c.name} County</a><span>{c.seat}</span></li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="topo-ink shift-2 seam deepstone">
+  <div class="wrap twocol">
+    <div>
+      <div class="idx"><i></i><s></s><b>NEARBY</b></div>
+      <h2 class="h2s" style="font-size:clamp(1.5rem,2.8vw,2.1rem)">Not on the list?</h2>
+      <div class="prose">
+        <p>These are the counties we work most. If your land is nearby, ask. We'll tell you honestly whether we're the right fit and what a trip out would involve.</p>
+        <p>We also work in southern Oklahoma on habitat and deer management. Oklahoma has no wildlife tax valuation like Texas, so there the plan is purely about the land and the wildlife.</p>
+      </div>
+    </div>
+    <div>
+      <div class="idx"><i></i><s></s><b>WHY COUNTY MATTERS</b></div>
+      <h2 class="h2s" style="font-size:clamp(1.5rem,2.8vw,2.1rem)">Each appraisal district sets its own details</h2>
+      <div class="prose">
+        <p>The state sets the rules for wildlife management use, but each county appraisal district applies them: its own minimum acreage for reduced tracts, its own forms and timing, its own way of reviewing plans. The land changes too, from Blackland clay to post oak sand to pine.</p>
+        <p>That's why each county page covers both: what the district asks for, and what the land tends to need.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<CtaBand title="Tell us where your land is" text="The county, the acreage, and what you want from it. We'll take it from there." />
+</Base>

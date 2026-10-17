@@ -1,4 +1,5 @@
 // Builds sitemap.xml from the pages in src/pages. Pages listed in EXCLUDE stay out.
+import { counties, countyPath } from '../data/counties.js';
 const SITE = 'https://lvgwildlifesolutions.com';
 const EXCLUDE = ['/thanks'];
 
@@ -7,6 +8,7 @@ export async function GET() {
   const paths = files
     .map((f) => f.replace(/^\.\//, '/').replace(/\.(astro|md)$/, '').replace(/\/index$/, '/'))
     .filter((p) => !p.includes('[') && !EXCLUDE.includes(p))
+    .concat(counties.map(countyPath))
     .sort((a, b) => (a === '/' ? -1 : b === '/' ? 1 : a.localeCompare(b)));
   const today = new Date().toISOString().slice(0, 10);
   const body = `<?xml version="1.0" encoding="UTF-8"?>

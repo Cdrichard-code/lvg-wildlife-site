@@ -1,4 +1,5 @@
 ---
+import { counties, countyPath } from '../data/counties.js';
 ---
 <footer>
   <div class="wrap">
@@ -25,6 +26,13 @@
           <li><a href='/partners'>For realtors and land brokers</a></li>
           <li><a href='/land-clearing'>Land clearing</a></li>
           <li><a href='/contact'>Request an assessment</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Counties we serve</h4>
+        <ul class="cols2">
+          {counties.map((c) => <li><a href={countyPath(c)}>{c.name}</a></li>)}
+          <li><a href='/service-area'>All counties</a></li>
         </ul>
       </div>
     </div>

@@ -1,0 +1,142 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHead from '../../components/PageHead.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import { SITE, BUSINESS, breadcrumbs } from '../../data/site.js';
+import { counties, bySlug, regions, countyPath, REVIEWED } from '../../data/counties.js';
+
+export function getStaticPaths() {
+  return counties.map((c) => ({ params: { slug: c.slug } }));
+}
+
+const c = bySlug[Astro.params.slug];
+const county = `${c.name} County`;
+const path = countyPath(c);
+const region = regions.find((r) => r.key === c.region);
+const crumbs = [['Service area', '/service-area'], [county, path]];
+const minLine = c.min || 'No minimum unless the tract was made smaller since January 1 of the year before. Then the minimum falls between 12.5 and 16.7 acres.';
+const quick = [
+  'The land has to be appraised for agriculture or timber now. Wildlife management is a way to keep that valuation, not a way to get one from scratch.',
+  `File the 1-d-1 application (Form 50-129) with a wildlife management plan on the TPWD form (PWD 885) with ${c.cad.name} before May 1.`,
+  'Carry out at least three of the seven wildlife management practices every year, and keep records.',
+  'The appraisal district can ask for an annual report on TPWD form PWD 888.',
+  minLine,
+];
+const near = c.near.map((s) => bySlug[s]).filter(Boolean);
+
+const ld = { '@context': 'https://schema.org', '@graph': [
+  { '@type': 'Service', '@id': SITE + path + '#service',
+    name: `Wildlife management plans in ${county}, Texas`, serviceType: 'Wildlife management plan',
+    description: `Property assessments, wildlife management plans and annual reports for landowners in ${county}, Texas, prepared to file with ${c.cad.name}.`,
+    provider: BUSINESS, url: SITE + path,
+    areaServed: { '@type': 'AdministrativeArea', name: `${county}, Texas` } },
+  breadcrumbs(crumbs),
+  { '@type': 'FAQPage', '@id': SITE + path + '#faq', mainEntity: c.faqs.map(([q, a]) => ({
+    '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
+] };
+---
+<Base
+  title={`${county} Ag Exemption & Wildlife Management | LVG Wildlife Solutions`}
+  description={`How ${county} land in an ag valuation can switch to wildlife management: ${c.cad.name} requirements, minimum acreage, practices that fit the land, and how we help.`}
+  path={path}
+  ogTitle={`${county}, Texas: ag exemption and wildlife management`}
+  ogDescription={c.lead}
+  current="resources"
+  ld={ld}
+  mcta={{ title: county, line: 'Assessments and plans', href: '/contact', label: 'Get in touch' }}
+>
+<PageHead crumbs={crumbs} eyebrow={`${county.toUpperCase()}, TEXAS`} title={`${county} ag exemption: keeping it with wildlife management`} lead={c.lead} secondary={['#questions', `${county} questions`]} />
+
+<section class="topo-ink shift-1 seam">
+  <div class="wrap twocol">
+    <div>
+      <div class="idx"><i></i><s></s><b>THE SHORT VERSION</b></div>
+      <h2 class="h2s" style="font-size:clamp(1.5rem,2.8vw,2.1rem)">Switching {county} land from ag to wildlife</h2>
+      <ul class="checks">
+        {quick.map((t) => <li>{t}</li>)}
+      </ul>
+      <p class="fine" style="margin-top:1rem">Last reviewed {REVIEWED}. Your appraisal district has the final say, so confirm the details with them.</p>
+    </div>
+    <div>
+      <div class="idx"><i></i><s></s><b>HOW WE HELP</b></div>
+      <h2 class="h2s" style="font-size:clamp(1.5rem,2.8vw,2.1rem)">We start with the land, then the paperwork</h2>
+      <div class="prose">
+        <p>We walk your {county} property, look at what the deer and other wildlife are using and what they lack, and write a plan around that. The plan names the practices, where they go and when, and who does each job.</p>
+        <p>We prepare your plan and help you file it with {c.cad.name}. After that we can help with the yearly practices and prepare the annual report from your records.</p>
+      </div>
+      <div class="acts" style="margin-top:1.25rem">
+        <a class="btn p" href="/contact">Request a property assessment</a>
+        <a class="btn s2" href="/wildlife-management-plans">What's in a plan</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="topo-ink shift-2 seam deepstone">
+  <div class="wrap">
+    <div class="shead">
+      <div class="idx"><i></i><s></s><b>{region.name.toUpperCase()}</b></div>
+      <h2>The land and wildlife in {county}</h2>
+    </div>
+    <div class="prose wide">
+      {c.land.map((p) => <p>{p}</p>)}
+    </div>
+    <h3 style="font-size:1.15rem;margin:2rem 0 .75rem">Practices that tend to fit here</h3>
+    <div class="who" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+      {c.practices.map(([t, p]) => <div><h3>{t}</h3><p>{p}</p></div>)}
+    </div>
+    <p class="fine" style="margin-top:1rem">Every property is different. These are starting points, and the plan for your land comes from walking it.</p>
+  </div>
+</section>
+
+<section class="topo-ink shift-3 seam">
+  <div class="wrap">
+    <div class="shead">
+      <div class="idx"><i></i><s></s><b>APPRAISAL DISTRICT</b></div>
+      <h2>What {c.cad.name} asks for</h2>
+    </div>
+    <div class="prose wide">
+      {c.cadNotes.map((p) => <p>{p}</p>)}
+      {c.keepAg && <p>{c.keepAg}</p>}
+      <p>District website: <a href={c.cad.url} rel="noopener">{c.cad.name}</a>.</p>
+    </div>
+    <div class="srcs">
+      <p class="k">CHECK IT YOURSELF</p>
+      <ul>
+        {c.sources.map(([label, url]) => <li><a href={url} rel="noopener">{label}</a></li>)}
+      </ul>
+      <p class="fine">LVG Wildlife Solutions prepares wildlife management plans and supporting records. We are not attorneys or tax advisors, and nothing on this page is legal or tax advice.</p>
+    </div>
+  </div>
+</section>
+
+<section id="questions" class="topo-ink shift-1 seam deepstone">
+  <div class="wrap">
+    <div class="shead">
+      <div class="idx"><i></i><s></s><b>QUESTIONS</b></div>
+      <h2>{county} wildlife exemption questions</h2>
+    </div>
+    <div class="faq">
+      <div class="faqgroup">
+        <div class="acc">
+          {c.faqs.map(([q, a], i) => <details open={i === 0}><summary>{q}</summary><div class="a"><p>{a}</p></div></details>)}
+        </div>
+      </div>
+    </div>
+    <p style="margin-top:1.5rem"><a href="/faq">More questions and answers</a> · <a href="/wildlife-tax-valuation">How the Texas wildlife exemption works</a></p>
+  </div>
+</section>
+
+<section class="topo-ink shift-2 seam">
+  <div class="wrap">
+    <div class="idx"><i></i><s></s><b>NEARBY</b></div>
+    <h2 class="h2s" style="font-size:clamp(1.4rem,2.6vw,1.9rem)">Counties near {county}</h2>
+    <ul class="countylinks">
+      {near.map((n) => <li><a href={countyPath(n)}>{n.name} County</a></li>)}
+      <li><a href="/service-area">All counties we serve</a></li>
+    </ul>
+  </div>
+</section>
+
+<CtaBand title={`Own land in ${county}?`} text="Tell us the acreage, how it's used now and what you want from it. We'll tell you plainly what would help most and what it would take." />
+</Base>
