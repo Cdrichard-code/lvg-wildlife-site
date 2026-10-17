@@ -1,4 +1,5 @@
 ---
+import NextSteps from '../components/NextSteps.astro';
 import Base from '../layouts/Base.astro';
 import PageHead from '../components/PageHead.astro';
 import CtaBand from '../components/CtaBand.astro';
@@ -46,6 +47,8 @@ const total = groups.reduce((n, g) => n + g.items.length, 0);
     </div>
   </div>
 </section>
+
+<NextSteps title="From here: plans, process and getting started" />
 
 <CtaBand title="Didn't see your question?" text="Send it with a few details about your land and we'll answer it directly." secondary={['/services', 'See our services']} />
 

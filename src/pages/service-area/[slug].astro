@@ -1,4 +1,5 @@
 ---
+import NextSteps from '../../components/NextSteps.astro';
 import Base from '../../layouts/Base.astro';
 import PageHead from '../../components/PageHead.astro';
 import CtaBand from '../../components/CtaBand.astro';
@@ -50,7 +51,7 @@ const ld = { '@context': 'https://schema.org', '@graph': [
 <section class="topo-ink shift-1 seam">
   <div class="wrap twocol">
     <div>
-      <div class="idx"><i></i><s></s><b>THE SHORT VERSION</b></div>
+      <div class="idx"><i></i><s></s><b>WHAT IT TAKES</b></div>
       <h2 class="h2s" style="font-size:clamp(1.5rem,2.8vw,2.1rem)">Switching {county} land from ag to wildlife</h2>
       <ul class="checks">
         {quick.map((t) => <li>{t}</li>)}
@@ -58,7 +59,7 @@ const ld = { '@context': 'https://schema.org', '@graph': [
       <p class="fine" style="margin-top:1rem">Last reviewed {REVIEWED}. Your appraisal district has the final say, so confirm the details with them.</p>
     </div>
     <div>
-      <div class="idx"><i></i><s></s><b>HOW WE HELP</b></div>
+      <div class="idx"><i></i><s></s><b>LAND FIRST, PAPERWORK HANDLED</b></div>
       <h2 class="h2s" style="font-size:clamp(1.5rem,2.8vw,2.1rem)">We start with the land, then the paperwork</h2>
       <div class="prose">
         <p>We walk your {county} property, look at what the deer and other wildlife are using and what they lack, and write a plan around that. The plan names the practices, where they go and when, and who does each job.</p>
@@ -92,13 +93,15 @@ const ld = { '@context': 'https://schema.org', '@graph': [
 <section class="topo-ink shift-3 seam">
   <div class="wrap">
     <div class="shead">
-      <div class="idx"><i></i><s></s><b>APPRAISAL DISTRICT</b></div>
+      <div class="idx"><i></i><s></s><b>KNOW YOUR DISTRICT</b></div>
       <h2>What {c.cad.name} asks for</h2>
     </div>
     <div class="prose wide">
       {c.cadNotes.map((p) => <p>{p}</p>)}
       {c.keepAg && <p>{c.keepAg}</p>}
-      <p>District website: <a href={c.cad.url} rel="noopener">{c.cad.name}</a>.</p>
+      {c.cad.url.includes('comptroller.texas.gov')
+        ? <p>Contact details for {c.cad.name} are in the <a href={c.cad.url} rel="noopener">Texas Comptroller's appraisal district directory</a>.</p>
+        : <p>District website: <a href={c.cad.url} rel="noopener">{c.cad.name}</a>.</p>}
     </div>
     <div class="srcs">
       <p class="k">CHECK IT YOURSELF</p>
@@ -113,7 +116,7 @@ const ld = { '@context': 'https://schema.org', '@graph': [
 <section id="questions" class="topo-ink shift-1 seam deepstone">
   <div class="wrap">
     <div class="shead">
-      <div class="idx"><i></i><s></s><b>QUESTIONS</b></div>
+      <div class="idx"><i></i><s></s><b>STRAIGHT ANSWERS</b></div>
       <h2>{county} wildlife exemption questions</h2>
     </div>
     <div class="faq">
@@ -127,9 +130,11 @@ const ld = { '@context': 'https://schema.org', '@graph': [
   </div>
 </section>
 
+<NextSteps title={`From here: plans, process and getting started in ${county}`} place={`your ${county} property`} />
+
 <section class="topo-ink shift-2 seam">
   <div class="wrap">
-    <div class="idx"><i></i><s></s><b>NEARBY</b></div>
+    <div class="idx"><i></i><s></s><b>WE ALSO WORK IN</b></div>
     <h2 class="h2s" style="font-size:clamp(1.4rem,2.6vw,1.9rem)">Counties near {county}</h2>
     <ul class="countylinks">
       {near.map((n) => <li><a href={countyPath(n)}>{n.name} County</a></li>)}

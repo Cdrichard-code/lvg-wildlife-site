@@ -15,5 +15,10 @@ export const nav = [
     ['/partners', 'For realtors and land brokers', 'Refer a rural buyer or seller'],
     ['/land-clearing', 'Land clearing', 'Mulching and site work from Land Value Group'],
   ] },
-  { label: 'About', href: '/about', key: 'about' },
+  { label: 'About', href: '/about', key: 'about', children: [
+    ['/about', 'About us', 'Who we are and how we work'],
+    ['/#how-it-works', 'How it works', 'From first call to every year after'],
+    ['/#why-us', 'Why work with us', 'What sets our plans apart'],
+    ['/contact', 'Contact us', 'Request an assessment or a quote'],
+  ] },
 ];

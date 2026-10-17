@@ -22,6 +22,12 @@ Public marketing site for LVG Wildlife Solutions (Land Value Group Wildlife Solu
 - Plain, direct voice for rural landowners. No "AI-powered" language, no chatbot, no generic stock or gradient art.
 - The team (Caleb, Cole) have full-time jobs: first names only, small photos, About section only, no employer details.
 - Prices are never published on the site.
+- Eyebrows and taglines are selling points that build confidence (what we do well, what the owner gets), not plain labels like "Questions" or "Next step".
+
+## Search pages and blog posts
+- Every page built mainly to be found in search (county pages, guides, blog posts) must include `<NextSteps />` (src/components/NextSteps.astro) and link in its body copy to the plan, assessment, process, services, about/why-us and contact pages where they fit.
+- County pages live in `src/data/counties.js` and render through `src/pages/service-area/[slug].astro`. CAD facts there must come from the district's own published documents, linked in `sources`. Re-check them each fall.
+- Business phone and email go in `CONTACT` in `src/data/site.js` once confirmed; the footer and schema pick them up.
 
 ## Planning docs
 The site plan, decisions and blog calendar live in the claude.ai project "SWS Reports & Plans": `business/2026-10-16-website-plan.md` and `business/2026-10-16-plateau-wildlife-competitor-review.md`.

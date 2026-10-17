@@ -1,4 +1,5 @@
 ---
+import NextSteps from '../components/NextSteps.astro';
 import Base from '../layouts/Base.astro';
 import Estimator from '../components/Estimator.astro';
 import { faqGroups, stripTags } from '../data/faqs.js';
@@ -42,7 +43,7 @@ const ld = { '@context': 'https://schema.org', '@graph': [
 <section class="topo-ink shift-1 seam">
   <div class="wrap">
     <div class="shead">
-      <div class="idx"><i></i><s></s><b>WHAT IT IS</b></div>
+      <div class="idx"><i></i><s></s><b>PLAIN ENGLISH, NO FINE PRINT</b></div>
       <h2>What is the Texas wildlife tax exemption?</h2>
     </div>
     <div class="prose wide">
@@ -146,7 +147,7 @@ const ld = { '@context': 'https://schema.org', '@graph': [
 <section id="questions" class="topo-ink shift-1 seam deepstone">
   <div class="wrap">
     <div class="shead">
-      <div class="idx"><i></i><s></s><b>QUESTIONS</b></div>
+      <div class="idx"><i></i><s></s><b>STRAIGHT ANSWERS</b></div>
       <h2>Texas wildlife tax exemption questions, answered</h2>
       <p class="sd">Including the answers that make the sale harder.</p>
     </div>
@@ -172,11 +173,13 @@ const ld = { '@context': 'https://schema.org', '@graph': [
   </div>
 </section>
 
+<NextSteps title="From here: plans, process and getting started" />
+
 <!-- ===================== CTA ===================== -->
 <section class="contact dark topo-gold shift-3">
   <div class="wrap cta">
     <div>
-      <div class="idx"><i></i><s></s><b>NEXT STEP</b></div>
+      <div class="idx"><i></i><s></s><b>READY WHEN YOU ARE</b></div>
       <h2>Find out where your property stands</h2>
       <p>Tell us the county, the acreage, and what you want from the land. We will tell you plainly what a management plan would look like and whether the wildlife tax exemption is realistic for it.</p>
     </div>

@@ -101,9 +101,9 @@ section > .wrap{position:relative;z-index:1;width:100%}
 .topo-ink,.topo-gold{position:relative}
 .topo-ink::before,.topo-gold::before{content:'';position:absolute;inset:0;z-index:0;
   pointer-events:none;background-repeat:no-repeat;background-position:center;background-size:cover}
-.topo-ink::before{background-image:url("topo-ink.svg");opacity:.085}
-.topo-gold::before{background-image:url("topo-gold.svg");opacity:.11}
-.topo-gold.deep::before{opacity:.12}
+.topo-ink::before{background-image:url("topo-ink.svg");opacity:.065}
+.topo-gold::before{background-image:url("topo-gold.svg");opacity:.085}
+.topo-gold.deep::before{opacity:.095}
 .shift-1::before{background-position:22% 64%}
 .shift-2::before{background-position:76% 18%}
 .shift-3::before{background-position:48% 88%}
@@ -267,6 +267,7 @@ header nav a.hcta:hover{background:var(--oak-lift);color:var(--ink)}
 .pagehead{padding:clamp(3.5rem,8vw,6rem) 0 clamp(2.5rem,5vw,3.5rem)}
 .pagehead h1{font-size:clamp(2.1rem,5.2vw,3.5rem);max-width:22ch;font-weight:800;text-wrap:balance}
 .pagehead .lead{font-size:clamp(1.02rem,1.8vw,1.22rem);color:var(--ink-inv-soft);max-width:58ch;margin-top:1.25rem;font-weight:300}
+.acts{display:flex;flex-wrap:wrap;gap:.7rem}
 .pagehead .acts,.cta .acts{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:2rem}
 .crumb{font-family:var(--d);font-size:.74rem;font-weight:500;color:var(--ink-inv-mute);margin-bottom:1.6rem}
 .crumb span{margin:0 .5rem;opacity:.6}
@@ -657,7 +658,9 @@ mark{background:rgba(244,122,24,.28);color:inherit;padding:0 .1em}
 @media(max-width:560px){.facts{grid-template-columns:1fr}}
 
 /* ---- Home: trust line, good-to-know, benefits, estimator label -------- */
-.hero .trust{grid-area:trust;font-family:var(--d);font-size:.76rem;font-weight:600;letter-spacing:.04em;color:var(--ink-inv-mute);margin:1rem 0 0}
+.hero .trust{grid-area:trust;list-style:none;padding:0;margin:1.2rem 0 0;display:flex;flex-wrap:wrap;gap:.45rem 1.4rem;font-family:var(--d);font-size:.8rem;font-weight:600;letter-spacing:.02em;color:var(--ink-inv-soft)}
+.hero .trust li{display:flex;align-items:center;gap:.45rem}
+.hero .trust li::before{content:'';width:.85rem;height:.45rem;border-left:2px solid var(--oak);border-bottom:2px solid var(--oak);transform:rotate(-45deg) translateY(-2px);flex:none}
 .knows{display:grid;gap:1px;grid-template-columns:1fr;background:var(--hair-inv);border:1px solid var(--hair-inv)}
 @media(min-width:760px){.knows{grid-template-columns:1fr 1fr}}
 @media(min-width:1080px){.knows{grid-template-columns:repeat(3,1fr)}}
@@ -694,3 +697,13 @@ mark{background:rgba(244,122,24,.28);color:inherit;padding:0 .1em}
 footer .cols2{display:grid;grid-template-columns:1fr 1fr;gap:0 1rem}
 .regions em a{color:inherit;border-bottom:1px solid rgba(166,163,152,.35)}
 .regions em a:hover{color:var(--ink-inv);border-bottom-color:var(--oak)}
+.nsgrid{display:grid;gap:1rem;grid-template-columns:1fr}
+@media(min-width:700px){.nsgrid{grid-template-columns:1fr 1fr}}
+@media(min-width:1080px){.nsgrid{grid-template-columns:repeat(3,1fr)}}
+.nsgrid .svclink h3{font-size:1.15rem}
+.nsgrid .svclink:last-child{border-top-color:var(--ink);background:var(--oak)}
+.nsgrid .svclink:last-child .tag,.nsgrid .svclink:last-child p{color:var(--ink)}
+.nsgrid .svclink:last-child .more{border-bottom-color:var(--ink)}
+footer .fcontact{margin-top:1.4rem}
+footer .fcontact p{margin:.2rem 0;font-size:.88rem}
+footer .fcontact .btn{margin-top:.6rem;border-bottom:1px solid var(--oak)}

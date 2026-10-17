@@ -14,3 +14,7 @@ export const service = ({ name, serviceType, description, path, areaServed = ['T
   provider: BUSINESS, url: SITE + path,
   areaServed: areaServed.map((s) => ({ '@type': 'State', name: s })),
 });
+
+// Business contact details. Leave null until the team confirms them; the footer
+// and schema show each one automatically once it is set.
+export const CONTACT = { phone: null, phoneHref: null, email: null };

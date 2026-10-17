@@ -1,5 +1,6 @@
 ---
 import { counties, countyPath } from '../data/counties.js';
+import { CONTACT } from '../data/site.js';
 ---
 <footer>
   <div class="wrap">
@@ -7,6 +8,13 @@ import { counties, countyPath } from '../data/counties.js';
       <div>
         <div class="fmark"><img src="/logo-stacked.webp" alt="Land Value Group Wildlife Solutions" width="534" height="520" loading="lazy"></div>
         <p class="blurb">Wildlife and habitat management for landowners across Texas and Oklahoma. Property assessments, comprehensive management plans, and honest answers about what your land can become.</p>
+        <div class="fcontact">
+          <h4>Get in touch</h4>
+          {CONTACT.phone && <p><a href={CONTACT.phoneHref}>{CONTACT.phone}</a></p>}
+          {CONTACT.email && <p><a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a></p>}
+          <p>North and East Texas and southern Oklahoma</p>
+          <a class="btn p" href="/contact">Request an assessment</a>
+        </div>
       </div>
       <div>
         <h4>Services</h4>
@@ -31,7 +39,7 @@ import { counties, countyPath } from '../data/counties.js';
       <div>
         <h4>Counties we serve</h4>
         <ul class="cols2">
-          {counties.map((c) => <li><a href={countyPath(c)}>{c.name}</a></li>)}
+          {[...counties].sort((a, b) => a.name.localeCompare(b.name)).map((c) => <li><a href={countyPath(c)}>{c.name}</a></li>)}
           <li><a href='/service-area'>All counties</a></li>
         </ul>
       </div>

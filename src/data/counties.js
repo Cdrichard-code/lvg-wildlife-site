@@ -67,7 +67,7 @@ export const counties = [
       ['How many acres do I need in Hunt County?', 'There is no minimum unless the tract got smaller since January 1 of the year before. For a reduced tract, Hunt CAD sets a minimum within TPWD\'s Blackland Prairie range of 12.5 to 16.7 acres. Ask the district for its current figure.'],
       ['I just bought land in Hunt County with an ag exemption. What now?', 'A new owner has to file a new 1-d-1 application. If you won\'t keep cattle or hay going, a wildlife management plan filed with that application is how you keep the valuation. File before May 1.'],
     ],
-    near: ['collin-county', 'fannin-county', 'hopkins-county', 'van-zandt-county', 'kaufman-county'],
+    near: ['collin-county', 'fannin-county', 'hopkins-county', 'van-zandt-county', 'kaufman-county', 'rains-county'],
     sources: [TPWD_ACRES, TPWD_FAQ],
   },
   {
@@ -94,7 +94,7 @@ export const counties = [
       ['Does living next to the Caddo Grasslands help?', 'It helps the wildlife, not the paperwork. Your own tract still needs a plan and three practices a year. But public land next door means more game moving through, and a plan can be built around that.'],
       ['How many acres do I need in Fannin County?', 'No minimum unless the tract was reduced since January 1 of the prior year. For a reduced tract, the district sets a minimum within TPWD\'s Blackland Prairie range of 12.5 to 16.7 acres.'],
     ],
-    near: ['grayson-county', 'hunt-county', 'collin-county', 'hopkins-county'],
+    near: ['grayson-county', 'hunt-county', 'collin-county', 'hopkins-county', 'lamar-county', 'delta-county'],
     sources: [TPWD_ACRES, TPWD_FAQ],
   },
   {
@@ -150,7 +150,7 @@ export const counties = [
       ['Does Kaufman CAD require an annual report?', 'Yes. The guidelines call for an annual report on TPWD form PWD 888 each year after the plan is approved. We prepare the report from your records and help you file it.'],
       ['My cattle lease ended. Can I keep my Kaufman County ag valuation?', 'Possibly, by switching to wildlife management. You file a 1-d-1 application with a wildlife management plan before May 1 and carry out three of the seven practices each year.'],
     ],
-    near: ['collin-county', 'hunt-county', 'van-zandt-county', 'ellis-county', 'navarro-county'],
+    near: ['collin-county', 'hunt-county', 'van-zandt-county', 'ellis-county', 'navarro-county', 'henderson-county'],
     sources: [['Kaufman CAD agricultural guidelines', 'https://kaufman-cad.org/wp-content/uploads/2024/01/AG-GUIDELINES.pdf'], TPWD_FAQ],
   },
   {
@@ -177,7 +177,7 @@ export const counties = [
       ['How many acres do I need in Ellis County?', 'No minimum unless the tract was reduced since January 1 of the prior year. For a reduced tract, the minimum falls within TPWD\'s Blackland Prairie range of 12.5 to 16.7 acres. Ask Ellis Appraisal District for its figure.'],
       ['Who reviews my plan?', 'The appraisal district, not Texas Parks and Wildlife. The plan uses the TPWD form and follows TPWD\'s guidelines for the region, but it is filed with and reviewed by Ellis Appraisal District.'],
     ],
-    near: ['kaufman-county', 'navarro-county'],
+    near: ['kaufman-county', 'navarro-county', 'hill-county'],
     sources: [TPWD_ACRES, TPWD_FAQ],
   },
   {
@@ -204,7 +204,7 @@ export const counties = [
       ['How many acres do I need in Navarro County?', 'No minimum unless the tract was reduced since January 1 of the prior year. For a reduced tract the minimum falls within TPWD\'s range of 12.5 to 16.7 acres.'],
       ['My property is near Richland-Chambers. Does that change the plan?', 'It changes what the wildlife has nearby. Lake and bottomland next door means more movement, so a plan focuses on giving deer a reason to stay on your ground: cover, food and quiet.'],
     ],
-    near: ['ellis-county', 'freestone-county', 'kaufman-county'],
+    near: ['ellis-county', 'freestone-county', 'kaufman-county', 'hill-county', 'limestone-county', 'henderson-county'],
     sources: [['Navarro CAD forms', 'https://navarrocad.com/forms/'], TPWD_ACRES, TPWD_FAQ],
   },
   {
@@ -231,7 +231,7 @@ export const counties = [
       ['Does prescribed fire count as a practice?', 'Yes. Prescribed burning to improve habitat is one form of habitat control. It needs a burn plan and the right conditions, and it should be in your written plan.'],
       ['How many acres do I need in Freestone County?', 'No minimum unless the tract was reduced since January 1 of the prior year. For a reduced tract the minimum falls within TPWD\'s Post Oak Savannah range of 12.5 to 16.7 acres.'],
     ],
-    near: ['navarro-county'],
+    near: ['navarro-county', 'limestone-county', 'anderson-county'],
     sources: [TPWD_ACRES, TPWD_FAQ],
   },
   {
@@ -259,7 +259,7 @@ export const counties = [
       ['My small Van Zandt County place can\'t carry 5 cows. What are my options?', 'Wildlife management is the common answer. It doesn\'t need livestock. It needs a written plan and three of the seven practices carried out each year. We prepare your plan and help you file it.'],
       ['When is the deadline?', 'The application and plan go to Van Zandt County Appraisal District in Canton before May 1.'],
     ],
-    near: ['hunt-county', 'kaufman-county', 'smith-county', 'wood-county', 'hopkins-county'],
+    near: ['hunt-county', 'kaufman-county', 'smith-county', 'wood-county', 'hopkins-county', 'rains-county', 'henderson-county'],
     sources: [['Van Zandt CAD 1-d-1 FAQ', 'https://iswdataclient.azurewebsites.net/pubs/vanZandtcad/General/2015_1-d-1_(Ag)_Frequently_Asked_Questions.pdf'], TPWD_FAQ],
   },
   {
@@ -286,7 +286,7 @@ export const counties = [
       ['Do I have to stop cutting timber to be on wildlife?', 'No. A wildlife plan can include timber management, as long as the primary use of the land is managing for wildlife and you carry out three practices each year. Thinning done for habitat often counts as one.'],
       ['How many acres do I need in Wood County?', 'No minimum unless the tract was reduced since January 1 of the prior year. For a reduced tract, the minimum falls within TPWD\'s range of 12.5 to 16.7 acres.'],
     ],
-    near: ['smith-county', 'van-zandt-county', 'hopkins-county'],
+    near: ['smith-county', 'van-zandt-county', 'hopkins-county', 'rains-county', 'titus-county'],
     sources: [['Wood CAD agriculture, timber and wildlife page', 'https://www.woodcad.net/agriculture-wildlife-land/'], TPWD_ACRES, TPWD_FAQ],
   },
   {
@@ -314,7 +314,7 @@ export const counties = [
       ['Does Smith CAD require annual reports?', 'Yes. The district\'s standards say annual reports are due every year to continue the wildlife valuation. We prepare the report from your records and help you file it.'],
       ['Can my pine timber stay in the plan?', 'Yes. Managed timber can be part of a wildlife plan when the work is done with wildlife in mind, such as thinning and burning to grow food under the trees.'],
     ],
-    near: ['wood-county', 'van-zandt-county'],
+    near: ['wood-county', 'van-zandt-county', 'henderson-county', 'anderson-county'],
     sources: [['Smith CAD 1-d-1 appraisal standards', 'https://www.smithcad.org/Forms/SCAD1d1AppraisalStandards2022.pdf'], TPWD_FAQ],
   },
   {
@@ -341,8 +341,225 @@ export const counties = [
       ['Can bermuda pasture qualify for wildlife management?', 'The land qualifies through its current ag valuation, not its grass. But a good plan usually turns part of the bermuda back to native cover, because that is what makes the land useful to wildlife.'],
       ['How many acres do I need in Hopkins County?', 'No minimum unless the tract was reduced since January 1 of the prior year. For a reduced tract, the minimum falls within TPWD\'s range of 12.5 to 16.7 acres.'],
     ],
-    near: ['hunt-county', 'wood-county', 'van-zandt-county', 'fannin-county'],
+    near: ['hunt-county', 'wood-county', 'van-zandt-county', 'fannin-county', 'rains-county', 'delta-county', 'titus-county'],
     sources: [TPWD_ACRES, TPWD_FAQ],
+  },
+  {
+    slug: 'rains-county', name: 'Rains', seat: 'Emory', region: 'postoak',
+    cad: { name: 'Rains County Appraisal District', url: 'https://rainscad.org/' },
+    lead: 'Rains County is small, but it sits between two of the best-known lakes in Texas, Tawakoni and Lake Fork. Its pasture and timber tracts often hold ag valuations that a wildlife plan can carry on, especially for owners who bought for the hunting and fishing.',
+    land: [
+      'Around Emory, Point and East Tawakoni, the county is rolling pasture and post oak timber with the Sabine River and Lake Tawakoni on the west and Lake Fork on the east.',
+      'Water is everywhere here, so what most tracts lack is secure cover and late-season food. Plans usually focus on letting cover grow back on part of the pasture, managing timber edges and controlling hogs that move along the lakes and river.',
+    ],
+    practices: [
+      ['Cover on old pasture', 'Letting part of a pasture grow into brush and native grass is habitat control and gives deer a reason to bed on your ground.'],
+      ['Food plots', 'Small plots near cover are supplemental food through the winter.'],
+      ['Hog control', 'Trapping along the lake and river bottoms is predator control.'],
+      ['Wood duck boxes and census', 'Nest boxes near ponds and lake coves, plus a yearly camera survey.'],
+    ],
+    cadNotes: [
+      'Rains County Appraisal District sits in the Post Oak Savannah and Blackland Prairie regions. Those regions share the same TPWD range for a tract made smaller since January 1 of the year before: 12.5 to 16.7 acres. A tract that has not been reduced has no minimum.',
+      'Applications and plans go to Rains County Appraisal District in Emory by April 30.',
+    ],
+    keepAg: null,
+    faqs: [
+      ['Can lake-area land in Rains County get a wildlife exemption?', 'Yes, if it is appraised for agriculture or timber now and is managed under a written wildlife plan with three practices each year. Being near the lake doesn\'t change the rules.'],
+      ['How many acres do I need in Rains County?', 'No minimum unless the tract was reduced since January 1 of the prior year. For a reduced tract the minimum falls within TPWD\'s range of 12.5 to 16.7 acres. Ask Rains CAD for its figure.'],
+      ['Where do I file?', 'With Rains County Appraisal District in Emory, along with the 1-d-1 application, before May 1. We prepare your plan and help you file it.'],
+    ],
+    near: ['hunt-county', 'hopkins-county', 'wood-county', 'van-zandt-county'],
+    sources: [['Rains CAD', 'https://rainscad.org/'], TPWD_ACRES, TPWD_FAQ],
+  },
+  {
+    slug: 'henderson-county', name: 'Henderson', seat: 'Athens', region: 'postoak',
+    cad: { name: 'Henderson County Appraisal District', url: 'https://henderson-cad.org/' },
+    lead: 'Henderson County lies between the Trinity and the Neches, with Cedar Creek Reservoir and Lake Palestine on either side. Its district lists wildlife management among the county\'s common agricultural uses, and plenty of tracts here are held for hunting.',
+    land: [
+      'Around Athens, Malakoff, Eustace, Brownsboro and Chandler, the county is post oak and pine-hardwood timber, improved pasture and creek bottoms. The Trinity River forms the west line and the Neches the east.',
+      'Timber with pasture between makes good deer country. The common needs are opening closed woods, keeping food in the ground late in the year, and handling hogs in the river bottoms.',
+    ],
+    practices: [
+      ['Opening the woods', 'Thinning and understory work in post oak and pine is habitat control and grows browse.'],
+      ['Food plots and openings', 'Supplemental food in openings and on pasture edges.'],
+      ['Hog control', 'Trapping along the Trinity and Neches bottoms is predator control.'],
+      ['Census', 'A camera survey repeated each year documents the herd.'],
+    ],
+    cadNotes: [
+      'Henderson CAD\'s open-space land brochure lists wildlife management as one of the common agricultural uses in the county. Applications are due between January 1 and April 30. Late filing is allowed until the review board approves the records, usually around July 20, with a 10 percent penalty on the tax savings.',
+      'Henderson County sits in the Post Oak Savannah and Pineywoods regions, which share the TPWD range of 12.5 to 16.7 acres for a tract made smaller since the year before. A tract that has not been reduced has no minimum.',
+    ],
+    keepAg: null,
+    faqs: [
+      ['Does Henderson County allow the wildlife exemption?', 'Yes. Henderson CAD lists wildlife management among the county\'s common agricultural uses. The land must already be in an ag or timber valuation, and you file a wildlife management plan with the 1-d-1 application.'],
+      ['What if I miss the April 30 deadline?', 'Henderson CAD accepts late applications until the review board approves the records, usually around July 20, with a 10 percent penalty on the tax savings.'],
+      ['How many acres do I need in Henderson County?', 'No minimum unless the tract was reduced since January 1 of the prior year. For a reduced tract the minimum falls within TPWD\'s range of 12.5 to 16.7 acres.'],
+    ],
+    near: ['kaufman-county', 'van-zandt-county', 'smith-county', 'anderson-county', 'navarro-county'],
+    sources: [['Henderson CAD open-space land brochure', 'https://henderson-cad.org/wp-content/uploads/2023/02/HendersonCAD_Open-Space-Land-Brochure.pdf'], TPWD_ACRES, TPWD_FAQ],
+  },
+  {
+    slug: 'delta-county', name: 'Delta', seat: 'Cooper', region: 'blackland',
+    cad: { name: 'Delta County Appraisal District', url: 'https://comptroller.texas.gov/taxes/property-tax/county-directory/' },
+    lead: 'Delta County is quiet farm country between the two forks of the Sulphur River, with Cooper Lake on its south side. Most rural land is in an ag valuation, and owners stepping back from farming can keep it with a wildlife plan.',
+    land: [
+      'Around Cooper, Pecan Gap and Klondike, the county is Blackland farm ground and pasture, bounded by the North and South Sulphur rivers, with Cooper Lake and its wildlife management lands to the south.',
+      'River bottoms and public land nearby mean deer, hogs and waterfowl move through. Open farm tracts gain the most from restored grass, brushy edges and protected timber along the creeks.',
+    ],
+    practices: [
+      ['Grass and field edges', 'Native grass on field corners and edges is habitat control on open ground.'],
+      ['River and creek timber', 'Protecting bottomland timber keeps travel cover for deer.'],
+      ['Hog control', 'Trapping near the Sulphur River bottoms is predator control.'],
+      ['Census', 'Repeated camera or walking counts, recorded each year.'],
+    ],
+    cadNotes: [
+      'Delta County Appraisal District sits in the Blackland Prairie region. Those regions share the same TPWD range for a tract made smaller since January 1 of the year before: 12.5 to 16.7 acres. A tract that has not been reduced has no minimum.',
+      'Applications and plans go to Delta County Appraisal District in Cooper by April 30.',
+    ],
+    keepAg: null,
+    faqs: [
+      ['Can Delta County farm ground switch to wildlife management?', 'Yes, if it is appraised for agriculture now. You file a wildlife management plan with the 1-d-1 application before May 1 and carry out three of the seven practices each year.'],
+      ['How many acres do I need in Delta County?', 'No minimum unless the tract was reduced since January 1 of the prior year. For a reduced tract the minimum falls within TPWD\'s Blackland Prairie range of 12.5 to 16.7 acres.'],
+      ['Does Cooper Lake next door help?', 'It helps the wildlife. Public land and river bottom nearby bring more game through, and a plan can be built to hold it on your ground.'],
+    ],
+    near: ['hopkins-county', 'lamar-county', 'hunt-county', 'fannin-county'],
+    sources: [['Texas Comptroller: appraisal district directory', 'https://comptroller.texas.gov/taxes/property-tax/county-directory/'], TPWD_ACRES, TPWD_FAQ],
+  },
+  {
+    slug: 'lamar-county', name: 'Lamar', seat: 'Paris', region: 'blackland',
+    cad: { name: 'Lamar County Appraisal District', url: 'https://lamarcad.org/' },
+    lead: 'Lamar County runs from Blackland farm ground around Paris north to the Red River bottoms. Much of its rural land is in ag valuations, and a lot of it is hunted. A wildlife plan serves both.',
+    land: [
+      'South of Paris, around Deport and Pattonville, the county is open Blackland farm and pasture. North toward Pat Mayse Lake, Arthur City and the Red River, it turns to post oak, creek timber and big river bottomland.',
+      'Bottomland and timber hold deer, turkey and hogs. Farm ground holds them only where there is cover. Plans differ a lot from one end of the county to the other.',
+    ],
+    practices: [
+      ['Cover on farm ground', 'Native grass and brushy edges on open tracts are habitat control.'],
+      ['Bottomland timber', 'Protecting and managing hardwood bottoms keeps acorns and cover.'],
+      ['Hog control', 'Steady hog pressure near the river makes trapping a useful predator control practice.'],
+      ['Food and census', 'Food plots near cover, and a yearly camera survey.'],
+    ],
+    cadNotes: [
+      'Lamar County Appraisal District sits in the Blackland Prairie and Post Oak Savannah regions. Those regions share the same TPWD range for a tract made smaller since January 1 of the year before: 12.5 to 16.7 acres. A tract that has not been reduced has no minimum.',
+      'Applications and plans go to Lamar County Appraisal District in Paris by April 30.',
+    ],
+    keepAg: null,
+    faqs: [
+      ['Can I get a wildlife exemption in Lamar County?', 'Yes, if the land is in an ag or timber valuation now. You file the 1-d-1 application with a wildlife management plan before May 1. We prepare your plan and help you file it with Lamar County Appraisal District.'],
+      ['How many acres do I need in Lamar County?', 'No minimum unless the tract was reduced since January 1 of the prior year. For a reduced tract the minimum falls within TPWD\'s range of 12.5 to 16.7 acres.'],
+      ['Is Red River bottomland good for a wildlife plan?', 'Usually very good. Bottomland timber, water and cover already favor deer and turkey. The plan focuses on keeping them on your ground and managing hogs.'],
+    ],
+    near: ['fannin-county', 'delta-county', 'hopkins-county'],
+    sources: [['Lamar CAD agricultural special appraisal information', 'https://lamarcad.org/agricultural-special-appraisal-information/'], TPWD_ACRES, TPWD_FAQ],
+  },
+  {
+    slug: 'anderson-county', name: 'Anderson', seat: 'Palestine', region: 'postoak',
+    cad: { name: 'Anderson County Appraisal District', url: 'https://comptroller.texas.gov/taxes/property-tax/county-directory/' },
+    lead: 'Anderson County is timber and pasture country between the Trinity and the Neches, around Palestine. Many tracts are hunted and held in ag or timber valuations, both of which can move to wildlife management.',
+    land: [
+      'Around Palestine, Elkhart, Frankston and Tennessee Colony, the county mixes post oak and pine-hardwood timber with improved pasture. The Trinity River runs along the west and the Neches along the east, with big bottomland on both.',
+      'This is strong deer and turkey country. The work is usually about the timber: thinning, openings and fire or mowing to keep food growing, plus hog control in the bottoms.',
+    ],
+    practices: [
+      ['Timber thinning and fire', 'Thinning and prescribed burning are habitat control and grow browse under the trees.'],
+      ['Openings and food plots', 'Supplemental food in small openings.'],
+      ['Bottomland and hogs', 'Protecting hardwood bottoms and trapping hogs along the rivers.'],
+      ['Census', 'Repeated camera and turkey counts, recorded each year.'],
+    ],
+    cadNotes: [
+      'Anderson County Appraisal District sits in the Post Oak Savannah and Pineywoods regions. Those regions share the same TPWD range for a tract made smaller since January 1 of the year before: 12.5 to 16.7 acres. A tract that has not been reduced has no minimum.',
+      'Applications and plans go to Anderson County Appraisal District in Palestine by April 30.',
+    ],
+    keepAg: null,
+    faqs: [
+      ['Can timber land in Anderson County switch to wildlife?', 'Yes. Land appraised as timber land can convert to wildlife management use. You file the 1-d-1 application with a wildlife management plan before May 1.'],
+      ['How many acres do I need in Anderson County?', 'No minimum unless the tract was reduced since January 1 of the prior year. For a reduced tract the minimum falls within TPWD\'s range of 12.5 to 16.7 acres.'],
+      ['Does prescribed fire count as a practice?', 'Yes. Burning to improve habitat is one form of habitat control. It needs a burn plan and the right conditions, and belongs in your written plan.'],
+    ],
+    near: ['henderson-county', 'freestone-county', 'smith-county'],
+    sources: [['Texas Comptroller: appraisal district directory', 'https://comptroller.texas.gov/taxes/property-tax/county-directory/'], TPWD_ACRES, TPWD_FAQ],
+  },
+  {
+    slug: 'limestone-county', name: 'Limestone', seat: 'Groesbeck', region: 'postoak',
+    cad: { name: 'Limestone County Appraisal District', url: 'https://comptroller.texas.gov/taxes/property-tax/county-directory/' },
+    lead: 'Limestone County runs from Blackland farm ground around Mexia to post oak and the Navasota River in the east. It is cattle and hunting country, and many tracts here are good candidates to move from ag to wildlife.',
+    land: [
+      'Around Groesbeck, Mexia, Coolidge and Thornton, the west side of the county is Blackland Prairie farm and pasture, and the east side is post oak, sandy pasture and creek bottoms draining to the Navasota. Lake Mexia and Lake Limestone add water.',
+      'The two halves need different work. Prairie ground needs cover put back. Post oak ground usually needs brush and yaupon opened up so there is browse under the trees.',
+    ],
+    practices: [
+      ['Opening up post oak', 'Brush and yaupon control under post oak is habitat control.'],
+      ['Prairie grass and edges', 'Native grass and brushy edges on open farm ground.'],
+      ['Food and water', 'Food plots and pond work where the property lacks them.'],
+      ['Hog control and census', 'Trapping in the river bottoms and a yearly camera survey.'],
+    ],
+    cadNotes: [
+      'Limestone County Appraisal District sits in the Post Oak Savannah and Blackland Prairie regions. Those regions share the same TPWD range for a tract made smaller since January 1 of the year before: 12.5 to 16.7 acres. A tract that has not been reduced has no minimum.',
+      'Applications and plans go to Limestone County Appraisal District in Groesbeck by April 30.',
+    ],
+    keepAg: null,
+    faqs: [
+      ['Can I switch my Limestone County ranch from ag to wildlife?', 'Yes, if it is appraised for agriculture now. You file a wildlife management plan with the 1-d-1 application before May 1, then carry out three of the seven practices each year.'],
+      ['How many acres do I need in Limestone County?', 'No minimum unless the tract was reduced since January 1 of the prior year. For a reduced tract the minimum falls within TPWD\'s range of 12.5 to 16.7 acres.'],
+      ['Do I have to sell my cattle?', 'Not always. Managed grazing can be part of a wildlife plan as a form of habitat control. But the land\'s primary use has to be wildlife management, not a cattle operation.'],
+    ],
+    near: ['freestone-county', 'navarro-county', 'hill-county'],
+    sources: [['Texas Comptroller: appraisal district directory', 'https://comptroller.texas.gov/taxes/property-tax/county-directory/'], TPWD_ACRES, TPWD_FAQ],
+  },
+  {
+    slug: 'hill-county', name: 'Hill', seat: 'Hillsboro', region: 'blackland',
+    cad: { name: 'Hill County Appraisal District', url: 'https://hillcad.org/' },
+    lead: 'Hill County is Blackland farm and ranch country along I-35, with Lake Whitney and the Brazos on its west side. Hill CAD spells out its wildlife rules clearly, including a required annual report.',
+    land: [
+      'Around Hillsboro, Itasca, Whitney and Covington, the county is mostly open Blackland Prairie farm and pasture. The west side drops toward the Brazos River and Lake Whitney, with rougher, more wooded country, and Aquilla Lake sits in the middle.',
+      'Open farm ground holds wildlife where there is cover. The west side has more of it naturally. Most plans here put back grass, brush and creek timber on the east side and manage brush on the west.',
+    ],
+    practices: [
+      ['Grass and brushy edges', 'Native grass and shrub cover on open ground is habitat control.'],
+      ['Brush and cedar control', 'On the western, wooded side, thinning cedar and brush opens browse.'],
+      ['Supplemental water', 'Pond work or water sources on dry upland tracts.'],
+      ['Census', 'A repeated count of deer, birds or other wildlife each year.'],
+    ],
+    min: 'No minimum unless the tract was made smaller since January 1 of the year before. Then Hill CAD applies the 92% Blackland Prairie requirement, about 12.5 acres.',
+    cadNotes: [
+      'Hill CAD\'s 2024 ag guidelines use wildlife plans suited to the Blackland Prairies region. If a tract has been made smaller than it was on January 1 of the prior year, the district applies the 92% wildlife use requirement for that region, which works out to about 12.5 acres.',
+      'The guidelines say a wildlife management plan on TPWD form PWD 885 must be submitted with the 1-d-1 application, and the chief appraiser will require an annual report every year.',
+    ],
+    keepAg: 'For an ordinary ag valuation, Hill CAD\'s guidelines call for at least 5 acres in the operation and about one animal unit per 3 to 4 acres of improved pasture, or per 5 to 7 acres of native pasture.',
+    faqs: [
+      ['Does Hill CAD require an annual wildlife report?', 'Yes. Hill CAD\'s guidelines say the chief appraiser will require an annual report every year showing how the plan was carried out. We prepare it from your records and help you file it.'],
+      ['How many acres do I need in Hill County?', 'No minimum unless the tract was made smaller since January 1 of the prior year. Then Hill CAD applies the 92% Blackland Prairie requirement, about 12.5 acres.'],
+      ['What form does the plan go on?', 'TPWD form PWD 885, submitted with the 1-d-1 application (Form 50-129) to Hill County Appraisal District before May 1.'],
+    ],
+    near: ['ellis-county', 'navarro-county', 'limestone-county'],
+    sources: [['Hill CAD ag guidelines (2024)', 'https://hillcad.org/wp-content/uploads/2024/06/Ag-Guidelines-2024.pdf'], TPWD_ACRES, TPWD_FAQ],
+  },
+  {
+    slug: 'titus-county', name: 'Titus', seat: 'Mount Pleasant', region: 'piney',
+    cad: { name: 'Titus County Appraisal District', url: 'https://titus-cad.org/' },
+    lead: 'Titus County is Northeast Texas timber, pasture and lakes around Mount Pleasant. Much of its rural land is in ag or timber valuations, and owners who are there to hunt and fish can keep it with a wildlife plan.',
+    land: [
+      'Around Mount Pleasant, Talco and Cookville, the county mixes pine-hardwood timber and improved pasture. Lake Bob Sandlin lies to the south and the Sulphur River bottoms to the north.',
+      'Timber, pasture and water give deer and turkey most of what they need. Plans usually manage the timber for food under the trees, add openings and plots, and keep hogs in check.',
+    ],
+    practices: [
+      ['Timber thinning and openings', 'Thinning and openings let light in and grow browse. It counts as habitat control.'],
+      ['Food plots', 'Plots on pasture edges and in openings are supplemental food.'],
+      ['Hog control', 'Trapping along the Sulphur River bottoms is predator control.'],
+      ['Shelter and census', 'Nest boxes near ponds and creeks, and a yearly camera survey.'],
+    ],
+    cadNotes: [
+      'Titus County Appraisal District sits in the Pineywoods and Post Oak Savannah regions. Those regions share the same TPWD range for a tract made smaller since January 1 of the year before: 12.5 to 16.7 acres. A tract that has not been reduced has no minimum.',
+      'Applications and plans go to Titus County Appraisal District in Mount Pleasant by April 30.',
+    ],
+    keepAg: null,
+    faqs: [
+      ['Can timber or pasture in Titus County go to wildlife management?', 'Yes. Land appraised for agriculture or as timber land can convert. You file the 1-d-1 application with a wildlife management plan before May 1.'],
+      ['How many acres do I need in Titus County?', 'No minimum unless the tract was reduced since January 1 of the prior year. For a reduced tract the minimum falls within TPWD\'s range of 12.5 to 16.7 acres.'],
+      ['Where do I file?', 'With Titus County Appraisal District in Mount Pleasant. We prepare your plan and help you file it.'],
+    ],
+    near: ['wood-county', 'hopkins-county', 'delta-county'],
+    sources: [['Titus CAD', 'https://titus-cad.org/'], TPWD_ACRES, TPWD_FAQ],
   },
 ];
 

@@ -1,0 +1,28 @@
+---
+// Cross-links for search-landing pages (county pages, guides, blog posts).
+// Every page built mainly to be found in search should include this, so a
+// visitor who lands there can reach the plan, the process, the reasons to
+// work with us, and the contact form in one click.
+const { title = 'Where to go from here', place = 'your land', hide = [] } = Astro.props;
+const links = [
+  ['/wildlife-management-plans', 'THE PLAN', 'What\'s in a wildlife management plan', 'Maps, practices, a year-by-year calendar, cost estimates, and the forms ready to file.'],
+  ['/property-assessment', 'THE FIRST STEP', 'How a property assessment works', `We walk ${place}, find what it's short of, and tell you straight what would help most.`],
+  ['/#how-it-works', 'THE PROCESS', 'How working with us goes', 'From the first call to the site visit, the plan, filing help and every year after.'],
+  ['/services', 'SERVICES', 'Everything we do', 'Assessments, plans, annual reports and habitat work, in the order your land needs them.'],
+  ['/about', 'WHY US', 'Who we are and how we work', 'Whitetail and habitat specialists who walk every property and stay with you after the plan.'],
+  ['/contact', 'GET STARTED', 'Request an assessment or a quote', 'Tell us the county, the acreage and your goals. Plans are quoted to the property.'],
+].filter(([href]) => !hide.includes(href));
+---
+<section class="topo-ink shift-3 seam nextsteps">
+  <div class="wrap">
+    <div class="shead">
+      <div class="idx"><i></i><s></s><b>EVERYTHING IN ONE PLACE</b></div>
+      <h2>{title}</h2>
+    </div>
+    <div class="nsgrid">
+      {links.map(([href, tag, h, p]) => (
+        <a class="svclink" href={href}><span class="tag">{tag}</span><h3>{h}</h3><p>{p}</p><span class="more">{href === '/contact' ? 'Get in touch' : 'Read more'}</span></a>
+      ))}
+    </div>
+  </div>
+</section>

@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import InquiryForm from '../components/InquiryForm.astro';
 import Estimator from '../components/Estimator.astro';
 import { faqGroups, stripTags } from '../data/faqs.js';
-import { SITE } from '../data/site.js';
+import { SITE, CONTACT } from '../data/site.js';
 
 const pick = [
   "What's included in your wildlife management plan?",
@@ -24,6 +24,7 @@ const ld = { '@context': 'https://schema.org', '@graph': [
     url: SITE + '/', logo: SITE + '/favicon-192.png', image: SITE + '/og.png', priceRange: '$$',
     parentOrganization: { '@type': 'Organization', name: 'Land Value Group', url: 'https://landvaluegroup.com/' },
     areaServed: [{ '@type': 'State', name: 'Texas' }, { '@type': 'State', name: 'Oklahoma' }],
+    ...(CONTACT.phone ? { telephone: CONTACT.phone } : {}), ...(CONTACT.email ? { email: CONTACT.email } : {}),
     knowsAbout: ['Wildlife management plans', 'Texas wildlife tax exemption', '1-d-1 open-space wildlife management valuation', 'Whitetail deer habitat management', 'Food plots', 'Wildlife property assessment', 'Trail camera surveys and census counts', 'Brush management', 'Nest boxes and wood duck boxes', 'Feral hog control'],
     hasOfferCatalog: { '@type': 'OfferCatalog', name: 'Services', itemListElement: [
       ['Property assessment', '/property-assessment'], ['Wildlife management plans', '/wildlife-management-plans'],
@@ -93,7 +94,7 @@ import { counties, regions, countyPath } from '../data/counties.js';
       <a class='btn p' href='/contact'>Request a property assessment</a>
       <a class="btn s" href="#how-it-works">How it works</a>
     </div>
-    <p class="trust reveal d2">Intro call, no obligation &middot; Texas and Oklahoma &middot; Whitetail specialists</p>
+    <ul class="trust reveal d2"><li>Boots-on-the-ground assessments</li><li>Interactive online reports</li><li>Whitetail and habitat specialists</li></ul>
     <aside class="seven reveal d2" aria-label="What's in your plan">
       <p class="k">WHAT'S IN YOUR PLAN</p>
       <ol>
@@ -119,7 +120,7 @@ import { counties, regions, countyPath } from '../data/counties.js';
 <section id="who-we-help" class="topo-ink shift-1 seam">
   <div class="wrap">
     <div class="shead">
-      <div class="idx"><i></i><s></s><b>SOUND FAMILIAR?</b></div>
+      <div class="idx"><i></i><s></s><b>BUILT FOR YOUR SITUATION</b></div>
       <h2>Where most landowners start with us</h2>
       <p class="sd">Pick the one that sounds like you.</p>
     </div>
@@ -135,7 +136,7 @@ import { counties, regions, countyPath } from '../data/counties.js';
 <section id="services" class="topo-ink shift-2 seam deepstone">
   <div class="wrap">
     <div class="shead">
-      <div class="idx"><i></i><s></s><b>SERVICES</b></div>
+      <div class="idx"><i></i><s></s><b>FROM FIRST WALK TO EVERY YEAR AFTER</b></div>
       <h2>Wildlife management services, start to finish</h2>
       <p class="sd">One team from the first walk to the fifth year. Pick what you need; skip what you don't.</p>
     </div>
@@ -190,7 +191,7 @@ import { counties, regions, countyPath } from '../data/counties.js';
 <section id="good-to-know" class="dark well topo-gold shift-3">
   <div class="wrap">
     <div class="shead">
-      <div class="idx"><i></i><s></s><b>GOOD TO KNOW</b></div>
+      <div class="idx"><i></i><s></s><b>WHAT MOST LANDOWNERS NEVER HEAR</b></div>
       <h2>Things most landowners find out too late</h2>
       <p class="sd">The stuff we explain on almost every first call.</p>
     </div>
@@ -206,7 +207,7 @@ import { counties, regions, countyPath } from '../data/counties.js';
 <section id="wildlife-tax-exemption" class="topo-ink shift-1 seam deepstone">
   <div class="wrap twocol">
     <div>
-      <div class="idx"><i></i><s></s><b>FOR TEXAS LANDOWNERS</b></div>
+      <div class="idx"><i></i><s></s><b>BETTER LAND, LOWER TAXES</b></div>
       <h2 class="h2s" style="font-size:clamp(1.7rem,3.2vw,2.6rem)">Better habitat and the wildlife exemption come from the same work</h2>
       <div class="prose">
         <p>Texas lets land that already has an ag exemption keep that valuation by being managed for native wildlife instead of cattle or hay. It takes a written plan and at least three of seven practices a year: habitat control, erosion control, predator control, supplemental water, supplemental food, shelter, and census counts.</p>
@@ -233,7 +234,7 @@ import { counties, regions, countyPath } from '../data/counties.js';
 <section id="how-it-works" class="topo-ink shift-2 seam">
   <div class="wrap">
     <div class="shead">
-      <div class="idx"><i></i><s></s><b>HOW IT WORKS</b></div>
+      <div class="idx"><i></i><s></s><b>A CLEAR PROCESS, START TO FINISH</b></div>
       <h2>From first call to a plan you'll actually use</h2>
       <p class="sd">Six steps. You can stop after any one of them, no hard feelings.</p>
     </div>
@@ -252,7 +253,7 @@ import { counties, regions, countyPath } from '../data/counties.js';
 <section id="why-us" class="dark topo-gold shift-2">
   <div class="wrap">
     <div class="shead">
-      <div class="idx"><i></i><s></s><b>WHY WORK WITH US</b></div>
+      <div class="idx"><i></i><s></s><b>WHY LANDOWNERS CHOOSE US</b></div>
       <h2>No guessing, no templates, no fluff</h2>
       <p class="sd">What you get on every property, whether it's 40 acres or 400.</p>
     </div>
@@ -270,7 +271,7 @@ import { counties, regions, countyPath } from '../data/counties.js';
 <section id="species" class="topo-ink shift-1 seam deepstone">
   <div class="wrap">
     <div class="shead">
-      <div class="idx"><i></i><s></s><b>WHAT WE MANAGE FOR</b></div>
+      <div class="idx"><i></i><s></s><b>WHITETAIL FIRST, WHOLE-PROPERTY THINKING</b></div>
       <h2>Whitetail first, but not whitetail only</h2>
       <p class="sd">A good plan names more than one species, and it should. Here's what we plan around.</p>
     </div>
@@ -285,7 +286,7 @@ import { counties, regions, countyPath } from '../data/counties.js';
 <section class="dark well topo-gold shift-1" id="service-area">
   <div class="wrap">
     <div class="shead">
-      <div class="idx"><i></i><s></s><b>SERVICE AREA</b></div>
+      <div class="idx"><i></i><s></s><b>LOCAL GROUND, LOCAL KNOWLEDGE</b></div>
       <h2>Where we work: North and East Texas, and southern Oklahoma</h2>
       <p class="sd">Blackland clay, sandy loam, post oak, pine. We know how each one grows, holds deer, and responds to work, so your plan fits your dirt.</p>
     </div>
@@ -325,7 +326,7 @@ import { counties, regions, countyPath } from '../data/counties.js';
 <section id="questions" class="topo-ink shift-2 seam deepstone">
   <div class="wrap">
     <div class="shead">
-      <div class="idx"><i></i><s></s><b>QUESTIONS</b></div>
+      <div class="idx"><i></i><s></s><b>STRAIGHT ANSWERS</b></div>
       <h2>Questions landowners ask us most</h2>
       <p class="sd">Straight answers. <a href="/faq">See all of them</a>, or search for yours.</p>
     </div>
@@ -339,7 +340,7 @@ import { counties, regions, countyPath } from '../data/counties.js';
 <section class="contact dark topo-gold shift-3" id="contact">
   <div class="wrap">
     <div class="shead">
-      <div class="idx"><i></i><s></s><b>GET IN TOUCH</b></div>
+      <div class="idx"><i></i><s></s><b>START WITH YOUR LAND</b></div>
       <h2>Let's take a look at your land</h2>
       <p class="sd">Tell us about your property and what you want from it. We'll get back to you within a couple of days.</p>
     </div>
