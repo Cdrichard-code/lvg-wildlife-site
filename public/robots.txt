@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /thanks
 
-Sitemap: https://lvgwildlife.com/sitemap.xml
+Sitemap: https://lvgwildlifesolutions.com/sitemap.xml

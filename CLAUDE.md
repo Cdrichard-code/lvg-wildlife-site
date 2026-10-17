@@ -1,4 +1,4 @@
-# LVG Wildlife Solutions website (lvgwildlife.com)
+# LVG Wildlife Solutions website (lvgwildlifesolutions.com; lvgwildlife.com redirects to it)
 
 Public marketing site for LVG Wildlife Solutions (Land Value Group Wildlife Solutions). This repo is the website only. The client dashboard is a separate repo (`sws-assessment`, on Vercel); never mix the two.
 

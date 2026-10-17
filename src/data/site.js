@@ -1,4 +1,4 @@
-export const SITE = 'https://lvgwildlife.com';
+export const SITE = 'https://lvgwildlifesolutions.com';
 export const BUSINESS = { '@id': SITE + '/#business' };
 
 // BreadcrumbList for a page: crumbs = [['Services', '/services'], ['Property assessment', '/property-assessment']]

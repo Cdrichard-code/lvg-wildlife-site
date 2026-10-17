@@ -1,5 +1,5 @@
 // Builds sitemap.xml from the pages in src/pages. Pages listed in EXCLUDE stay out.
-const SITE = 'https://lvgwildlife.com';
+const SITE = 'https://lvgwildlifesolutions.com';
 const EXCLUDE = ['/thanks'];
 
 export async function GET() {
