@@ -21,7 +21,7 @@ const links = [
     </div>
     <div class="nsgrid">
       {links.map(([href, tag, h, p]) => (
-        <a class="svclink" href={href}><span class="tag">{tag}</span><h3>{h}</h3><p>{p}</p><span class="more">{href === '/contact' ? 'Get in touch' : 'Read more'}</span></a>
+        <a class={href === '/contact' ? 'svclink go' : 'svclink'} href={href}><span class="tag">{tag}</span><h3>{h}</h3><p>{p}</p><span class="more">{href === '/contact' ? 'Get in touch' : 'Read more'}</span></a>
       ))}
     </div>
   </div>

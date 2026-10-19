@@ -10,7 +10,7 @@ export const nav = [
   { label: 'Texas wildlife exemption', href: '/wildlife-tax-valuation', key: 'tax' },
   { label: 'Resources', href: '/faq', key: 'resources', children: [
     ['/faq', 'Questions and answers', 'Search everything we get asked'],
-    ['/wildlife-tax-valuation#estimate', 'Tax savings estimator', 'A rough range for your land'],
+    ['/tax-savings-calculator', 'Tax savings calculator', 'County-by-county, every figure shown'],
     ['/service-area', 'Counties we serve', 'North and East Texas, county by county'],
     ['/partners', 'For realtors and land brokers', 'Refer a rural buyer or seller'],
     ['/land-clearing', 'Land clearing', 'Mulching and site work from Land Value Group'],

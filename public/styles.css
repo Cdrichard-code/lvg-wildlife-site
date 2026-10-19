@@ -701,9 +701,9 @@ footer .cols2{display:grid;grid-template-columns:1fr 1fr;gap:0 1rem}
 @media(min-width:700px){.nsgrid{grid-template-columns:1fr 1fr}}
 @media(min-width:1080px){.nsgrid{grid-template-columns:repeat(3,1fr)}}
 .nsgrid .svclink h3{font-size:1.15rem}
-.nsgrid .svclink:last-child{border-top-color:var(--ink);background:var(--oak)}
-.nsgrid .svclink:last-child .tag,.nsgrid .svclink:last-child p{color:var(--ink)}
-.nsgrid .svclink:last-child .more{border-bottom-color:var(--ink)}
+.nsgrid .svclink.go{border-top-color:var(--ink);background:var(--oak)}
+.nsgrid .svclink.go .tag,.nsgrid .svclink.go p{color:var(--ink)}
+.nsgrid .svclink.go .more{border-bottom-color:var(--ink)}
 footer .fcontact{margin-top:1.4rem}
 footer .fcontact p{margin:.2rem 0;font-size:.88rem}
 footer .fcontact .btn{margin-top:.6rem;border-bottom:1px solid var(--oak)}
@@ -720,3 +720,15 @@ footer .fcontact .btn{margin-top:.6rem;border-bottom:1px solid var(--oak)}
 .est .figs li{font-size:.9rem;color:var(--ink-soft);margin:.35rem 0;line-height:1.5}
 .est .figs b{color:var(--ink)}
 .est .fine a{color:inherit}
+/* Savings calculator page */
+.calcgrid{display:grid;gap:2rem;grid-template-columns:1fr;align-items:start}
+@media(min-width:1000px){.calcgrid{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:3rem}}
+.calchead h1{font-size:clamp(2rem,4.4vw,3.1rem)}
+.calcpoints{list-style:none;padding:0;margin:1.5rem 0 0;display:grid;gap:.55rem}
+.calcpoints li{display:flex;align-items:center;gap:.6rem;font-family:var(--d);font-weight:600;font-size:.9rem;color:var(--ink-inv-soft)}
+.calcpoints li::before{content:'';width:.85rem;height:.45rem;border-left:2px solid var(--oak);border-bottom:2px solid var(--oak);transform:rotate(-45deg) translateY(-2px);flex:none}
+.calcafter{margin-top:1.5rem;font-size:.98rem;color:var(--ink-inv-soft);max-width:46ch}
+.calcafter a{color:var(--stone);border-bottom:1.5px solid var(--oak)}
+.twocol > .steps{grid-template-columns:1fr}
+@media(min-width:700px){.twocol > .steps{grid-template-columns:1fr 1fr}}
+.estlink{margin:.8rem 0 0;font-size:.92rem}

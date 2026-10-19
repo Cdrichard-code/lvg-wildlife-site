@@ -1,0 +1,164 @@
+---
+import Base from '../layouts/Base.astro';
+import Estimator from '../components/Estimator.astro';
+import InquiryForm from '../components/InquiryForm.astro';
+import NextSteps from '../components/NextSteps.astro';
+import { SITE, BUSINESS, breadcrumbs } from '../data/site.js';
+import { counties, countyPath } from '../data/counties.js';
+
+const path = '/tax-savings-calculator';
+const crumbs = [['Tax savings calculator', path]];
+
+const kinds = [
+  ['Agricultural', 'Land used for cattle, hay, crops, bees and similar uses, at the level typical for the county.'],
+  ['Timber', 'Land managed to grow and sell timber, usually under a timber management plan.'],
+  ['Wildlife management', 'Land that already has an ag or timber valuation, now managed for native wildlife under a written plan with at least three of seven practices a year.'],
+];
+
+const cautions = [
+  ['It is an estimate, not a quote.', 'We use typical county figures and show a range 25% either side. Your school district, your exact value and your district\'s numbers can move the real figure a lot.'],
+  ['Already in an ag or timber valuation?', 'You are likely already getting most of this. Switching to wildlife management keeps that valuation. It does not lower your taxes further.'],
+  ['No valuation today?', 'Wildlife management is only open to land that had an ag or timber valuation the year before, and an ag valuation generally needs a history of agricultural use. The number shows what is at stake, not a saving you can claim this year.'],
+  ['Qualifying is up to your appraisal district.', 'Minimum acreage for tracts that have been split, the plan, the yearly practices and the district\'s review and approval all apply. Nobody can promise an approval, including us.'],
+  ['Some things are left out.', 'Your home site and buildings, city taxes, emergency services districts and any exemptions you already have are not part of the estimate.'],
+  ['Changing the use later has a cost.', 'If land leaves its open-space valuation, a rollback tax recaptures the difference for the three years before the change.'],
+];
+
+const plan = [
+  ['We walk the property', 'On foot, so the plan fits your ground: cover, food, water, and how deer and other wildlife use the place.'],
+  ['We write the plan', 'The practices that fit, mapped and on a calendar, with who does each job and rough costs.'],
+  ['We prepare it to file', 'On the TPWD form, ready for your signature, and we help you file it with your county appraisal district.'],
+  ['We help every year after', 'Records, the yearly practices and the annual report, so the valuation and the land both keep working.'],
+];
+
+const faqs = [
+  ['How accurate is this calculator?', 'It is a rough range. It uses your acres and land value, a typical 2025 rural tax rate for your county from the Texas Comptroller, and the productivity value your county appraisal district reported to the state. Your own school district and appraised values can put the real figure outside the range.'],
+  ['Does a wildlife exemption save more than an ag exemption?', 'No. Wildlife management land is valued the same way as ag land. Switching from ag to wildlife keeps the valuation when cattle, hay or crops stop. It does not add savings on top of it.'],
+  ['Can I get a wildlife exemption on land with no ag exemption?', 'Not directly. The land has to be in an agricultural or timber valuation the year before it moves to wildlife management, and an ag valuation generally needs a history of agricultural use. If your land has neither, talk to us and your appraisal district about the path first.'],
+  ['What does it take to qualify for wildlife management?', 'A current ag or timber valuation, a written wildlife management plan on the TPWD form filed with the application before May 1, and at least three of the seven practices carried out every year. Tracts that have been split may also have to meet a minimum acreage.'],
+  ['What is a rollback tax?', 'If land with an open-space valuation changes to a non-qualifying use, the district recaptures the tax difference for the three years before the change. It is worth knowing before you buy, sell or build.'],
+  ['What does a wildlife management plan cost?', 'Every property is different, so we quote each plan after a short call about your acreage, goals and how much of the work you want to do yourself.'],
+];
+
+const ld = { '@context': 'https://schema.org', '@graph': [
+  { '@type': 'WebApplication', '@id': SITE + path + '#calculator', name: 'Texas ag and wildlife valuation savings calculator',
+    url: SITE + path, applicationCategory: 'FinanceApplication', operatingSystem: 'Any', isAccessibleForFree: true,
+    offers: { '@type': 'Offer', price: 0, priceCurrency: 'USD' }, provider: BUSINESS,
+    description: 'A rough yearly range for what an open-space (ag or wildlife) valuation is worth on Texas land, using county tax rates and appraisal district productivity values.' },
+  breadcrumbs(crumbs),
+  { '@type': 'FAQPage', '@id': SITE + path + '#faq', mainEntity: faqs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })) },
+] };
+---
+<Base
+  title="Texas Ag & Wildlife Exemption Savings Calculator | LVG Wildlife Solutions"
+  description="Estimate what an ag or wildlife valuation is worth on your Texas land. Pick your county for typical 2025 tax rates and appraisal district values, and see every figure used."
+  path={path}
+  ogTitle="What is a wildlife or ag valuation worth on your land?"
+  ogDescription="A free county-by-county calculator for Texas landowners, with every figure shown."
+  current="resources"
+  ld={ld}
+  mcta={{ title: 'Savings calculator', line: 'Then talk to us about a plan', href: '#talk', label: 'Get in touch' }}
+>
+<section class="dark topo-gold deep pagehead calchead">
+  <div class="wrap calcgrid">
+    <div>
+      <nav class="crumb" aria-label="Breadcrumb"><a href='/'>Home</a><span>/</span>Tax savings calculator</nav>
+      <div class="idx"><i></i><s></s><b>FREE, COUNTY BY COUNTY</b></div>
+      <h1>What is a wildlife or ag valuation worth on your land?</h1>
+      <p class="lead">Texas lets qualifying land be taxed on what it produces instead of what it would sell for. Pick your county, put in your acres and land value, and see a rough yearly range, with every figure behind it.</p>
+      <ul class="calcpoints">
+        <li>2025 tax rates for 20 North and East Texas counties</li>
+        <li>Values your appraisal district actually reports</li>
+        <li>Every figure shown, nothing hidden</li>
+      </ul>
+      <p class="calcafter">Like the number? A wildlife management plan is how land that already has an ag valuation keeps it. <a href="#talk">Talk to us about your property.</a></p>
+    </div>
+    <Estimator p="calc" />
+  </div>
+</section>
+
+<section class="topo-ink shift-1 seam">
+  <div class="wrap">
+    <div class="shead">
+      <div class="idx"><i></i><s></s><b>PLAIN ENGLISH, NO FINE PRINT</b></div>
+      <h2>How land use valuation works in Texas</h2>
+      <p class="sd">Most people call it an ag exemption. Officially it is open-space valuation: the land is taxed on its productivity value, usually a small fraction of its market value.</p>
+    </div>
+    <div class="who">
+      {kinds.map(([t, p]) => <div><h3>{t}</h3><p>{p}</p></div>)}
+    </div>
+    <div class="prose wide" style="margin-top:1.75rem">
+      <p>Wildlife management is the one most landowners have never heard of. It lets a place that is used for hunting, wildlife and enjoyment instead of cattle or hay keep its valuation, as long as it is managed for native wildlife under a written plan. That plan is filed with your <a href="/service-area">county appraisal district</a>, and the work it calls for is the same work that makes a property hunt better. <a href="/wildlife-tax-valuation">Read how the Texas wildlife exemption works.</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="topo-ink shift-2 seam deepstone">
+  <div class="wrap">
+    <div class="shead">
+      <div class="idx"><i></i><s></s><b>STRAIGHT ANSWERS UP FRONT</b></div>
+      <h2>Read this before you count on a number</h2>
+    </div>
+    <div class="who">
+      {cautions.map(([t, p]) => <div><h3>{t}</h3><p>{p}</p></div>)}
+    </div>
+    <p class="fine" style="margin-top:1rem">LVG Wildlife Solutions prepares wildlife management plans and supporting records. We are not attorneys or tax advisors, and nothing on this page is legal or tax advice.</p>
+  </div>
+</section>
+
+<section class="topo-ink shift-3 seam">
+  <div class="wrap twocol">
+    <div>
+      <div class="idx"><i></i><s></s><b>THE WORK BEHIND THE NUMBER</b></div>
+      <h2 class="h2s" style="font-size:clamp(1.6rem,3vw,2.3rem)">A plan built for the land, ready to file</h2>
+      <div class="prose">
+        <p>The valuation is the benefit. The plan is what earns and keeps it. We build ours around the wildlife on your property first, so the work improves the land and the hunting, not just the paperwork.</p>
+        <p>See <a href="/wildlife-management-plans">what's in a plan</a>, <a href="/property-assessment">how the assessment works</a>, or <a href="/about">who we are</a>.</p>
+      </div>
+      <div class="acts" style="margin-top:1.25rem">
+        <a class="btn p" href="#talk">Request an assessment or quote</a>
+        <a class="btn s2" href="/wildlife-management-plans">What's in a plan</a>
+      </div>
+    </div>
+    <ol class="steps">
+      {plan.map(([t, p]) => <li><b>{t}</b><p>{p}</p></li>)}
+    </ol>
+  </div>
+</section>
+
+<section id="questions" class="topo-ink shift-1 seam deepstone">
+  <div class="wrap">
+    <div class="shead">
+      <div class="idx"><i></i><s></s><b>STRAIGHT ANSWERS</b></div>
+      <h2>Ag and wildlife valuation questions</h2>
+    </div>
+    <div class="faq">
+      <div class="faqgroup">
+        <div class="acc">
+          {faqs.map(([q, a], i) => <details open={i === 0}><summary>{q}</summary><div class="a"><p>{a}</p></div></details>)}
+        </div>
+      </div>
+    </div>
+    <p style="margin-top:1.5rem"><a href="/faq">More questions and answers</a> · <a href="/service-area">County-by-county details</a></p>
+  </div>
+</section>
+
+<section class="topo-ink shift-2 seam" id="talk">
+  <div class="wrap">
+    <div class="cgrid">
+      <div>
+        <div class="idx"><i></i><s></s><b>START WITH YOUR LAND</b></div>
+        <h2 class="h2s">Want a real answer for your property?</h2>
+        <div class="prose">
+          <p>Tell us where the land is, roughly how big, and how it's used today. We'll tell you plainly whether wildlife management fits, what your appraisal district will want to see, and what a plan would take.</p>
+          <p>A real person reads every inquiry, and you'll hear back within a couple of days.</p>
+        </div>
+        <p class="fine" style="margin-top:1.25rem">Counties we serve: {counties.map((c, i) => <Fragment>{i > 0 && ', '}<a href={countyPath(c)}>{c.name}</a></Fragment>)}.</p>
+      </div>
+      <InquiryForm source="savings calculator" idPrefix="calc-" />
+    </div>
+  </div>
+</section>
+
+<NextSteps title="From here: plans, process and getting started" hide={['/contact']} deep />
+</Base>
