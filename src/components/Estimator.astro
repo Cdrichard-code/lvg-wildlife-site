@@ -1,39 +1,82 @@
 ---
-// Rough wildlife/ag valuation savings estimator. Works for any number of
-// copies on a page: each form is wired up by class, not id.
-const { p = 'e' } = Astro.props;
+// Rough open-space (ag or wildlife) valuation savings estimator.
+// Pick a county and its typical rural tax rate and productivity value fill in
+// from src/data/taxfigures.js; after calculating, the figures used are listed.
+// Works for any number of copies on a page: each form is wired by attribute.
+import { taxFigures, LAND_PRICE, DEFAULT, RATES_SOURCE } from '../data/taxfigures.js';
+const { p = 'e', county = '' } = Astro.props;
+const data = JSON.stringify({ counties: taxFigures, def: DEFAULT, ratesUrl: RATES_SOURCE });
+const sorted = [...taxFigures].sort((a, b) => a.name.localeCompare(b.name));
+const preset = taxFigures.find((t) => t.slug === county);
 ---
-<form class="est" onsubmit="return false" data-est>
-  <div class="row3">
-    <div class="fld"><label for={p + '-acres'}>Acres</label><input id={p + '-acres'} data-acres type="number" min="1" step="1" inputmode="numeric" placeholder="100"></div>
-    <div class="fld"><label for={p + '-value'}>Market value per acre ($)</label><input id={p + '-value'} data-value type="number" min="0" step="100" inputmode="numeric" placeholder="8000"><span class="hint">Your appraisal notice shows this.</span></div>
-    <div class="fld"><label for={p + '-rate'}>Total tax rate (%)</label><input id={p + '-rate'} data-rate type="number" min="0" step="0.01" inputmode="decimal" value="1.6"><span class="hint">All taxing units combined.</span></div>
+<form class="est" onsubmit="return false" data-est data-figs={data}>
+  <div class="est-pre">
+    <p class="k">BEFORE YOU RUN THE NUMBERS</p>
+    <ul>
+      <li><b>This compares full market-value taxes with open-space (ag or wildlife) valuation.</b> It is what the valuation is worth on land that has none today.</li>
+      <li><b>Already in an ag or timber valuation?</b> You likely get most of this now. Switching to wildlife management keeps that valuation. It does not lower your taxes further.</li>
+      <li><b>No valuation today?</b> Wildlife management requires the land to be in an ag or timber valuation the year before. Minimum acreage rules, your district's review and approval all still apply.</li>
+    </ul>
+  </div>
+  <div class="row2">
+    <div class="fld"><label for={p + '-county'}>County</label>
+      <select id={p + '-county'} data-county>
+        <option value="">Another Texas county</option>
+        {sorted.map((t) => <option value={t.slug} selected={t.slug === county}>{t.name} County</option>)}
+      </select>
+      <span class="hint">Fills in a typical rural tax rate for that county.</span></div>
+    <div class="fld"><label for={p + '-acres'}>Acres</label><input id={p + '-acres'} data-acres type="number" min="1" step="1" inputmode="numeric" placeholder="50"><span class="hint">The acres that would be managed for wildlife.</span></div>
+  </div>
+  <div class="row2">
+    <div class="fld"><label for={p + '-value'}>Market value per acre ($)</label><input id={p + '-value'} data-value type="number" min="0" step="100" inputmode="numeric" placeholder="9000"><span class="hint">Your appraisal notice shows it, or use what you paid. Rural land in Northeast Texas sold for a median of ${LAND_PRICE.perAcre.toLocaleString('en-US')} an acre in late 2025.</span></div>
+    <div class="fld"><label for={p + '-rate'}>Total tax rate (%)</label><input id={p + '-rate'} data-rate type="number" min="0" step="0.01" inputmode="decimal" value={(preset ? preset.rate : DEFAULT.rate).toFixed(2)}><span class="hint">All taxing units combined. Change it if you know yours.</span></div>
   </div>
   <div class="out" aria-live="polite">
     <p class="k">ROUGH YEARLY DIFFERENCE</p>
     <div class="big" data-out>Enter acres and value</div>
-    <p data-note>Compared with being taxed at full market value.</p>
+    <p data-note>A rough range, not a quote.</p>
   </div>
-  <p class="fine">*A broad estimate only, with no guarantee. We estimate the difference using a typical productivity value of about $150 an acre, then show a range 25% either side of it; actual values, rates, and qualification are set by your county appraisal district, and their numbers decide. This is not tax advice.</p>
+  <div class="figs" data-figs-out hidden>
+    <p class="k">FIGURES USED</p>
+    <ul data-figs-list></ul>
+  </div>
+  <p class="fine">*A broad estimate with no guarantee, shown as a range 25% either side of our calculation. It leaves out your home site and buildings, city taxes, emergency services districts and any exemptions you already have. Your county appraisal district sets the actual values, decides whether land qualifies, and its numbers decide what you pay. This is not tax advice. Sources: <a href={RATES_SOURCE} rel="noopener">Texas Comptroller 2025 tax rates</a>, Texas Comptroller property value study, and the <a href={LAND_PRICE.url} rel="noopener">Texas A&amp;M Real Estate Center</a>.</p>
 </form>
 <script is:inline>
 (function(){
   function nice(x,up){var st=x>=2000?500:x>=500?100:50;return (up?Math.ceil(x/st):Math.floor(x/st))*st;}
-  function money(x){return '$'+Math.max(0,x).toLocaleString('en-US');}
+  function money(x){return '$'+Math.max(0,Math.round(x)).toLocaleString('en-US');}
+  function pct(x){return x.toFixed(2)+'%';}
+  function li(ul,html){var l=document.createElement('li');l.innerHTML=html;ul.appendChild(l);}
   document.querySelectorAll('form[data-est]:not([data-ready])').forEach(function(f){
     f.setAttribute('data-ready','');
-    var a=f.querySelector('[data-acres]'),v=f.querySelector('[data-value]'),r=f.querySelector('[data-rate]'),o=f.querySelector('[data-out]'),n=f.querySelector('[data-note]');
+    var D=JSON.parse(f.getAttribute('data-figs')),by={};D.counties.forEach(function(c){by[c.slug]=c;});
+    var sel=f.querySelector('[data-county]'),a=f.querySelector('[data-acres]'),v=f.querySelector('[data-value]'),r=f.querySelector('[data-rate]'),
+        o=f.querySelector('[data-out]'),n=f.querySelector('[data-note]'),box=f.querySelector('[data-figs-out]'),ul=f.querySelector('[data-figs-list]');
+    var rateTouched=false;
     function run(){
-      var ac=parseFloat(a.value),mv=parseFloat(v.value),rt=parseFloat(r.value)/100;
-      if(!(ac>0)||!(mv>0)||!(rt>0)){o.textContent='Enter acres and value';n.textContent='Compared with being taxed at full market value.';return;}
-      var mid=ac*Math.max(0,mv-150)*rt;
-      if(mid<100){o.textContent='Under $100 a year';n.textContent='At this size and value the difference is small.';return;}
-      var lo=nice(mid*0.75,false), hi=nice(mid*1.25,true);
-      if(hi<=lo) hi=lo+(lo>=2000?500:100);
-      o.textContent=money(lo)+' to '+money(hi)+' a year';
-      n.textContent='A rough range, not a quote. Your appraisal district\'s values decide the real number.';
+      var c=by[sel.value],ac=parseFloat(a.value),mv=parseFloat(v.value),rt=parseFloat(r.value)/100,pv=c?c.pv:D.def.pv;
+      if(!(ac>0)||!(mv>0)||!(rt>0)){o.textContent='Enter acres and value';n.textContent='A rough range, not a quote.';box.hidden=true;return;}
+      var mid=ac*Math.max(0,mv-pv)*rt;
+      if(mid<100){o.textContent='Under $100 a year';}
+      else{var lo=nice(mid*0.75,false),hi=nice(mid*1.25,true);if(hi<=lo)hi=lo+(lo>=2000?500:100);o.textContent=money(lo)+' to '+money(hi)+' a year';}
+      n.textContent='A rough range, not a quote. Your appraisal district’s values decide the real number.';
+      ul.innerHTML='';
+      var place=c?c.name+' County':'your county';
+      li(ul,'<b>Land:</b> '+ac.toLocaleString('en-US')+' acres at '+money(mv)+' an acre, your figures.');
+      if(c&&!rateTouched){
+        li(ul,'<b>Tax rate:</b> '+pct(rt*100)+', a typical rural rate for '+place+' in 2025 ('+c.parts.map(function(p){var l=p[0]==='County'?'county':p[0]==='Typical school district (median)'?'typical school district':p[0];return l+' '+pct(p[1]);}).join(' + ')+'). School district rates in this county run '+pct(c.isd[0])+' to '+pct(c.isd[1])+', so yours may differ.');
+      } else {
+        li(ul,'<b>Tax rate:</b> '+pct(rt*100)+(rateTouched?', the rate you entered.':', a general Texas rural rate. Pick your county for a closer figure.'));
+      }
+      if(c){li(ul,'<b>Productivity value:</b> about '+money(pv)+' an acre, what the '+c.name+' County appraisal district reported for '+c.pvBasis+' in the state’s '+c.pvYear+' property value study.');}
+      else{li(ul,'<b>Productivity value:</b> about '+money(pv)+' an acre, a typical figure for North and East Texas.');}
+      li(ul,'<b>Calculation:</b> ('+money(mv)+' − '+money(pv)+') × '+ac.toLocaleString('en-US')+' acres × '+pct(rt*100)+' ≈ '+money(mid)+' a year, shown as a range 25% either side.');
+      box.hidden=false;
     }
-    [a,v,r].forEach(function(x){x.addEventListener('input',run);});
+    sel.addEventListener('change',function(){var c=by[sel.value];rateTouched=false;r.value=(c?c.rate:D.def.rate).toFixed(2);run();});
+    r.addEventListener('input',function(){rateTouched=true;run();});
+    [a,v].forEach(function(x){x.addEventListener('input',run);});
   });
 })();
 </script>

@@ -3,7 +3,7 @@
 // Every page built mainly to be found in search should include this, so a
 // visitor who lands there can reach the plan, the process, the reasons to
 // work with us, and the contact form in one click.
-const { title = 'Where to go from here', place = 'your land', hide = [] } = Astro.props;
+const { title = 'Where to go from here', place = 'your land', hide = [], deep = false } = Astro.props;
 const links = [
   ['/wildlife-management-plans', 'THE PLAN', 'What\'s in a wildlife management plan', 'Maps, practices, a year-by-year calendar, cost estimates, and the forms ready to file.'],
   ['/property-assessment', 'THE FIRST STEP', 'How a property assessment works', `We walk ${place}, find what it's short of, and tell you straight what would help most.`],
@@ -13,7 +13,7 @@ const links = [
   ['/contact', 'GET STARTED', 'Request an assessment or a quote', 'Tell us the county, the acreage and your goals. Plans are quoted to the property.'],
 ].filter(([href]) => !hide.includes(href));
 ---
-<section class="topo-ink shift-3 seam nextsteps">
+<section class={`topo-ink shift-3 seam nextsteps${deep ? ' deepstone' : ''}`}>
   <div class="wrap">
     <div class="shead">
       <div class="idx"><i></i><s></s><b>EVERYTHING IN ONE PLACE</b></div>

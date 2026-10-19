@@ -5,6 +5,7 @@ import PageHead from '../../components/PageHead.astro';
 import CtaBand from '../../components/CtaBand.astro';
 import { SITE, BUSINESS, breadcrumbs } from '../../data/site.js';
 import { counties, bySlug, regions, countyPath, REVIEWED } from '../../data/counties.js';
+import Estimator from '../../components/Estimator.astro';
 
 export function getStaticPaths() {
   return counties.map((c) => ({ params: { slug: c.slug } }));
@@ -113,7 +114,22 @@ const ld = { '@context': 'https://schema.org', '@graph': [
   </div>
 </section>
 
-<section id="questions" class="topo-ink shift-1 seam deepstone">
+<section class="topo-ink shift-2 seam deepstone" id="estimate">
+  <div class="wrap twocol">
+    <div>
+      <div class="idx"><i></i><s></s><b>SEE WHAT'S AT STAKE</b></div>
+      <h2 class="h2s" style="font-size:clamp(1.5rem,2.8vw,2.1rem)">What an open-space valuation is worth in {county}</h2>
+      <div class="prose">
+        <p>Plug in your acres and land value. The estimator uses {county}'s typical 2025 rural tax rate and the productivity value its appraisal district reports, then shows a rough yearly range and every figure it used.</p>
+        <p>Remember what it measures: the difference between full market-value taxes and an ag or wildlife valuation. If your land already has an ag valuation, a wildlife plan is how you keep that difference, not add to it.</p>
+        <p><a href="/wildlife-management-plans">See what goes into a wildlife management plan</a> or <a href="/contact">ask us about your property</a>.</p>
+      </div>
+    </div>
+    <Estimator p={'c-' + c.slug} county={c.slug} />
+  </div>
+</section>
+
+<section id="questions" class="topo-ink shift-1 seam">
   <div class="wrap">
     <div class="shead">
       <div class="idx"><i></i><s></s><b>STRAIGHT ANSWERS</b></div>
@@ -130,7 +146,7 @@ const ld = { '@context': 'https://schema.org', '@graph': [
   </div>
 </section>
 
-<NextSteps title={`From here: plans, process and getting started in ${county}`} place={`your ${county} property`} />
+<NextSteps title={`From here: plans, process and getting started in ${county}`} place={`your ${county} property`} deep />
 
 <section class="topo-ink shift-2 seam">
   <div class="wrap">

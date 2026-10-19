@@ -707,3 +707,16 @@ footer .cols2{display:grid;grid-template-columns:1fr 1fr;gap:0 1rem}
 footer .fcontact{margin-top:1.4rem}
 footer .fcontact p{margin:.2rem 0;font-size:.88rem}
 footer .fcontact .btn{margin-top:.6rem;border-bottom:1px solid var(--oak)}
+/* Estimator: up-front conditions and figures used */
+.est .row2{display:grid;gap:0 1rem;grid-template-columns:1fr}
+@media(min-width:640px){.est .row2{grid-template-columns:1fr 1fr}}
+.est .k{font-family:var(--d);font-size:.7rem;font-weight:700;letter-spacing:.09em;color:var(--ink-mute);margin:0 0 .5rem}
+.est-pre{background:var(--linen);border-left:3px solid var(--oak);padding:.9rem 1rem .8rem;margin-bottom:1.2rem}
+.est-pre ul{margin:0;padding-left:1.1rem}
+.est-pre li{font-size:.9rem;color:var(--ink-soft);margin:.3rem 0;line-height:1.5}
+.est-pre b{color:var(--ink)}
+.est .figs{margin-top:.9rem;border-top:1px solid var(--hair);padding-top:.8rem}
+.est .figs ul{margin:0;padding-left:1.1rem}
+.est .figs li{font-size:.9rem;color:var(--ink-soft);margin:.35rem 0;line-height:1.5}
+.est .figs b{color:var(--ink)}
+.est .fine a{color:inherit}
