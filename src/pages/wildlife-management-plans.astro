@@ -7,16 +7,16 @@ import { breadcrumbs, service } from '../data/site.js';
 const crumbs = [['Services', '/services'], ['Wildlife management plans', '/wildlife-management-plans']];
 const ld = { '@context': 'https://schema.org', '@graph': [
   service({ name: 'Wildlife management plan', serviceType: 'Wildlife management plan', path: '/wildlife-management-plans',
-    description: 'A comprehensive wildlife management plan built from an on-foot assessment: species goals, habitat, food, cover and water work, census, and a practice calendar. For Texas properties, prepared to file for wildlife tax exemption.' }),
+    description: 'A comprehensive wildlife management plan built from an on-foot assessment: species goals, habitat, food, cover and water work, census, and a practice calendar. Prepared to file for wildlife tax exemption.' }),
   breadcrumbs(crumbs),
 ] };
 ---
 <Base
   title="Wildlife Management Plans in Texas | LVG Wildlife Solutions"
-  description="A complete wildlife management plan for your property, built from an on-foot assessment. In Texas, prepared to file for wildlife tax exemption with your county."
+  description="A complete wildlife management plan for your property, built from an on-foot assessment. Prepared to file for wildlife tax exemption with your county."
   path="/wildlife-management-plans"
   ogTitle="Wildlife management plans | LVG Wildlife Solutions"
-  ogDescription="What to do for the wildlife on your land, where, and in what order. In Texas, ready to file for wildlife tax exemption."
+  ogDescription="What to do for the wildlife on your land, where, and in what order. Ready to file for wildlife tax exemption."
   current="services"
   ld={ld}
   mcta={{ title: 'Wildlife management plan', line: 'Starts with a site visit', href: '/contact', label: 'Get in touch' }}

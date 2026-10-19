@@ -69,7 +69,7 @@ export const faqGroups = [
    },
    {
     "q": "Can my management plan be used for the Texas wildlife tax exemption?",
-    "a": "Yes. For Texas properties we write the plan so it does both jobs: it tells you how to manage the land for the wildlife on it, and it is prepared on the Texas Parks and Wildlife form so it can be filed with your county appraisal district for wildlife tax exemption. <a href='/wildlife-tax-valuation'>How the Texas wildlife tax exemption works</a>."
+    "a": "Yes. We write the plan so it does both jobs: it tells you how to manage the land for the wildlife on it, and it is prepared on the Texas Parks and Wildlife form so it can be filed with your county appraisal district for wildlife tax exemption. <a href='/wildlife-tax-valuation'>How the Texas wildlife tax exemption works</a>."
    },
    {
     "q": "What does the wildlife tax exemption require?",
@@ -95,10 +95,6 @@ export const faqGroups = [
    {
     "q": "How is this different from hiring someone to put in food plots?",
     "a": "A contractor installs what you ask for. We tell you whether that is the right thing to install, where, and what has to happen alongside it for it to matter. A food plot in the wrong place relative to bedding and access can make a property harder to hunt, not easier. If food plots turn out to be the right answer for your property, we will say so and tell you why."
-   },
-   {
-    "q": "Do you work in Oklahoma?",
-    "a": "Yes. Assessments, management plans, and habitat work are the same on both sides of the river. The wildlife tax exemption is the one piece that is specific to Texas."
    }
   ]
  },

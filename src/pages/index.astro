@@ -20,10 +20,10 @@ const ld = { '@context': 'https://schema.org', '@graph': [
   {
     '@type': 'ProfessionalService', '@id': SITE + '/#business',
     name: 'LVG Wildlife Solutions', alternateName: 'Land Value Group Wildlife Solutions',
-    description: 'Wildlife management plans, on-foot property assessments, annual reports, and whitetail habitat work for landowners in Texas and Oklahoma. Texas plans are prepared to file for the wildlife tax exemption.',
+    description: 'Wildlife management plans, on-foot property assessments, annual reports, and whitetail habitat work for Texas landowners. Plans are prepared to file for the wildlife tax exemption.',
     url: SITE + '/', logo: SITE + '/favicon-192.png', image: SITE + '/og.png', priceRange: '$$',
     parentOrganization: { '@type': 'Organization', name: 'Land Value Group', url: 'https://landvaluegroup.com/' },
-    areaServed: [{ '@type': 'State', name: 'Texas' }, { '@type': 'State', name: 'Oklahoma' }],
+    areaServed: { '@type': 'State', name: 'Texas' },
     ...(CONTACT.phone ? { telephone: CONTACT.phone } : {}), ...(CONTACT.email ? { email: CONTACT.email } : {}),
     knowsAbout: ['Wildlife management plans', 'Texas wildlife tax exemption', '1-d-1 open-space wildlife management valuation', 'Whitetail deer habitat management', 'Food plots', 'Wildlife property assessment', 'Trail camera surveys and census counts', 'Brush management', 'Nest boxes and wood duck boxes', 'Feral hog control'],
     hasOfferCatalog: { '@type': 'OfferCatalog', name: 'Services', itemListElement: [
@@ -36,7 +36,7 @@ const ld = { '@context': 'https://schema.org', '@graph': [
 
 const services = [
   ['/property-assessment', '01', 'Property assessment', 'We walk every acre and tell you straight what is working, what is holding the place back, and what to fix first.'],
-  ['/wildlife-management-plans', '02', 'Wildlife management plans', 'The full game plan for your land, mapped and on a calendar. In Texas, ready to file for the wildlife tax exemption.'],
+  ['/wildlife-management-plans', '02', 'Wildlife management plans', 'The full game plan for your land, mapped and on a calendar. Ready to file for the wildlife tax exemption.'],
   ['/annual-reports', '03', 'Annual reports and yearly help', 'A yearly visit, a look at what changed, and your annual report handled, so the plan keeps working.'],
   ['/habitat-work', '04', 'Habitat work', 'Food plots, brush work, nest boxes, and the first year of practices, done with you or for you.'],
 ];
@@ -69,27 +69,27 @@ const benefits = [
   ['You\'ll know exactly what to do', 'Every job has a where, a when, and a who: you, or us if you\'d rather. No guessing what comes next.'],
   ['Straight talk, every time', 'What we saw, what we think it means, and how sure we are. Including the answers that don\'t make us money.'],
   ['Sized to your life', 'Plans built around your time, your equipment and your budget, so they actually get done.'],
-  ['Texas filing, handled with you', 'In Texas, your plan is prepared to file for the wildlife exemption, and we help you file it with your county.'],
+  ['Texas filing, handled with you', 'Your plan is prepared to file for the wildlife exemption, and we help you file it with your county.'],
   ['We stick around', 'Yearly visits, annual reports and a record of how your land changes over time. Partners, not a one-time sale.'],
 ];
 import { counties, regions, countyPath } from '../data/counties.js';
 ---
 <Base
-  title="LVG Wildlife Solutions | Wildlife Management in Texas & Oklahoma"
-  description="Wildlife management plans and on-foot property assessments for Texas and Oklahoma landowners. Better habitat, better hunting, and Texas plans ready to file for the wildlife exemption."
+  title="LVG Wildlife Solutions | Wildlife Management Plans in North & East Texas"
+  description="Wildlife management plans and on-foot property assessments for North and East Texas landowners. Better habitat, better hunting, and plans ready to file for the wildlife exemption."
   path="/"
-  ogTitle="LVG Wildlife Solutions | Wildlife Management Plans in Texas and Oklahoma"
-  ogDescription="We walk your land and build the plan to make it better. Better habitat, better hunting, and in Texas, ready to file for the wildlife exemption."
+  ogTitle="LVG Wildlife Solutions | Wildlife Management Plans in Texas"
+  ogDescription="We walk your land and build the plan to make it better. Better habitat, better hunting, and a plan ready to file for the wildlife exemption."
   current="home"
   ld={ld}
-  mcta={{ title: 'Property assessment', line: 'Texas and Oklahoma', href: '/contact', label: 'Get in touch' }}
+  mcta={{ title: 'Property assessment', line: 'North and East Texas', href: '/contact', label: 'Get in touch' }}
 >
 <!-- ===================== HERO ===================== -->
 <div class="hero topo-gold deep">
   <div class="wrap">
-    <div class="idx reveal"><i></i><s></s><b>WILDLIFE MANAGEMENT &middot; TEXAS AND OKLAHOMA</b></div>
+    <div class="idx reveal"><i></i><s></s><b>WILDLIFE MANAGEMENT &middot; NORTH AND EAST TEXAS</b></div>
     <h1 class="reveal">Wildlife management plans, built by walking your land.</h1>
-    <p class="sub reveal d1">We put boots on every acre, figure out what your property is short of, and hand you a plan to fix it: what to do, where, when, and who does it. Whitetail are our specialty. In Texas, the same plan is ready to file for the wildlife tax exemption, so the work that improves your land can also qualify it.</p>
+    <p class="sub reveal d1">We put boots on every acre, figure out what your property is short of, and hand you a plan to fix it: what to do, where, when, and who does it. Whitetail are our specialty. The same plan is ready to file for the wildlife tax exemption, so the work that improves your land can also qualify it.</p>
     <div class="acts reveal d2">
       <a class='btn p' href='/contact'>Request a property assessment</a>
       <a class="btn s" href="#how-it-works">How it works</a>
@@ -157,7 +157,7 @@ import { counties, regions, countyPath } from '../data/counties.js';
       <div class="frow-txt">
         <span class="tag">02 &middot; THE PLAN</span>
         <h3>Wildlife management plans</h3>
-        <p>The full game plan for your land: what to do, where, when, and who does it. Every practice mapped, a calendar from the next 90 days to year five, and costs for doing it yourself or having us do it. In Texas, ready to file for the wildlife exemption.</p>
+        <p>The full game plan for your land: what to do, where, when, and who does it. Every practice mapped, a calendar from the next 90 days to year five, and costs for doing it yourself or having us do it. Ready to file for the wildlife exemption.</p>
         <ul class="checks"><li>Food, cover and water work, mapped and sequenced</li><li>A record kit for your annual report</li><li>Filing help with your county appraisal district</li></ul>
         <a class="btn s2" href="/wildlife-management-plans">About management plans</a>
       </div>
@@ -243,7 +243,7 @@ import { counties, regions, countyPath } from '../data/counties.js';
       <li><b>Intro call and intake</b><p>We talk through your property and your goals, then send a short intake form so our time on the ground counts.</p></li>
       <li><b>Pick what fits</b><p>An assessment on its own, a full management plan, or a plan with yearly help after it. We'll tell you what we'd do; you decide.</p></li>
       <li><b>We walk your property</b><p>Boundary to boundary, on foot. Habitat, deer sign, water, terrain, and which ground you can actually manage.</p></li>
-      <li><b>Your plan, ready to file</b><p>Report, maps, and the written plan, then a call to walk through it. In Texas, we prepare it for the wildlife exemption and help you file with your county.</p></li>
+      <li><b>Your plan, ready to file</b><p>Report, maps, and the written plan, then a call to walk through it. We prepare it for the wildlife exemption and help you file with your county.</p></li>
       <li><b>Year after year</b><p>A yearly visit, a look at what changed, and the annual report handled, so the plan keeps working and your records stay ready.</p></li>
     </ol>
   </div>
@@ -287,7 +287,7 @@ import { counties, regions, countyPath } from '../data/counties.js';
   <div class="wrap">
     <div class="shead">
       <div class="idx"><i></i><s></s><b>LOCAL GROUND, LOCAL KNOWLEDGE</b></div>
-      <h2>Where we work: North and East Texas, and southern Oklahoma</h2>
+      <h2>Where we work: North and East Texas</h2>
       <p class="sd">Blackland clay, sandy loam, post oak, pine. We know how each one grows, holds deer, and responds to work, so your plan fits your dirt.</p>
     </div>
     <ul class="regions">
@@ -295,10 +295,9 @@ import { counties, regions, countyPath } from '../data/counties.js';
         <li style={`--rc:var(${['--oak','--bluestem','--prairie'][i]})`}><b>{r.name}</b><span>{r.line}</span>
           <em>{counties.filter((c) => c.region === r.key).map((c, j) => <Fragment>{j > 0 && ', '}<a href={countyPath(c)}>{c.name}</a></Fragment>)} counties</em></li>
       ))}
-      <li style="--rc:var(--stone)"><b>Southern Oklahoma</b><span>Mixed hardwood, native grass, and agricultural edge</span><em>Habitat and deer management. Oklahoma has no wildlife tax valuation.</em></li>
     </ul>
     <p style="margin-top:1.5rem"><a class="btn s" href="/service-area">See every county we serve</a></p>
-    <p class="note">Outside these counties? Ask. We'll tell you honestly whether we're the right fit. The wildlife tax exemption applies to Texas properties.</p>
+    <p class="note">Outside these counties? Ask. We'll tell you honestly whether we're the right fit.</p>
   </div>
 </section>
 
@@ -349,7 +348,7 @@ import { counties, regions, countyPath } from '../data/counties.js';
         <p>You don't need anything figured out before you reach out. Most folks call because something isn't working and they're not sure why, or because they want a plan they can file for the wildlife exemption. Either one is the right time.</p>
         <p>We treat every property like a partnership. Your goals set the direction. Our job is finding what your land can do and showing you the way there.</p>
         <dl>
-          <div><dt>Service area</dt><dd>Texas and Oklahoma</dd></div>
+          <div><dt>Service area</dt><dd>North and East Texas</dd></div>
           <div><dt>Response time</dt><dd>Within a couple of days</dd></div>
         </dl>
       </div>

@@ -9,7 +9,7 @@ export const breadcrumbs = (crumbs) => ({
   })),
 });
 
-export const service = ({ name, serviceType, description, path, areaServed = ['Texas', 'Oklahoma'] }) => ({
+export const service = ({ name, serviceType, description, path, areaServed = ['Texas'] }) => ({
   '@type': 'Service', '@id': SITE + path + '#service', name, serviceType, description,
   provider: BUSINESS, url: SITE + path,
   areaServed: areaServed.map((s) => ({ '@type': 'State', name: s })),

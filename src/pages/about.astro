@@ -1,4 +1,5 @@
 ---
+import { counties, regions, countyPath } from '../data/counties.js';
 import Base from '../layouts/Base.astro';
 import PageHead from '../components/PageHead.astro';
 import CtaBand from '../components/CtaBand.astro';
@@ -10,13 +11,13 @@ const ld = { '@context': 'https://schema.org', '@graph': [
 ---
 <Base
   title="About LVG Wildlife Solutions | Land Value Group Wildlife"
-  description="LVG Wildlife Solutions is the wildlife side of Land Value Group: on-foot property assessments, wildlife management plans, and habitat work in Texas and Oklahoma."
+  description="LVG Wildlife Solutions is the wildlife side of Land Value Group: on-foot property assessments, wildlife management plans, and habitat work in North and East Texas."
   path="/about"
   ogTitle="About | LVG Wildlife Solutions"
   ogDescription="The wildlife side of Land Value Group, and how we work."
   current="about"
   ld={ld}
-  mcta={{ title: 'Property assessment', line: 'Texas and Oklahoma', href: '/contact', label: 'Get in touch' }}
+  mcta={{ title: 'Property assessment', line: 'North and East Texas', href: '/contact', label: 'Get in touch' }}
 >
 <PageHead crumbs={[['About', '/about']]} eyebrow="ABOUT" title="The wildlife side of Land Value Group" lead="Land Value Group helps landowners get more out of their ground. LVG Wildlife Solutions is the part of that focused on wildlife: walking your property, writing the plan, and helping you keep it going year after year." primary={['/services', 'See our services']} />
 
@@ -51,7 +52,7 @@ const ld = { '@context': 'https://schema.org', '@graph': [
       <li>Whitetail behavior, bedding, and travel interpretation</li>
       <li>Forage, food plot, and native habitat establishment</li>
       <li>Wildlife management plans, including Texas tax exemption filings</li>
-      <li>Blackland, Cross Timbers, Pineywoods, and Oklahoma soils and species</li>
+      <li>Blackland Prairie, Post Oak Savannah and Pineywoods soils and species</li>
       <li>Mapping, census design, and written reporting</li>
     </ul>
   </div>
@@ -61,16 +62,17 @@ const ld = { '@context': 'https://schema.org', '@graph': [
   <div class="wrap">
     <div class="shead">
       <div class="idx"><i></i><s></s><b>LOCAL GROUND, LOCAL KNOWLEDGE</b></div>
-      <h2>Where we work: Texas and Oklahoma</h2>
-      <p class="sd">Four ecoregions. Knowing local soils and woody species is what separates a recommendation that works from one that only sounds right.</p>
+      <h2>Where we work: North and East Texas</h2>
+      <p class="sd">Three kinds of country. Knowing local soils and woody species is what separates a recommendation that works from one that only sounds right.</p>
     </div>
     <ul class="regions">
-      <li style="--rc:var(--oak)"><b>Blackland Prairie and Post Oak Savannah</b><span>Heavy clay soils, post oak woodland, eastern red cedar encroachment</span><em>Hunt, Rains, Van Zandt, Kaufman, Collin, Fannin, Hopkins counties</em></li>
-      <li style="--rc:var(--bluestem)"><b>Cross Timbers</b><span>Post oak and blackjack mixed with improved pasture and native grass</span><em>Parker, Wise, Jack, Palo Pinto, Erath counties</em></li>
-      <li style="--rc:var(--prairie)"><b>Pineywoods and East Texas</b><span>Pine and hardwood, bottomland drainages, managed timber</span><em>Wood, Henderson, Smith, Cherokee, Anderson counties</em></li>
-      <li style="--rc:var(--stone)"><b>Southern Oklahoma</b><span>Mixed hardwood, native grass, and agricultural edge</span><em>Bryan, Love, Marshall, Johnston, Atoka counties</em></li>
+      {regions.map((r, i) => (
+        <li style={`--rc:var(${['--oak','--bluestem','--prairie'][i]})`}><b>{r.name}</b><span>{r.line}</span>
+          <em>{counties.filter((c) => c.region === r.key).map((c, j) => <Fragment>{j > 0 && ', '}<a href={countyPath(c)}>{c.name}</a></Fragment>)} counties</em></li>
+      ))}
     </ul>
-    <p class="note">The wildlife tax exemption applies to Texas properties. Travel beyond our normal range is billed separately.</p>
+    <p style="margin-top:1.5rem"><a class="btn s" href="/service-area">See every county we serve</a></p>
+    <p class="note">Land just outside these counties? Ask. Travel beyond our normal range is quoted separately.</p>
   </div>
 </section>
 
