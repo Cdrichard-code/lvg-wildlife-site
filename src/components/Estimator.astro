@@ -14,20 +14,24 @@ const { p = 'e' } = Astro.props;
     <div class="big" data-out>Enter acres and value</div>
     <p data-note>Compared with being taxed at full market value.</p>
   </div>
-  <p class="fine">*A broad estimate only, with no guarantee. It assumes a productivity value of roughly $50 to $250 an acre; actual values, rates, and qualification are set by your county appraisal district, and their numbers decide. This is not tax advice.</p>
+  <p class="fine">*A broad estimate only, with no guarantee. We estimate the difference using a typical productivity value of about $150 an acre, then show a range 25% either side of it; actual values, rates, and qualification are set by your county appraisal district, and their numbers decide. This is not tax advice.</p>
 </form>
 <script is:inline>
 (function(){
-  function money(x){x=Math.max(0,x);var s=x>=10000?Math.round(x/100)*100:x>=1000?Math.round(x/50)*50:Math.round(x/10)*10;return '$'+s.toLocaleString('en-US');}
+  function nice(x,up){var st=x>=2000?500:x>=500?100:50;return (up?Math.ceil(x/st):Math.floor(x/st))*st;}
+  function money(x){return '$'+Math.max(0,x).toLocaleString('en-US');}
   document.querySelectorAll('form[data-est]:not([data-ready])').forEach(function(f){
     f.setAttribute('data-ready','');
     var a=f.querySelector('[data-acres]'),v=f.querySelector('[data-value]'),r=f.querySelector('[data-rate]'),o=f.querySelector('[data-out]'),n=f.querySelector('[data-note]');
     function run(){
       var ac=parseFloat(a.value),mv=parseFloat(v.value),rt=parseFloat(r.value)/100;
       if(!(ac>0)||!(mv>0)||!(rt>0)){o.textContent='Enter acres and value';n.textContent='Compared with being taxed at full market value.';return;}
-      var hi=ac*Math.max(0,mv-50)*rt, lo=ac*Math.max(0,mv-250)*rt;
+      var mid=ac*Math.max(0,mv-150)*rt;
+      if(mid<100){o.textContent='Under $100 a year';n.textContent='At this size and value the difference is small.';return;}
+      var lo=nice(mid*0.75,false), hi=nice(mid*1.25,true);
+      if(hi<=lo) hi=lo+(lo>=2000?500:100);
       o.textContent=money(lo)+' to '+money(hi)+' a year';
-      n.textContent='Market-value taxes on the land would be about '+money(ac*mv*rt)+' a year.';
+      n.textContent='A rough range, not a quote. Your appraisal district\'s values decide the real number.';
     }
     [a,v,r].forEach(function(x){x.addEventListener('input',run);});
   });
