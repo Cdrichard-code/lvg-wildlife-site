@@ -1,4 +1,5 @@
 ---
+import InShort from '../components/InShort.astro';
 import HeroBg from '../components/HeroBg.astro';
 import Base from '../layouts/Base.astro';
 import Estimator from '../components/Estimator.astro';
@@ -67,7 +68,7 @@ const ld = { '@context': 'https://schema.org', '@graph': [
       <nav class="crumb" aria-label="Breadcrumb"><a href='/'>Home</a><span>/</span>Tax savings calculator</nav>
       <div class="idx"><i></i><s></s><b>FREE, COUNTY BY COUNTY</b></div>
       <h1>What is a wildlife or ag valuation worth on your land?</h1>
-      <p class="lead">Texas lets qualifying land be taxed on what it produces instead of what it would sell for. Pick your county, put in your acres and land value, and see a rough yearly range, with every figure behind it.</p>
+      <p class="lead">Pick your county, put in your acres and land value, and see a rough yearly range with every figure behind it.</p>
       <ul class="calcpoints">
         <li>2025 tax rates for 20 North and East Texas counties</li>
         <li>Values your appraisal district actually reports</li>
@@ -79,23 +80,29 @@ const ld = { '@context': 'https://schema.org', '@graph': [
   </div>
 </section>
 
-<section class="topo-ink shift-1 seam">
+<InShort points={[
+  'Pick your county, enter your acres and land value, and see a rough yearly range with every figure shown.',
+  'It shows what an ag or wildlife valuation is worth on land that has none today.',
+  'Land already in an ag valuation keeps those savings by switching to wildlife. It doesn\'t add more.',
+]} links={[['#how-valuation-works','How valuation works'],['#before-you-count','Read this first'],['#the-plan','The plan'],['#questions','Questions'],['#talk','Talk to us']]} />
+
+<section class="topo-ink shift-1 seam" id="how-valuation-works">
   <div class="wrap">
     <div class="shead">
       <div class="idx"><i></i><s></s><b>PLAIN ENGLISH, NO FINE PRINT</b></div>
       <h2>How land use valuation works in Texas</h2>
-      <p class="sd">Most people call it an ag exemption. Officially it is open-space valuation: the land is taxed on its productivity value, usually a small fraction of its market value.</p>
+      <p class="sd">Most people call it an ag exemption. Officially it's open-space valuation: land taxed on what it produces, not what it would sell for.</p>
     </div>
     <div class="who">
       {kinds.map(([t, p]) => <div><h3>{t}</h3><p>{p}</p></div>)}
     </div>
     <div class="prose wide" style="margin-top:1.75rem">
-      <p>Wildlife management is the one most landowners have never heard of. It lets a place that is used for hunting, wildlife and enjoyment instead of cattle or hay keep its valuation, as long as it is managed for native wildlife under a written plan. That plan is filed with your <a href="/service-area">county appraisal district</a>, and the work it calls for is the same work that makes a property hunt better. <a href="/wildlife-tax-valuation">Read how the Texas wildlife exemption works.</a></p>
+      <p>Wildlife management is the one most landowners have never heard of: a place used for hunting instead of cattle or hay keeps its valuation under a written wildlife plan, filed with your <a href="/service-area">county appraisal district</a>. <a href="/wildlife-tax-valuation">How the Texas wildlife exemption works</a>.</p>
     </div>
   </div>
 </section>
 
-<section class="topo-ink shift-2 seam deepstone">
+<section class="topo-ink shift-2 seam deepstone" id="before-you-count">
   <div class="wrap">
     <div class="shead">
       <div class="idx"><i></i><s></s><b>STRAIGHT ANSWERS UP FRONT</b></div>
@@ -108,7 +115,7 @@ const ld = { '@context': 'https://schema.org', '@graph': [
   </div>
 </section>
 
-<section class="topo-ink shift-3 seam">
+<section class="topo-ink shift-3 seam" id="the-plan">
   <div class="wrap twocol">
     <div>
       <div class="idx"><i></i><s></s><b>THE WORK BEHIND THE NUMBER</b></div>

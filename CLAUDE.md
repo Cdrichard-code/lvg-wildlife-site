@@ -24,6 +24,12 @@ Public marketing site for LVG Wildlife Solutions (Land Value Group Wildlife Solu
 - Prices are never published on the site.
 - Eyebrows and taglines are selling points that build confidence (what we do well, what the owner gets), not plain labels like "Questions" or "Next step".
 
+## Page structure
+- The home page is a hub: short sections that point people to the right page. Detail lives on the inner pages, not on the home page.
+- Long reference pages (tax exemption, calculator, FAQ, county pages) open with `<InShort />`: three summary bullets and "On this page" jump links.
+- Keep section intros to one line and lead paragraphs to two or three sentences. Never change page titles, meta descriptions or H1s while tightening copy.
+- On every page but the calculator page, use `<Estimator compact />`; the full disclaimers live on /tax-savings-calculator#before-you-count.
+
 ## Search pages and blog posts
 - Every page built mainly to be found in search (county pages, guides, blog posts) must include `<NextSteps />` (src/components/NextSteps.astro) and link in its body copy to the plan, assessment, process, services, about/why-us and contact pages where they fit.
 - County pages live in `src/data/counties.js` and render through `src/pages/service-area/[slug].astro`. CAD facts there must come from the district's own published documents, linked in `sources`. Re-check them each fall.

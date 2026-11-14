@@ -1,0 +1,24 @@
+---
+// "In short" summary and "On this page" jump links, placed right under the
+// page header on long reference pages so visitors can get the answer or jump
+// straight to the part they need.
+const { points = [], links = [], label = 'IN SHORT' } = Astro.props;
+---
+<section class="inshort">
+  <div class="wrap">
+    <div class={points.length ? 'isgrid' : 'isgrid only'}>
+      {points.length > 0 && (
+        <div class="is-pts">
+          <p class="k">{label}</p>
+          <ul>{points.map((t) => <li set:html={t} />)}</ul>
+        </div>
+      )}
+      {links.length > 0 && (
+        <nav class="is-nav" aria-label="On this page">
+          <p class="k">ON THIS PAGE</p>
+          <ul>{links.map(([href, t]) => <li><a href={href}>{t}</a></li>)}</ul>
+        </nav>
+      )}
+    </div>
+  </div>
+</section>

@@ -1,4 +1,5 @@
 ---
+import InShort from '../components/InShort.astro';
 import NextSteps from '../components/NextSteps.astro';
 import Base from '../layouts/Base.astro';
 import PageHead from '../components/PageHead.astro';
@@ -26,6 +27,8 @@ const total = groups.reduce((n, g) => n + g.items.length, 0);
 >
 <PageHead crumbs={[['Questions', '/faq']]} eyebrow="COMMON QUESTIONS" title="Wildlife management and wildlife exemption questions, answered straight" lead="Type a word or two to find what you're looking for: food plots, deadline, acreage, annual report." primary={null} />
 
+<InShort links={groups.map((g) => ['#' + g.group.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, ''), g.group])} />
+
 <section class="topo-ink shift-1 seam">
   <div class="wrap">
     <div class="fsearch">
@@ -37,7 +40,7 @@ const total = groups.reduce((n, g) => n + g.items.length, 0);
     <div class="fempty" id="qempty"><p style="margin:0">No question matches that yet. <a href="/contact">Ask us directly</a> and we'll answer it.</p></div>
     <div class="faq" id="faqlist">
       {groups.map((g) => (
-        <div class="faqgroup">
+        <div class="faqgroup" id={g.group.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}>
           <h3>{g.group}</h3>
           <div class="acc">
             {g.items.map((x) => <details><summary>{x.q}</summary><div class="a"><p set:html={x.a} /></div></details>)}

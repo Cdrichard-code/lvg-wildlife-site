@@ -1,4 +1,5 @@
 ---
+import InShort from '../../components/InShort.astro';
 import NextSteps from '../../components/NextSteps.astro';
 import Base from '../../layouts/Base.astro';
 import PageHead from '../../components/PageHead.astro';
@@ -49,7 +50,9 @@ const ld = { '@context': 'https://schema.org', '@graph': [
 >
 <PageHead crumbs={crumbs} eyebrow={`${county.toUpperCase()}, TEXAS`} title={`${county} ag exemption: keeping it with wildlife management`} lead={c.lead} secondary={['#questions', `${county} questions`]} />
 
-<section class="topo-ink shift-1 seam">
+<InShort links={[['#what-it-takes', 'What it takes'], ['#the-land', 'The land'], ['#district', `${c.cad.name.replace(' Appraisal District', ' CAD').replace(' Central CAD', ' CAD')} rules`], ['#estimate', 'What it\'s worth'], ['#questions', 'Questions']]} />
+
+<section class="topo-ink shift-1 seam" id="what-it-takes">
   <div class="wrap twocol">
     <div>
       <div class="idx"><i></i><s></s><b>WHAT IT TAKES</b></div>
@@ -74,7 +77,7 @@ const ld = { '@context': 'https://schema.org', '@graph': [
   </div>
 </section>
 
-<section class="topo-ink shift-2 seam deepstone">
+<section class="topo-ink shift-2 seam deepstone" id="the-land">
   <div class="wrap">
     <div class="shead">
       <div class="idx"><i></i><s></s><b>{region.name.toUpperCase()}</b></div>
@@ -91,7 +94,7 @@ const ld = { '@context': 'https://schema.org', '@graph': [
   </div>
 </section>
 
-<section class="topo-ink shift-3 seam">
+<section class="topo-ink shift-3 seam" id="district">
   <div class="wrap">
     <div class="shead">
       <div class="idx"><i></i><s></s><b>KNOW YOUR DISTRICT</b></div>
@@ -125,7 +128,7 @@ const ld = { '@context': 'https://schema.org', '@graph': [
         <p><a href="/wildlife-management-plans">See what goes into a wildlife management plan</a> or <a href="/contact">ask us about your property</a>.</p>
       </div>
     </div>
-    <Estimator p={'c-' + c.slug} county={c.slug} />
+    <Estimator p={'c-' + c.slug} county={c.slug} compact />
   </div>
 </section>
 

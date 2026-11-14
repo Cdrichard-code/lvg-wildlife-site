@@ -4,13 +4,16 @@
 // from src/data/taxfigures.js; after calculating, the figures used are listed.
 // Works for any number of copies on a page: each form is wired by attribute.
 import { taxFigures, LAND_PRICE, DEFAULT, RATES_SOURCE } from '../data/taxfigures.js';
-const { p = 'e', county = '' } = Astro.props;
+const { p = 'e', county = '', compact = false } = Astro.props;
 const data = JSON.stringify({ counties: taxFigures, def: DEFAULT, ratesUrl: RATES_SOURCE });
 const sorted = [...taxFigures].sort((a, b) => a.name.localeCompare(b.name));
 const preset = taxFigures.find((t) => t.slug === county);
 ---
 <form class="est" onsubmit="return false" data-est data-figs={data}>
-  <div class="est-pre">
+  {compact ? (
+    <p class="est-short">For land with no valuation today. If yours already has an ag valuation, a wildlife plan keeps these savings rather than adding to them. <a href="/tax-savings-calculator#before-you-count">Read what this does and doesn't cover</a>.</p>
+  ) : (
+  <div class="est-pre" id="est-pre">
     <p class="k">BEFORE YOU RUN THE NUMBERS</p>
     <ul>
       <li><b>This compares full market-value taxes with open-space (ag or wildlife) valuation.</b> It is what the valuation is worth on land that has none today.</li>
@@ -18,6 +21,7 @@ const preset = taxFigures.find((t) => t.slug === county);
       <li><b>No valuation today?</b> Wildlife management requires the land to be in an ag or timber valuation the year before. Minimum acreage rules, your district's review and approval all still apply.</li>
     </ul>
   </div>
+  )}
   <div class="row2">
     <div class="fld"><label for={p + '-county'}>County</label>
       <select id={p + '-county'} data-county>
@@ -40,7 +44,7 @@ const preset = taxFigures.find((t) => t.slug === county);
     <p class="k">FIGURES USED</p>
     <ul data-figs-list></ul>
   </div>
-  <p class="fine">*A broad estimate with no guarantee, shown as a range 25% either side of our calculation. It leaves out your home site and buildings, city taxes, emergency services districts and any exemptions you already have. Your county appraisal district sets the actual values, decides whether land qualifies, and its numbers decide what you pay. This is not tax advice. Sources: <a href={RATES_SOURCE} rel="noopener">Texas Comptroller 2025 tax rates</a>, Texas Comptroller property value study, and the <a href={LAND_PRICE.url} rel="noopener">Texas A&amp;M Real Estate Center</a>.</p>
+  {compact ? <p class="fine">*A rough range, not a quote. <a href="/tax-savings-calculator#before-you-count">Full details and sources</a>.</p> : <p class="fine">*A broad estimate with no guarantee, shown as a range 25% either side of our calculation. It leaves out your home site and buildings, city taxes, emergency services districts and any exemptions you already have. Your county appraisal district sets the actual values, decides whether land qualifies, and its numbers decide what you pay. This is not tax advice. Sources: <a href={RATES_SOURCE} rel="noopener">Texas Comptroller 2025 tax rates</a>, Texas Comptroller property value study, and the <a href={LAND_PRICE.url} rel="noopener">Texas A&amp;M Real Estate Center</a>.</p>}
 </form>
 <script is:inline>
 (function(){

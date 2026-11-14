@@ -1,4 +1,5 @@
 ---
+import InShort from '../components/InShort.astro';
 import HeroBg from '../components/HeroBg.astro';
 import NextSteps from '../components/NextSteps.astro';
 import Base from '../layouts/Base.astro';
@@ -14,6 +15,12 @@ const ld = { '@context': 'https://schema.org', '@graph': [
   { '@type': 'FAQPage', '@id': SITE + '/wildlife-tax-valuation#faq', mainEntity: taxGroups.flatMap((g) => g.items.map((x) => ({
     '@type': 'Question', name: x.q, acceptedAnswer: { '@type': 'Answer', text: stripTags(x.a) } }))) },
 ] };
+const knows = [
+  ['Selling land doesn\'t pass the ag valuation along.', 'When ownership changes, the new owner files a new application with the county before May 1. Miss it and the land can lose its special valuation.'],
+  ['Switching from cattle to wildlife doesn\'t raise your taxes.', 'Wildlife valuation is taxed the same as ag. What changes is the work: wildlife practices instead of a grazing lease or hay.'],
+  ['Losing the valuation can cost three years of back taxes.', 'If land falls out of qualifying use, a rollback tax covers the previous three years. Good records are cheap insurance.'],
+  ['Your county can ask for proof, year after year.', 'More appraisal districts ask for annual reports. Logs, dated photos and receipts kept as you go make it painless.'],
+];
 ---
 <Base
   title={"Texas Wildlife Exemption: How to Qualify | LVG Wildlife Solutions"}
@@ -33,7 +40,7 @@ const ld = { '@context': 'https://schema.org', '@graph': [
     <nav class="crumb" aria-label="Breadcrumb"><a href='/'>Home</a><span>/</span>Texas wildlife exemption</nav>
     <div class="idx"><i></i><s></s><b>TEXAS WILDLIFE TAX EXEMPTION</b></div>
     <h1>The Texas wildlife exemption: what it takes, and how we help you get there</h1>
-    <p class="lead">Texas rewards landowners who actively manage their property for native wildlife. A good management plan is what makes that possible. This page covers how the exemption works, what the state asks for, and where we come in.</p>
+    <p class="lead">A good wildlife management plan lets land with an ag valuation keep it. Here's what it takes, and where we come in.</p>
     <div class="acts">
       <a class='btn p' href='/contact'>Request a property assessment</a>
       <a class='btn s' href='#process'>See the steps</a>
@@ -42,7 +49,13 @@ const ld = { '@context': 'https://schema.org', '@graph': [
 </section>
 
 <!-- ===================== WHAT IT IS ===================== -->
-<section class="topo-ink shift-1 seam">
+<InShort points={[
+  'It lets land that already has an ag or timber valuation keep it by being managed for native wildlife instead of cattle or hay.',
+  'You need a written wildlife management plan on the TPWD form, filed with your county appraisal district before May 1.',
+  'Then you carry out at least three of the seven practices every year and keep records.',
+]} links={[['#what-is-it','What it is'],['#estimate','What it\'s worth'],['#who-qualifies','Who qualifies'],['#practices','The seven practices'],['#process','Step by step'],['#too-late','What owners miss'],['#questions','Questions']]} />
+
+<section class="topo-ink shift-1 seam" id="what-is-it">
   <div class="wrap">
     <div class="shead">
       <div class="idx"><i></i><s></s><b>PLAIN ENGLISH, NO FINE PRINT</b></div>
@@ -67,13 +80,13 @@ const ld = { '@context': 'https://schema.org', '@graph': [
         <p>Two things to know first. Only land that already carries an agricultural or timber valuation can move to wildlife. And wildlife valuation is taxed the same as ag, so if you already have an ag valuation, switching keeps this saving rather than adding to it.</p>
       </div>
     </div>
-    <div><Estimator p="tx" /><p class="estlink"><a href="/tax-savings-calculator">Open the full calculator page</a></p></div>
+    <div><Estimator p="tx" compact /><p class="estlink"><a href="/tax-savings-calculator">Open the full calculator page</a></p></div>
   </div>
 </section>
 
 
 <!-- ===================== WHO QUALIFIES ===================== -->
-<section class="topo-ink shift-3 seam">
+<section class="topo-ink shift-3 seam" id="who-qualifies">
   <div class="wrap">
     <div class="shead">
       <div class="idx"><i></i><s></s><b>WHO QUALIFIES</b></div>
@@ -146,7 +159,19 @@ const ld = { '@context': 'https://schema.org', '@graph': [
 </section>
 
 <!-- ===================== FAQ ===================== -->
-<section id="questions" class="topo-ink shift-1 seam deepstone">
+<section class="dark well topo-gold shift-3" id="too-late">
+  <div class="wrap">
+    <div class="shead">
+      <div class="idx"><i></i><s></s><b>WHAT MOST LANDOWNERS NEVER HEAR</b></div>
+      <h2>Things most landowners find out too late</h2>
+    </div>
+    <div class="knows">
+      {knows.map(([h, p]) => <div class="know"><h3>{h}</h3><p>{p}</p></div>)}
+    </div>
+  </div>
+</section>
+
+<section id="questions" class="topo-ink shift-1 seam">
   <div class="wrap">
     <div class="shead">
       <div class="idx"><i></i><s></s><b>STRAIGHT ANSWERS</b></div>
