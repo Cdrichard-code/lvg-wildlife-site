@@ -1,8 +1,10 @@
 ---
 // Dark page header used on inner pages: breadcrumb, eyebrow, h1, lead, actions.
-const { crumbs = [], eyebrow, title, lead, primary = ['/contact', 'Request a property assessment'], secondary = null } = Astro.props;
+import HeroBg from './HeroBg.astro';
+const { crumbs = [], eyebrow, title, lead, primary = ['/contact', 'Request a property assessment'], secondary = null, bg = null } = Astro.props;
 ---
-<section class="dark topo-gold deep pagehead">
+<section class={`dark topo-gold deep pagehead${bg ? ' hasbg' : ''}`}>
+  {bg && <HeroBg name={bg.name} pos={bg.pos} />}
   <div class="wrap">
     <nav class="crumb" aria-label="Breadcrumb"><a href='/'>Home</a>{crumbs.map(([label, href], i) => (
       i < crumbs.length - 1 ? <Fragment><span>/</span><a href={href}>{label}</a></Fragment> : <Fragment><span>/</span>{label}</Fragment>

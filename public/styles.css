@@ -732,3 +732,27 @@ footer .fcontact .btn{margin-top:.6rem;border-bottom:1px solid var(--oak)}
 .twocol > .steps{grid-template-columns:1fr}
 @media(min-width:700px){.twocol > .steps{grid-template-columns:1fr 1fr}}
 .estlink{margin:.8rem 0 0;font-size:.92rem}
+/* Photo backgrounds behind dark headers */
+.hasbg{background:var(--ink)}
+.hasbg::before{display:none}
+.herobg{position:absolute;inset:0;z-index:0;display:block}
+.herobg img{width:100%;height:100%;object-fit:cover;display:block;object-position:var(--mpos,center)}
+@media(min-width:700px){.herobg img{object-position:var(--pos,center)}}
+.hasbg::after{content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(21,22,20,.5) 0%,rgba(21,22,20,.68) 55%,rgba(21,22,20,.88) 100%)}
+@media(min-width:900px){
+  .hasbg::after{background:linear-gradient(90deg,rgba(21,22,20,.9) 0%,rgba(21,22,20,.7) 42%,rgba(21,22,20,.22) 100%),
+    linear-gradient(0deg,rgba(21,22,20,.55) 0%,rgba(21,22,20,0) 35%)}
+}
+.hasbg > .wrap{position:relative;z-index:1}
+.hasbg h1,.hasbg .lead,.hasbg .sub{text-shadow:0 1px 18px rgba(0,0,0,.35)}
+/* In-page photos */
+.photo{margin:0;background:var(--paper);box-shadow:var(--sh-1)}
+.photo img{width:100%;height:auto;object-fit:cover;display:block}
+.photo figcaption{font-size:.88rem;color:var(--ink-soft);padding:.8rem 1rem .9rem;line-height:1.45}
+.photo figcaption b{display:block;font-family:var(--d);font-size:.72rem;font-weight:700;letter-spacing:.08em;color:var(--ink-mute);margin-bottom:.2rem}
+.photogrid{display:grid;gap:1.1rem;grid-template-columns:1fr}
+@media(min-width:760px){.photogrid{grid-template-columns:repeat(3,1fr)}}
+.camclip{margin:0;background:var(--ink);box-shadow:var(--sh-1)}
+.camclip video{width:100%;display:block;aspect-ratio:16/9;object-fit:cover}
+.camclip figcaption{font-size:.86rem;color:var(--ink-inv-soft);padding:.7rem .9rem}

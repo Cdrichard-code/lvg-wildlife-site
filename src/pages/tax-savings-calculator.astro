@@ -1,4 +1,5 @@
 ---
+import HeroBg from '../components/HeroBg.astro';
 import Base from '../layouts/Base.astro';
 import Estimator from '../components/Estimator.astro';
 import InquiryForm from '../components/InquiryForm.astro';
@@ -59,7 +60,8 @@ const ld = { '@context': 'https://schema.org', '@graph': [
   ld={ld}
   mcta={{ title: 'Savings calculator', line: 'Then talk to us about a plan', href: '#talk', label: 'Get in touch' }}
 >
-<section class="dark topo-gold deep pagehead calchead">
+<section class="dark topo-gold deep pagehead hasbg calchead">
+  <HeroBg name="hero-does-on-plot" pos="70% 60%" />
   <div class="wrap calcgrid">
     <div>
       <nav class="crumb" aria-label="Breadcrumb"><a href='/'>Home</a><span>/</span>Tax savings calculator</nav>

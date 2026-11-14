@@ -1,0 +1,13 @@
+---
+// Full-bleed photo behind a dark header. Files live in public/img/photos:
+//   <name>-640.webp, -1100.webp, -1920.webp, -1100.jpg  (wide crop, tablet and desktop)
+//   <name>-m-900.webp                                    (tall crop, phones)
+// pos / mpos = CSS object-position for the wide and tall crops.
+const { name, pos = 'center', mpos = 'center 40%', alt = '' } = Astro.props;
+const b = `/img/photos/${name}`;
+---
+<picture class="herobg" aria-hidden={alt ? undefined : 'true'}>
+  <source media="(max-width: 699px)" type="image/webp" srcset={`${b}-m-900.webp`} />
+  <source type="image/webp" srcset={`${b}-1100.webp 1100w, ${b}-1920.webp 1920w`} sizes="100vw" />
+  <img src={`${b}-1100.jpg`} alt={alt} width="1920" height="1080" loading="eager" fetchpriority="high" decoding="async" style={`--pos:${pos};--mpos:${mpos}`} />
+</picture>

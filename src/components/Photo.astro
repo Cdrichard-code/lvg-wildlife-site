@@ -1,0 +1,12 @@
+---
+// In-page photo with caption. Same file naming as HeroBg.
+const { name, alt, caption = '', ratio = '3 / 2', pos = 'center' } = Astro.props;
+const b = `/img/photos/${name}`;
+---
+<figure class="photo">
+  <picture>
+    <source type="image/webp" srcset={`${b}-1100.webp`} />
+    <img src={`${b}-1100.jpg`} alt={alt} loading="lazy" decoding="async" width="1100" height="733" style={`aspect-ratio:${ratio};object-position:${pos}`} />
+  </picture>
+  {caption && <figcaption set:html={caption} />}
+</figure>

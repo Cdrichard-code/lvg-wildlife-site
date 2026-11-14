@@ -1,4 +1,6 @@
 ---
+import HeroBg from '../components/HeroBg.astro';
+import Photo from '../components/Photo.astro';
 import Base from '../layouts/Base.astro';
 import InquiryForm from '../components/InquiryForm.astro';
 import Estimator from '../components/Estimator.astro';
@@ -85,7 +87,8 @@ import { counties, regions, countyPath } from '../data/counties.js';
   mcta={{ title: 'Property assessment', line: 'North and East Texas', href: '/contact', label: 'Get in touch' }}
 >
 <!-- ===================== HERO ===================== -->
-<div class="hero topo-gold deep">
+<div class="hero topo-gold deep hasbg">
+  <HeroBg name="hero-food-plot-sunset" pos="center 62%" />
   <div class="wrap">
     <div class="idx reveal"><i></i><s></s><b>WILDLIFE MANAGEMENT &middot; NORTH AND EAST TEXAS</b></div>
     <h1 class="reveal">Wildlife management plans, built by walking your land.</h1>
@@ -184,6 +187,23 @@ import { counties, regions, countyPath } from '../data/counties.js';
         <a class="btn s2" href="/habitat-work">About habitat work</a>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ===================== REAL WORK ===================== -->
+<section id="real-work" class="topo-ink shift-1 seam">
+  <div class="wrap">
+    <div class="shead">
+      <div class="idx"><i></i><s></s><b>REAL GROUND, REAL WORK</b></div>
+      <h2>What the work looks like on the ground</h2>
+      <p class="sd">These come from a property our own team manages: the same practices we plan for yours.</p>
+    </div>
+    <div class="photogrid">
+      <Photo name="worked-plot-ground" alt="Freshly worked ground ready for a fall food plot, with timber behind it" caption="<b>SUPPLEMENTAL FOOD</b>Ground worked and ready for a fall plot." />
+      <Photo name="hogs-on-plot" alt="A sounder of feral hogs feeding on a green food plot at the edge of hardwoods" caption="<b>PREDATOR CONTROL</b>Hogs on a plot are why trapping is in so many of our plans." />
+      <Photo name="buck-water-hole" alt="A whitetail buck on trail camera beside a woodland water hole" caption="<b>WATER AND CENSUS</b>A buck at a water hole, caught on a survey camera." pos="center 40%" />
+    </div>
+    <p style="margin-top:1.4rem"><a href="/habitat-work">See the habitat work we do</a> · <a href="/wildlife-management-plans">What goes into a plan</a></p>
   </div>
 </section>
 

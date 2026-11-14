@@ -23,7 +23,7 @@ const ld = { '@context': 'https://schema.org', '@graph': [
   ld={ld}
   mcta={{ title: 'Annual reports', line: 'Filing or yearly help', href: '/contact', label: 'Get in touch' }}
 >
-<PageHead crumbs={crumbs} eyebrow="ANNUAL REPORTS" title="Wildlife exemption annual reports, handled every year" lead="A wildlife management plan is something you repeat every year. The annual report is how you show it happened. We help with both, whether or not we wrote your plan." />
+<PageHead bg={{ name: 'hero-bucks-crossing-plot', pos: '45% 60%' }} crumbs={crumbs} eyebrow="ANNUAL REPORTS" title="Wildlife exemption annual reports, handled every year" lead="A wildlife management plan is something you repeat every year. The annual report is how you show it happened. We help with both, whether or not we wrote your plan." />
 
 <section class="topo-ink shift-1 seam">
   <div class="wrap twocol">
@@ -42,7 +42,15 @@ const ld = { '@context': 'https://schema.org', '@graph': [
         <li><span><b>Census records:</b> stand counts, camera surveys, harvest</span></li>
       </ul>
     </div>
-    <Figure src="/img/examples/example-yearly-record.webp" alt="Example yearly record showing each practice, its documentation status, photos, receipts and the annual report draft" caption="Your records in one place through the year. Example, for illustration." w={1800} h={990} />
+    <div style="display:grid;gap:1.25rem;align-content:start">
+      <Figure src="/img/examples/example-yearly-record.webp" alt="Example yearly record showing each practice, its documentation status, photos, receipts and the annual report draft" caption="Your records in one place through the year. Example, for illustration." w={1800} h={990} />
+      <figure class="camclip">
+        <video autoplay muted loop playsinline preload="metadata" poster="/video/trailcam-buck-plot.jpg" aria-label="Trail camera clip of a buck walking along a food plot">
+          <source src="/video/trailcam-buck-plot.mp4" type="video/mp4" />
+        </video>
+        <figcaption>Trail camera surveys count as the census practice, and the footage becomes part of your records. From a team member's property.</figcaption>
+      </figure>
+    </div>
   </div>
 </section>
 
